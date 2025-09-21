@@ -14,21 +14,14 @@
 
 import Header from "./components/Header/Header"
 import Hero from "./components/Hero/Hero"
-// import HeroMarquee from "./components/Hero/HeroMarquee";
-import TestScript from "./components/TestScript/TestScript";
-
-
 
 function App() {
 
 
   return (
     <>
-
      <Header/>
-     {/* <HeroMarquee/> */}
       <Hero />
-      <TestScript/>
     </>
   )
 }
