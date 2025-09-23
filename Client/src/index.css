@@ -1,21 +1,32 @@
 /* src/styles/custom.css */
-@import tailwindcss;
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
-   .hero-text {
-    @apply text-[#a20419]; 
-   }
+.hero-text {
+   @apply text-[#a20419]; 
+}
 
-   .hero-sub-text {
-    @apply text-[#2c8708];
-   }
-   .hero-font {
-    @apply font-[exo] font-[700]
-   }
- 
-    .image-clipped-text {
-    @apply text-[5rem] font-bold bg-clip-text text-transparent bg-cover bg-center;
-    }
+.hero-sub-text {
+   @apply text-[#2c8708];
+}
+.hero-font {
+   @apply font-[exo] font-[700]
+}
+
+.image-clipped-text {
+   @apply text-[5rem] font-bold bg-clip-text text-transparent bg-cover bg-center;
+}
+
+.font-baskerville {
+   font-family: 'Libre Baskerville', serif;
+}
+
+@theme {
+   --color-primary: #a20419;
+   --color-secondary: #00520c;
+}

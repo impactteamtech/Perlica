@@ -1,8 +1,8 @@
+/* i removed the margin 0 and padding 0 because those makes the padding in tailwindcss and margin didn't work */
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     
+  box-sizing: border-box;
+  
 }
 
 body{
