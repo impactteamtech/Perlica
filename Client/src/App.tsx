@@ -1,18 +1,27 @@
+/* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃                      DEV CARD (yp)                 ┃
+   ┣━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Initials ┃ Use // [yp] to tag any inline changes   ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Stack    ┃ TS → JS → Tailwind → React              ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Cadence  ┃ Weekly tasks · Weekly review pre-merge  ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Cleanup  ┃ Remove ALL comments at completion       ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Commits  ┃ feat(scope): message  [yp]              ┃
+   ┗━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ */
 
-// Dear devs !! [PLEASE READ BELOW] (yp)
-
-// please be sure to comment out your updates with initials (yp)
-//stack as follows Typescript/VanillaJs/tailwindCSS/React (yp)
-// tasks will be given out weekly (yp)
-// weekly reviews before pushing to main (yp)
-//PLEASE REMOVE ALL COMMENTS UPON PROJECT COMPLEMENTION (yp)
-
+import Header from "./components/Header/Header"
+import Hero from "./components/Hero/Hero"
 
 function App() {
-  
+
+
   return (
     <>
-    
+     <Header/>
+      <Hero />
     </>
   )
 }
