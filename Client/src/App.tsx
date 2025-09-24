@@ -14,15 +14,16 @@
 
 import Header from "./components/Header/Header"
 import Hero from "./components/Hero/Hero"
+import SearchPackages from "./components/SearchPackages/SearchPackages"
 
 function App() {
 
-
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
      <Header/>
       <Hero />
-    </>
+      <SearchPackages/>
+    </div>
   )
 }
 

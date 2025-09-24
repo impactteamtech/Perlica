@@ -23,16 +23,16 @@ const Header: React.FC = () => {
       aria-label="Quick nav"
       className="
         fixed top-1/2 right-4 -translate-y-1/2 z-50
-        rounded-2xl p-2
+        rounded-2xl
         bg-white border border-gray-200 shadow-xl
       "
     >
       {/* Logo */}
-      <div className="p-4 flex justify-center">
+      <div className="flex justify-center">
         <img src={logo} alt="Perlica" className="h-15 w-auto" />
       </div>
 
-      <ul className="flex flex-col items-center gap-6">
+      <ul className="flex flex-col items-center p-3 gap-3">
         {items.map(({ label, icon: Icon }) => {
           const expanded = hovered === label;
           return (
@@ -46,9 +46,9 @@ const Header: React.FC = () => {
                 className={`
                   group flex items-center overflow-hidden rounded-xl
                   transition-all duration-300 ease-out cursor-pointer
-                  bg-white border border-gray-200
-                  hover:shadow-md
-                  ${expanded ? "justify-center w-[220px] pl-3 pr-4 py-3" : "justify-center w-[56px] p-3"}
+                  bg-white border border-gray-200 
+                  hover:shadow-md 
+                  ${expanded ? "justify-center w-[220px]" : "justify-center w-[60px] p-3"}
                 `}
               >
                 <Icon
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
                 />
                 <span
                   className={`
-                    ml-5 text-sm font-medium  text-gray-900 whitespace-nowrap
+                    text-sm font-medium  text-gray-900 whitespace-nowrap
                     transition-[max-width,opacity,margin] duration-300 ease-out
                     ${expanded ? "max-w-[140px] opacity-100" : "max-w-0 opacity-0 ml-0"}
                   `}

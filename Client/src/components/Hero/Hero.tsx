@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
       transition: {
         duration: 0.75,
         ease: [0.25, 0.1, 0.25, 1],
-        type: "spring",
+        type: 'spring',
         damping: 18,
         stiffness: 140,
       },
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden  flex flex-col items-center justify-center">
       {/* Logo – top-left */}
       <motion.img
         src={Heropng}
@@ -160,7 +160,7 @@ const Hero: React.FC = () => {
             mt-2 hero-font font-bold leading-[0.95]
             text-[clamp(3rem,10vw,12rem)] tracking-[-0.01em]
             bg-clip-text text-transparent bg-cover bg-center bg-no-repeat
-            [-webkit-text-stroke:2px_rgba(255,255,255,0.9)]
+            [-webkit-text-stroke:2px_rgba(255,255,255,1)]
           "
           style={{ backgroundImage: `url(${textImg})`, y: yText }}
         >
