@@ -30,3 +30,9 @@
    --color-primary: #a20419;
    --color-secondary: #00520c;
 }
+/* please use bg-[#efebe5]/90 for background  */
+.background-color{
+   @apply bg-[#efebe5]/90;
+
+}
+
