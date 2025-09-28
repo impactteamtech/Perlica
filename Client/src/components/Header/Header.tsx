@@ -23,12 +23,12 @@ const Header: React.FC = () => {
       aria-label="Quick nav"
       className="
         fixed top-1/2 right-4 -translate-y-1/2 z-50
-        rounded-2xl
-        bg-white border border-gray-200 shadow-xl
+        rounded-2xl p-1
+        background-color border border-gray-200 shadow-xl
       "
     >
       {/* Logo */}
-      <div className="flex justify-center">
+      <div className="p-1 flex justify-center">
         <img src={logo} alt="Perlica" className="h-15 w-auto" />
       </div>
 
@@ -44,20 +44,20 @@ const Header: React.FC = () => {
                 onMouseEnter={() => setHovered(label)}
                 onMouseLeave={() => setHovered(null)}
                 className={`
-                  group flex items-center overflow-hidden rounded-xl
+                  group flex items-center justify-center overflow-hidden rounded-xl
                   transition-all duration-300 ease-out cursor-pointer
-                  bg-white border border-gray-200 
-                  hover:shadow-md 
-                  ${expanded ? "justify-center w-[220px]" : "justify-center w-[60px] p-3"}
+                  bg-[#7a8566] border border-gray-200
+                  hover:shadow-md
+                  ${expanded ? "justify-center w-[220px] " : "justify-center w-[56px] p-2"}
                 `}
               >
                 <Icon
                   size={32}
-                  className=" mr-5 mx-5 shrink-0 text-gray-800  group-hover:text-gray-900 transition-colors"
+                  className="shrink-0 text-white text-gray-800  transition-colors"
                 />
                 <span
                   className={`
-                    text-sm font-medium  text-gray-900 whitespace-nowrap
+                    text-sm font-medium ml-1  text-gray-200 whitespace-nowrap
                     transition-[max-width,opacity,margin] duration-300 ease-out
                     ${expanded ? "max-w-[140px] opacity-100" : "max-w-0 opacity-0 ml-0"}
                   `}

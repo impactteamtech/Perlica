@@ -19,6 +19,7 @@ import Heropng from "/Perlica_logo.png";
 import textImg from "/kenya.jpg";
 import HeroCTA from "./HeroCTA";
 import HeroShades from "./HeroShades";
+import SearchPackages from "../SearchPackages/SearchPackages";
 
 const Hero: React.FC = () => {
   const text = "Perlica";
@@ -72,7 +73,7 @@ const Hero: React.FC = () => {
       <motion.img
         src={Heropng}
         alt="Perlica"
-        className="absolute top-4 left-4 z-40 w-20 h-auto md:w-48"
+        className="absolute top-0 left-2 z-40 w-20 h-auto md:w-68"
         initial={{ y: -12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -94,7 +95,7 @@ const Hero: React.FC = () => {
           muted
           playsInline
           aria-hidden
-          className="w-full h-full object-cover mask-b-from-30% mask-b-to-95%"
+          className="w-full h-full object-cover "
           style={{
             y: yVideo,
             scale: 1.12,
@@ -105,6 +106,7 @@ const Hero: React.FC = () => {
         >
           <source src={heroImg} type="video/mp4" />
         </motion.video>
+        
       </motion.div>
 
       {/* Glows */}
@@ -132,7 +134,7 @@ const Hero: React.FC = () => {
           animate="visible"
           className="
             m-0 text-center leading-[0.92] font-extrabold
-            text-[clamp(3.5rem,12vw,16rem)] tracking-[-0.02em]
+            text-[clamp(3.5rem,12vw,10rem)] tracking-[-0.02em]
             bg-clip-text text-transparent
             [-webkit-text-stroke:3px_rgba(0,0,0,0.35)]
             [text-shadow:0_0_14px_rgba(255,255,255,0.35)]
@@ -176,7 +178,8 @@ const Hero: React.FC = () => {
           whileTap={{ scale: 0.98 }}
           className="mt-8 inline-block"
         >
-          <HeroCTA />
+        
+          {/* <SearchPackages/> */}
         </motion.div>
       </div>
     </section>
