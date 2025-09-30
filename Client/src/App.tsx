@@ -17,7 +17,7 @@ import Hero from "./components/Hero/Hero"
 import AboutUs from "./components/AboutUs/AboutUs"
 import Services from "./components/Services/Services"
 import Reviews from "./components/Reviews/Reviews"
-
+import './App.css'; 
 function App() {
 
 
@@ -25,10 +25,15 @@ function App() {
     <>
      <Header/>
      <Hero />
+     <div className = "neumorphic-page">
+      <div className= "neumorphic-wrapper">
      <AboutUs />
      <Services />
      <Reviews />
+     </div>
+     </div>
     </>
+    
   )
 }
 

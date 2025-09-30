@@ -1,4 +1,5 @@
 // please use background-color for all sections -R
+//Trying something with the background neumorphism - R
 import type {JSX}  from 'react'
 import HistoryAndMission from './HistoryAndMission'
 import PerlicaTeam from './PerlicaTeam'
