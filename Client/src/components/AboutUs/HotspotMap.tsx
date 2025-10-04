@@ -17,7 +17,7 @@ const hotspots: Hotspot[] = [
     img: "/good-view-1.jpg",
     label: "Savannah Vista",
     description: "Golden plains & wildlife routes",
-    position: "right-16 bottom-44",
+    position: "right-20 bottom-45",
     previewOffset: { x: 20, y: -40 }
   },
   {
@@ -25,7 +25,7 @@ const hotspots: Hotspot[] = [
     img: "/good-view-2.jpeg",
     label: "Samaia",
     description: "Kenya Old People",
-    position: "left-90 top-4",
+    position: "left-86 -top-4",
     previewOffset: { x: -40, y: 20 }
   },
   {
@@ -33,7 +33,7 @@ const hotspots: Hotspot[] = [
     img: "/good-view-3.jpg",
     label: "Safari",
     description: "Amazing Safari",
-    position: "right-30 bottom-6",
+    position: "right-29 bottom-1",
     previewOffset: { x: 30, y: -30 }
   },
 ];
@@ -52,8 +52,13 @@ const HotspotsMap = () => {
   return (
     <div className="w-[50%] flex relative items-center justify-center">
       {/* Base imagery */}
-      <img src="/trajectory.png" className="w-110 mr-30 z-10 select-none pointer-events-none" alt="trajectory" />
-      <img className="w-100 h-75 absolute opacity-50 right-0 z-0 select-none pointer-events-none" src="/kenya_map.png" alt="Kenya map"/>
+      <img src="/trajectory.png" className="w-130 relative right-28 z-10 select-none pointer-events-none" alt="trajectory" />
+      <img
+      className="w-120 h-120 absolute opacity-100 right-0 z-0 select-none pointer-events-none" 
+      src="/kenya_map.png" alt="Kenya map"/>
+      <img 
+      className="w-30 h-30 animate-pulse absolute -bottom-20 opacity-30"
+      src="/compass.png" alt="compass"/>
 
       {/* Hotspot buttons */}
       {hotspots.map(h => {

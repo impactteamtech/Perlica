@@ -40,36 +40,36 @@ export const services:{
   }[] = [
     {
       name:"Ticketing",
-      img:"/services_icons/ticket.png",
+      img:"/services/get_ticket.jpg",
       description:"We will provide the most direct\
       cost effective flight schedules and special fares two to three booking \
       options will be emailed to help you make an informed decision"
     },
     {
       name:"Corporate group discounts",
-      img:"/services_icons/group.png",
+      img:"/services/group_travel.jpg",
       description:"We negotiate special rates and volume \
       discounts for large groups travelling together with preferred airlines \
       Groups of  10 or more adults qualify for special rates."
     },
     {
       name:"Conference facilities",
-      img:"/services_icons/conference.png",
+      img:"/services/conference.jpg",
       description:"We organize conferences for groups of all sizes in Nairobi and beyond \
       Partnering with reputable hotel lodges."
     },
     {
       name:"Hotel reservations",
-      img:"/services_icons/hotel.png",
+      img:"/services/hotel_reservation.jpg",
       description:"We proudly maintain strong, collaborative partnerships with hotel chains throught kenya, \
       East Africa, and worldwid. Leveraging negotiated contract rates with leading hotel groups."
     },
     {
       name:"Safaris and tour packages",
-      img:"/services_icons/safari.png",
-      description:"Our Tours Department offers unique, tailor-made adventure and luxurt safaris, prioritizing \
-      priotizing client comfort end sefty with well-maintained vehicles equipped with 24-hour VHF communication. \
-      We specialize in game viewing.beach holiday."
+      img:"/services/safari_tour_package1.jpg",
+      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris, prioritizing \
+      prioritizing client comfort and safety with well-maintained vehicles equipped with 24-hour VHF communication. \
+      We specialize in game viewing and beach holidays."
     }
   ];
 

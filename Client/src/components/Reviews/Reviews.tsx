@@ -37,7 +37,7 @@ const Reviews = (): JSX.Element => {
         // }
     ];
   return (
-    <section className="background-color flex flex-col gap-8 px-15 py-10 min-h-screen">
+    <section className="flex flex-col gap-8 px-15 py-10 min-h-screen">
         <div className="w-full flex items-center justify-between">
            <h1 className="text-6xl font-mono title-font color-primary">WHAT PEOPLE SAY</h1>
           <div className="flex gap-4">

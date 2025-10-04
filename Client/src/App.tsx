@@ -22,17 +22,17 @@ function App() {
 
 
   return (
-    <>
+    <div className="background-color">
      <Header/>
      <Hero />
-     <div className = "neumorphic-page">
-      <div className= "neumorphic-wrapper">
+     {/* <div className = "neumorphic-page"> */}
+      {/* <div className= "neumorphic-wrapper"> */}
      <AboutUs />
      <Services />
      <Reviews />
-     </div>
-     </div>
-    </>
+     {/* </div> */}
+     {/* </div> */}
+    </div>
     
   )
 }
