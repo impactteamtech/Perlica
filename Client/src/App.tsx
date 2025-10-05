@@ -25,13 +25,9 @@ function App() {
     <>
      <Header/>
      <Hero />
-     <div className = "neumorphic-page">
-      <div className= "neumorphic-wrapper">
      <AboutUs />
      <Services />
      <Reviews />
-     </div>
-     </div>
     </>
     
   )
