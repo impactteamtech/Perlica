@@ -1,21 +1,28 @@
 
 import { BiSolidHome } from 'react-icons/bi';
 import logo from '/Perlica_logo.png'
-import { FaInfoCircle, FaTools, FaPhoneAlt } from "react-icons/fa";
-import { useState } from 'react';
+import { FaInfoCircle, FaTools, FaPhoneAlt, } from "react-icons/fa";
+import { GiPlanetConquest } from "react-icons/gi";
+import { FaPeopleGroup } from "react-icons/fa6"
+import { useState, type CSSProperties } from 'react';
 
 
-type IconType = React.ComponentType<{ size?: number; className?: string }>;
+type IconType = React.ComponentType<{ size?: number; className?: string, style: CSSProperties; }>;
 type Item = { label: string; icon: IconType };
 
 const Header: React.FC = () => {
   const [hovered, setHovered] = useState<string | null>(null);
+  //Kenyan flag colors for icon (yp)
+  const kenyaColors = ['#000000', '#BB0000', '#006600',  '#c00000ff', '#006600',];
 
   const items: Item[] = [
     { label: "Home", icon: BiSolidHome },
-    { label: "About Us", icon: FaInfoCircle },
+    { label: "Destination", icon: GiPlanetConquest },
     { label: "Services", icon: FaTools },
-    { label: "Contact Us", icon: FaPhoneAlt },
+    { label: "About Us", icon: FaInfoCircle },
+    { label: "Partner With Us", icon: FaPeopleGroup },
+    { label: "Contact", icon: FaPhoneAlt },
+
   ];
 
   return (
@@ -27,13 +34,14 @@ const Header: React.FC = () => {
         background-color border border-gray-200 shadow-xl
       "
     >
-      {/* Logo */}
+      {/* Logo (yp) */}
       <div className="p-1 flex justify-center">
         <img src={logo} alt="Perlica" className="h-15 w-auto" />
       </div>
 
       <ul className="flex flex-col items-center p-3 gap-3">
-        {items.map(({ label, icon: Icon }) => {
+        {items.map(({ label, icon: Icon }, i) => {
+          const color = kenyaColors[i % kenyaColors.length]
           const expanded = hovered === label;
           return (
             <li key={label}>
@@ -44,9 +52,8 @@ const Header: React.FC = () => {
                 onMouseEnter={() => setHovered(label)}
                 onMouseLeave={() => setHovered(null)}
                 className={`
-                  group flex items-center justify-center overflow-hidden rounded-xl
+                  group flex items-center justify-center overflow-hidden 
                   transition-all duration-300 ease-out cursor-pointer
-                  bg-[#7a8566] border border-gray-200
                   hover:shadow-md
                   ${expanded ? "justify-center w-[220px] " : "justify-center w-[56px] p-2"}
                 `}
@@ -54,10 +61,11 @@ const Header: React.FC = () => {
                 <Icon
                   size={32}
                   className="shrink-0 text-white text-gray-800  transition-colors"
+                  style={{color}}
                 />
                 <span
                   className={`
-                    text-sm font-medium ml-1  text-gray-200 whitespace-nowrap
+                    text-md font-large ml-1  text-black whitespace-nowrap
                     transition-[max-width,opacity,margin] duration-300 ease-out
                     ${expanded ? "max-w-[140px] opacity-100" : "max-w-0 opacity-0 ml-0"}
                   `}

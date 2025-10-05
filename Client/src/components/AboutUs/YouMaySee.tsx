@@ -42,7 +42,7 @@ const YouMaySee = (): JSX.Element => {
   };
 
   return (
-    <div className="flex relative flex-col items-center background-color gap-10 min-h-screen py-10 px-4 md:px-15">
+    <div className="flex relative flex-col items-center gap-10 min-h-screen py-10 px-4 md:px-15">
       <h2 className="title-font text-center font-mono text-3xl md:text-6xl color-primary max-w-4xl">
         FEATURED SUITES <span className="">&</span> EXPERIENCES
       </h2>

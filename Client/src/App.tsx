@@ -17,22 +17,26 @@ import Hero from "./components/Hero/Hero"
 import AboutUs from "./components/AboutUs/AboutUs"
 import SearchPackages from "./components/SearchPackages/SearchPackages"
 import Reviews from "./components/Reviews/Reviews"
+import './App.css';
 import Services from "./components/Services/Services"
-
 function App() {
 
   return (
+   <>
+  <div className="background-color">
     <div className="flex flex-col relative items-center justify-center">
-     <Header/>
-     <Hero />
-     <div className="absolute top-170 z-[10]">
-      <SearchPackages/>
-     </div>
-     <AboutUs />
-     <Services />
-     <Reviews />
+      <Header />
+      <Hero />
+      <div className="absolute top-[700px] z-[10]">
+        <SearchPackages />
+      </div>
+      <AboutUs />
+      <Services />
+      <Reviews />
     </div>
-  )
+  </div>
+</>
+)
 }
 
-export default App
+      export default App

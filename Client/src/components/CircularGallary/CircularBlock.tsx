@@ -1,3 +1,5 @@
+// OGL component will need to shorten later (yp)
+
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import { useEffect, useRef } from 'react';
 
@@ -154,6 +156,7 @@ interface MediaProps {
   font?: string;
 }
 
+// media class (yp)
 class Media {
   extra: number = 0;
   geometry: Plane;
@@ -169,6 +172,7 @@ class Media {
   bend: number;
   textColor: string;
   borderRadius: number;
+  isHovered: boolean = false;
   font?: string;
   program!: Program;
   plane!: Mesh;
@@ -632,6 +636,17 @@ export default function CircularGallery({
       app.destroy();
     };
   }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
-  return <div className="max-w-8xl  mb-5 min-h-screen overflow-hidden mx-auto active:cursor-grabbing" ref={containerRef} />;
+  return(
+  <div className="relative">
+    <div className="max-w-8xl  mb-5 min-h-screen overflow-hidden mx-auto active:cursor-grabbing" ref={containerRef}></div>
+    <div className="absolute top-0 left-0 flex flex-center items-center">
+      <button className="text-black font-md text-md">
+        Check Availability
+      </button>
+    
+    </div> 
+
+  </div>
+  );
   
 }

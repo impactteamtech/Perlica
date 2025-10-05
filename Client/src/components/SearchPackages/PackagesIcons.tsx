@@ -28,7 +28,7 @@ const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 w-full">
         {icons.map(({ label, icon: Icon, size }, i) => {
           const color = kenyaColors[i % kenyaColors.length];
-          // Map label to category key
+          // Map label to category key (yp)
           const labelToKey: { [key: string]: 'stays' | 'destinations' | 'cars' | 'packages' | 'thingsToDo' } = {
             "Stays": "stays",
             "Destinations": "destinations",

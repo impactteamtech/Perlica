@@ -38,8 +38,41 @@
    --color-primary: #a20419;
    --color-secondary: #2c8708;
 }
-/* please use bg-[#efebe5]/90 for background  */
+/* please use bg-[#86a39e]/40 for background  */
 .background-color{
-   @apply bg-[#efebe5]/90 ;
+   @apply bg-[#efebe5] ;
+}
+.card-background-color{
+   @apply bg-secondary/10 
 }
 
+
+/* Css for the stack ! (is here!) */
+
+
+
+.card-rotate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+}
+
+.card-rotate:active {
+  cursor: grabbing;
+}
+
+.stack-container {
+  margin: 0 auto;
+}
+
+.card {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.card-image {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

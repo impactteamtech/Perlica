@@ -2,7 +2,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import type { JSX } from "react";
 const MotivationDiv = ():JSX.Element => {
   return (
-    <div className="relative w-[50%] h-75 rounded-2xl  bg-secondary/10 p-6 flex flex-col">
+    <div className="relative w-[50%] h-75 rounded-2xl  card-background-color p-6 flex flex-col">
       <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-secondary drop-shadow-sm">
         EXPLORE
         <br />
@@ -11,7 +11,7 @@ const MotivationDiv = ():JSX.Element => {
 
       <div className="relative z-10 mt-4 flex flex-1 items-start">
         <div className="w-[55%] flex flex-col gap-5 pr-4">
-          <p className="text-sm leading-relaxed text-black/80 font-sans">
+          <p className="text-sm leading-relaxed text-gray-700 font-sans">
             Discover breathtaking landscapes, vibrant cultures, and timeless safari adventures across Kenya. From the Maasai Mara to coastal escapes your journey begins here.
           </p>
           <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary/70 hover:bg-secondary transition-colors overflow-hidden">
