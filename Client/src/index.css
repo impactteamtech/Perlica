@@ -1,6 +1,6 @@
 /* src/styles/custom.css */
 /* Google font */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
@@ -22,17 +22,24 @@
    @apply text-[5rem] font-bold bg-clip-text text-transparent bg-cover bg-center;
 }
 
-.font-baskerville {
-   font-family: 'Libre Baskerville', serif;
+.kenya-name-font{
+   font-family:'Berkshire Swash', cursive;
 }
-
+.title-font {
+   font-family: 'Oswald', sans-serif;
+}
+.text-font {
+   @apply font-[Rubik] font-[300] text-xl;
+}
+.color-primary{
+   @apply text-red-700;
+}
 @theme {
    --color-primary: #a20419;
-   --color-secondary: #00520c;
+   --color-secondary: #2c8708;
 }
 /* please use bg-[#efebe5]/90 for background  */
 .background-color{
-   @apply bg-[#efebe5]/90;
-
+   @apply bg-[#efebe5]/90 ;
 }
 

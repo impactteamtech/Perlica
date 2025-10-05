@@ -16,6 +16,8 @@ import Header from "./components/Header/Header"
 import Hero from "./components/Hero/Hero"
 import AboutUs from "./components/AboutUs/AboutUs"
 import SearchPackages from "./components/SearchPackages/SearchPackages"
+import Reviews from "./components/Reviews/Reviews"
+import Services from "./components/Services/Services"
 
 function App() {
 
@@ -23,10 +25,12 @@ function App() {
     <div className="flex flex-col relative items-center justify-center">
      <Header/>
      <Hero />
-     <div className="absolute top-180 z-[10]">
+     <div className="absolute top-170 z-[10]">
       <SearchPackages/>
      </div>
      <AboutUs />
+     <Services />
+     <Reviews />
     </div>
   )
 }
