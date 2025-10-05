@@ -1,12 +1,19 @@
 /* i removed the margin 0 and padding 0 because those makes the padding in tailwindcss and margin didn't work */
 *{
+<<<<<<< HEAD:Client/src/basic.css
+    box-sizing: border-box;
+=======
+>>>>>>> fad839501bc6fe4eeb48e666f43da07a73aa12fe:Client/src/styles/basic.css
     
   box-sizing: border-box;
   
 }
 
 body{
+    margin: auto;
+    padding: auto;
     overflow-x: hidden;
+    background-color: rgba(92, 90, 90, 0.9);
 }
 @keyframes glow-slow {
   0%   { transform: scale(0.95); opacity: 0.75; }
@@ -16,4 +23,5 @@ body{
 .animate-glow-slow {
   animation: glow-slow 8s ease-in-out infinite;
 }
+
 

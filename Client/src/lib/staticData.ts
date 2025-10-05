@@ -1,20 +1,4 @@
-import type { Guide } from './types';
-export const safariVideos:string[] = [
-    '/video1.mov',
-    '/video2.mov',
-    '/video3.mov'
-];
-export const safariImages: string[] = [
-  "/safari_image1.webp",
-  "/safari_image2.webp",
-  "/safari_image3.jpg",
-  "/safari_image4.jpg",
-  "/safari_image5.jpg",
-  "/safari_image6.jpg",
-  "/safari_image7.jpg",
-  "/safari_image8.jpg",
-  "/safari_image9.jpg",
-];
+import type { Guide,KenyaImageDetails,Thing } from './types';
 export const tourGuides: Guide[] = [
   {
     id:1,
@@ -30,7 +14,7 @@ export const tourGuides: Guide[] = [
   },
   {
     id:3,
-    name:"Rea Mungai",
+    name:"Rae Mungai",
     role:"Travel consultant",
     image:"/tour_guides/rea.jpg"
   },
@@ -40,10 +24,89 @@ export const tourGuides: Guide[] = [
     role:"Wildlife expert",
     image:"/tour_guides/guide1.jpg"
   },
+  // {
+  // id:5,
+  // name:"Ahmed",
+  // role:"Guide",
+  // image:"/tour_guides/guide2.jpg"
+  // }
+];
+
+
+export const services:{
+    name:string,
+    description:string,
+    img:string,
+  }[] = [
+    {
+      name:"Ticketing",
+      img:"/services/get_ticket.jpg",
+      description:"We will provide the most direct\
+      cost effective flight schedules and special fares two to three booking \
+      options will be emailed to help you make an informed decision"
+    },
+    {
+      name:"Corporate group discounts",
+      img:"/services/group_travel.jpg",
+      description:"We negotiate special rates and volume \
+      discounts for large groups travelling together with preferred airlines \
+      Groups of  10 or more adults qualify for special rates."
+    },
+    {
+      name:"Conference facilities",
+      img:"/services/conference.jpg",
+      description:"We organize conferences for groups of all sizes in Nairobi and beyond \
+      Partnering with reputable hotel lodges."
+    },
+    {
+      name:"Hotel reservations",
+      img:"/services/hotel_reservation.jpg",
+      description:"We proudly maintain strong, collaborative partnerships with hotel chains throught kenya, \
+      East Africa, and worldwid. Leveraging negotiated contract rates with leading hotel groups."
+    },
+    {
+      name:"Safaris and tour packages",
+      img:"/services/safari_tour_package1.jpg",
+      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris, prioritizing \
+      prioritizing client comfort and safety with well-maintained vehicles equipped with 24-hour VHF communication. \
+      We specialize in game viewing and beach holidays."
+    }
+  ];
+
+export  const kenyaImages: KenyaImageDetails[] = [
   {
-  id:5,
-  name:"Ahmed",
-  role:"Guide",
-  image:"/tour_guides/guide2.jpg"
+    placeName:"National parc in nairobi",
+    path:"/kenya_places/nairobi_national_parc.jpg",
+    location:"Nairobi, Kenya",
+  },
+  {
+    placeName:"Giraffe centre",
+    path:"/kenya_places/giraffe_centre.jpg",
+    location:"Duma Rd, Nairobi, Kenya",
+  },
+  {
+    placeName:"Karen blixen museum",
+    path:"/kenya_places/karen_blixen_museum.jpg",
+    location:"Karen Rd, Nairobi, Kenya"
+  },
+  {
+    placeName:"The Nairobi Arboretum",
+    path:"/kenya_places/nairobi_arboretum.jpg",
+    location:"Carte de The Nairobi Arboretum Kilimani Arboretum Rd, off State House Rd, Nairobi, Kenya",
+  },
+  {
+    placeName:"The Hub Karen",
+    path:"/kenya_places/the_hub_karen.webp",
+    location:"Carte de The Hub Karen, Dagoretti Rd, Nairobi City, Kenya"
+  },
+  {
+    placeName:"Bomas of Kenya",
+    path:"/kenya_places/bomas_of_kenya.jpg",
+    location:"Carte de Bomas of Kenya Nairobi, Kenya",
+  },
+  {
+    placeName:"Uhuru Park",
+    path:"/kenya_places/uhuru_park.jpg",
+    location:"Carte de Uhuru Park, 23 Uhuru Hwy, Nairobi, Kenya",
   }
 ];
