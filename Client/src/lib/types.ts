@@ -30,3 +30,22 @@ export type KenyaImageDetails = {
     path: string;
     location: string; 
 }; 
+
+export type Event = {
+    id: number;
+    name: string;
+    description: string;
+    mainImage: string;
+}
+export type Option  = {
+    id:number,
+    optionName:string,
+    description:string
+}
+export type TravelInfo = {
+    infoId:number,
+    title:string,
+    text:string,
+    icon:string,
+    options:Option[]
+}

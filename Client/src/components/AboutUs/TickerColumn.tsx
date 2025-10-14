@@ -32,6 +32,29 @@ const TickerColumn = ():JSX.Element => {
       onTouchEnd={resume}
     
     >
+      {/* Decorative L-corner accents */}
+      <div className="pointer-events-none z-40 absolute inset-0">
+        {/* Top-left */}
+        <div className="absolute top-0 left-0">
+          <div className="w-16 h-[7px] bg-green-500" />
+          <div className="w-[7px] h-16  bg-green-500" />
+        </div>
+        {/* Top-right */}
+        <div className="absolute top-0 right-0">
+          <div className="w-16 h-[7px] bg-green-500" />
+          <div className="absolute top-0 right-0 w-[7px] h-16 bg-green-500" />
+        </div>
+        {/* Bottom-left */}
+        <div className="absolute bottom-0 left-0">
+          <div className="w-[7px] h-16 bg-green-500" />
+          <div className="w-16 h-[7px] bg-green-500" />
+        </div>
+        {/* Bottom-right */}
+        <div className="absolute bottom-0 right-0">
+          <div className=" bottom-0 absolute right-0 w-[7px] h-16 bg-green-509" />
+          <div className="w-16 h-[7px] bg-green-500" />
+        </div>
+      </div>
       <motion.div
         ref={containerRef}
         className="flex flex-col gap-2 will-change-transform"
@@ -39,6 +62,7 @@ const TickerColumn = ():JSX.Element => {
       >
         {doubled.map((item, i) => (
           <div key={i} className="relative h-80 w-full overflow-hidden rounded-md shadow-sm shadow-black/20 group/item">
+           
             <img
               src={item.path}
               alt={item.placeName}
@@ -55,7 +79,6 @@ const TickerColumn = ():JSX.Element => {
                   {item.location}
                 </p>
               </div>
-              {/* subtle gradient fade behind text for readability */}
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 via-black/20 to-transparent -z-10" />
             </div>
           </div>

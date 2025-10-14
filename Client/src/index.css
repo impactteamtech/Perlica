@@ -43,14 +43,13 @@
    @apply bg-[#efebe5] ;
 }
 .card-background-color{
-   @apply bg-secondary/10 
+   @apply bg-secondary/10;
 }
 
 
+
+
 /* Css for the stack ! (is here!) */
-
-
-
 .card-rotate {
   position: absolute;
   top: 0;

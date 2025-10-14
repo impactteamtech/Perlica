@@ -179,8 +179,9 @@ const Hero: React.FC = () => {
           className="mt-8 inline-block"
         >
         
-          {/* <SearchPackages/> */}
+          <SearchPackages/>
         </motion.div>
+
       </div>
     </section>
   );

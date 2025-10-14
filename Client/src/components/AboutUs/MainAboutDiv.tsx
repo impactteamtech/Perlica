@@ -23,13 +23,24 @@ const MainAboutDiv = ():JSX.Element => {
                 src="/herb.png" alt="claude"/>
               </div>
             </div>
-              <div className='flex-col relative items-center flex gap-2'>
+              <div className='flex w-100  justify-center relative items-center'>
               {/* decorators */}
-           
-              <img 
-              className='relative  left-5  bottom-4 w-140'
-              alt="kenya name" 
-              src="/kenya_name.png"/>
+             
+              <img
+               className="w-70 relative top-10"
+               src="/tanzania_ballon.png"
+               alt="Tanzania ballon"
+              />
+               <img 
+              className="w-100"
+              src="/ballon.png" 
+              alt="Kenya ballon"/>
+              <img
+               className="w-70 relative top-10"
+               src="/unganda_ballon.png"
+               alt="Uganda ballon"
+              />
+             
             </div>
             {/* last positioned div */}
             <div className="relative">

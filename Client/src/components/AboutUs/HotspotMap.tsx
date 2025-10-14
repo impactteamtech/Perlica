@@ -52,6 +52,7 @@ const HotspotsMap = () => {
   return (
     <div className="w-[50%] flex relative items-center justify-center">
       {/* Base imagery */}
+      <img src="/shining.png" alt="balloon"  className="w-20 absolute opacity-50 bottom-50 left-50 "/>
       <img src="/trajectory.png" className="w-130 relative right-28 z-10 select-none pointer-events-none" alt="trajectory" />
       <img
       className="w-120 h-120 absolute opacity-100 right-0 z-0 select-none pointer-events-none" 
