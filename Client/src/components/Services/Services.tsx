@@ -65,7 +65,7 @@ const Services = ():JSX.Element => {
             SERVICES WE PROVIDE
           </h1>
           <div 
-          className="w-[40%] p-10 relative opacity-70 rounded-lg h-full brightness-70 bg-[url('/decorator_bg.jpg')] bg-cover bg-center">
+          className="w-[40%] p-10 relative opacity-60  h-full bg-[url('/decorator_bg.png')] bg-cover bg-center">
             <div className="w-40 background-color  h-80">
               <img src="/airplane.png" className="w-14 left-12 rotate-270 top-60 relative" alt="airplane"/>
             </div>
@@ -99,7 +99,7 @@ const Services = ():JSX.Element => {
       </div>
       {/* div 2 */}
       <div className="w-full relative flex gap-3">
-        <img src="/curve_arrow.png" className="w-30 h-30  ml-20  mr-10 -rotate-20" alt="curve_arrow" />
+        <img src="/curve_arrow.png" className="w-30 h-30 opacity-55  ml-20  mr-10 -rotate-20" alt="curve_arrow" />
         <div className="flex relative  bottom-8  gap-4 w-full justify-between">
           {visibleServices.map((service) => (
             <ServiceCard

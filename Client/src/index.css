@@ -7,6 +7,8 @@
 @tailwind utilities;
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
+
+
 .hero-text {
    @apply text-[#a20419]; 
 }

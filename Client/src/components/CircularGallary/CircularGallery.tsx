@@ -26,6 +26,7 @@ const CircularGallery: React.FC<CircularGalleryProps> = ({ onClose, isOpen, item
               scrollEase={0.02}
               items={items}
             />
+            
           </div>
 
           {/* Close button (yp) */}

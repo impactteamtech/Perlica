@@ -70,7 +70,7 @@ const AboutTicker = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-red-700 via-black/90 to-white overflow-hidden py-4">
+    <div className="relative bg-gradient-to-br from-red-600 via-black to-white overflow-hidden py-4">
       {/* Gradient overlays for fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-secondary/30 to-transparent z-20 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-secondary/30 to-transparent z-20 pointer-events-none" />
@@ -85,7 +85,7 @@ const AboutTicker = () => {
         {duplicatedCities.map((city, index) => (
           <motion.div
             key={index}
-            className="inline-flex items-center mx-6 px-3 py-2 rounded-md bg-white/80 backdrop-blur-md border border-white/40 flex-shrink-0"
+            className="inline-flex items-center mx-6 px-3 py-2 rounded-md bg-white/50 backdrop-blur-md border border-white/40 flex-shrink-0"
             initial="initial"
             whileHover="hover"
             variants={itemVariants}
@@ -101,8 +101,7 @@ const AboutTicker = () => {
               }}
             />
             <motion.span 
-              className="text-black font-semibold text-lg ml-4 tracking-wide whitespace-nowrap"
-              whileHover={{ color: "#1f2937" }}
+              className="text-white font-semibold text-lg ml-4 tracking-wide whitespace-nowrap"
             >
               {city.name}
             </motion.span>
@@ -110,18 +109,7 @@ const AboutTicker = () => {
         ))}
       </motion.div>
 
-      {/* Pulsing border animation */}
-      <motion.div 
-        className="absolute inset-0 border-2 border-transparent rounded-lg pointer-events-none"
-        animate={{
-          borderColor: ["rgba(255,255,255,0)", "rgba(255,255,255,0.3)", "rgba(255,255,255,0)"],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+  
     </div>
   )
 }

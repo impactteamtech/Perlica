@@ -3,7 +3,7 @@ import { BiSolidBed } from "react-icons/bi";
 import { MdFlight } from "react-icons/md";
 import { TbCarSuvFilled, TbPackages } from "react-icons/tb";
 import { RiFunctionLine } from "react-icons/ri";
-
+import {motion} from 'framer-motion'
 // icons component (yp)
 type Icon = React.ComponentType<{ size: number,  style: React.CSSProperties }>;
 type Items = { label: string; size: number; icon: Icon };
@@ -24,7 +24,7 @@ const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
   
 
   return (
-    <div className="w-full">
+    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 w-full">
         {icons.map(({ label, icon: Icon, size }, i) => {
           const color = kenyaColors[i % kenyaColors.length];
@@ -53,7 +53,7 @@ const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
           );
         })}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

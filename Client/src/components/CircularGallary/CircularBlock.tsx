@@ -398,6 +398,8 @@ class App {
     last: number;
     position?: number;
   };
+
+
   onCheckDebounce: (...args: any[]) => void;
   renderer!: Renderer;
   gl!: GL;
@@ -444,6 +446,7 @@ class App {
     this.createMedias(items, bend, textColor, borderRadius, font);
     this.update();
     this.addEventListeners();
+ 
   }
 
   createRenderer() {
@@ -618,9 +621,11 @@ export default function CircularGallery({
   borderRadius = 1,
   font = 'bold 30px Figtree',
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // initialize / destroy the OGL scene
   useEffect(() => {
     if (!containerRef.current) return;
     const app = new App(containerRef.current, {
@@ -630,23 +635,26 @@ export default function CircularGallery({
       borderRadius,
       font,
       scrollSpeed,
-      scrollEase
+      scrollEase,
     });
-    return () => {
-      app.destroy();
-    };
+    return () => app.destroy();
   }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
-  return(
-  <div className="relative">
-    <div className="max-w-8xl  mb-5 min-h-screen overflow-hidden mx-auto active:cursor-grabbing" ref={containerRef}></div>
-    <div className="absolute top-0 left-0 flex flex-center items-center">
-      <button className="text-black font-md text-md">
-        Check Availability
-      </button>
-    
-    </div> 
 
-  </div>
+  // layout
+  return (
+    <div className="relative w-full h-screen">
+      {/* OGL mounts its <canvas> into this container */}
+      <div
+        ref={containerRef}
+        className="max-w-8xl mb-5 min-h-screen overflow-hidden mx-auto active:cursor-grabbing"
+      />
+
+      {/* Overlay layer (UI on top of the 3D scene) */}
+      <div className="absolute inset-0 flex justify-center items-center z-10">
+        <button className="text-black p-4 font-lg border rounded-md bg-white text-lg md:text-lg">
+          Check Availability
+        </button>
+      </div>
+    </div>
   );
-  
 }

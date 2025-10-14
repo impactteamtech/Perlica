@@ -34,26 +34,28 @@ const TickerColumn = ():JSX.Element => {
     >
       {/* Decorative L-corner accents */}
       <div className="pointer-events-none z-40 absolute inset-0">
-        {/* Top-left */}
-        <div className="absolute top-0 left-0">
-          <div className="w-16 h-[7px] bg-green-500" />
-          <div className="w-[7px] h-16  bg-green-500" />
+  
+        <div className="absolute top-0 left-0 flex items-start gap-0">
+          <div className="rounded-full h-30 w-1 bg-gradient-to-r from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-1 w-30 bg-gradient-to-b from-red-400 to-red-500 shadow-sm" />
         </div>
-        {/* Top-right */}
-        <div className="absolute top-0 right-0">
-          <div className="w-16 h-[7px] bg-green-500" />
-          <div className="absolute top-0 right-0 w-[7px] h-16 bg-green-500" />
+
+        <div className="absolute top-0 right-0 flex items-start gap-0">
+          <div className="rounded-full h-1 w-30 bg-gradient-to-l from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-30 w-1 bg-gradient-to-b from-red-400 to-red-500 shadow-sm" />
         </div>
-        {/* Bottom-left */}
-        <div className="absolute bottom-0 left-0">
-          <div className="w-[7px] h-16 bg-green-500" />
-          <div className="w-16 h-[7px] bg-green-500" />
+
+        <div className="absolute bottom-0 left-0 flex items-end gap-0">
+          <div className="rounded-full h-30 w-1 bg-gradient-to-r from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-1 w-30 bg-gradient-to-t from-red-400 to-red-500 shadow-sm" />
         </div>
-        {/* Bottom-right */}
-        <div className="absolute bottom-0 right-0">
-          <div className=" bottom-0 absolute right-0 w-[7px] h-16 bg-green-509" />
-          <div className="w-16 h-[7px] bg-green-500" />
+
+        <div className="absolute bottom-0 right-0 flex items-end gap-0">
+          <div className="rounded-full h-1 w-30 bg-gradient-to-l from-red-400 to-red-500  shadow-sm" />
+          <div className="-ml-1 rounded-full h-30 w-1 bg-gradient-to-t from-red-400 to-red-500 shadow-sm" />
         </div>
+
+        <div className="absolute inset-0 filter blur-xl opacity-30 bg-gradient-to-br from-green-400/10 to-transparent" />
       </div>
       <motion.div
         ref={containerRef}

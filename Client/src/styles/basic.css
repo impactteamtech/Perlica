@@ -1,6 +1,9 @@
 /* i removed the margin 0 and padding 0 because those makes the padding in tailwindcss and margin didn't work */
 *{
+<<<<<<< HEAD
     box-sizing: border-box;
+=======
+>>>>>>> 7c3360d26909363262a289be90cc82da57a9f33a
     
   box-sizing: border-box;
   

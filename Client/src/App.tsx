@@ -11,28 +11,20 @@
    ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
    ┃ Commits  ┃ feat(scope): message  [yp]              ┃
    ┗━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ */
-
-import Header from "./components/Header/Header"
-import Hero from "./components/Hero/Hero"
-import AboutUs from "./components/AboutUs/AboutUs"
-import Reviews from "./components/Reviews/Reviews"
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Services from "./components/Services/Services"
-import Events from "./components/Events/Events"
-import Footer from "./components/Footer/Footer"
+import Layout from './components/Layout/Layout';
+import Home from './components/Layout/Home';
 function App() {
-
   return (
    <>
-    <div className="background-color">
-      <Header />
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Events />
-      <Reviews />
-    </div>
-    <Footer/>
+  <div className="background-color">
+    <Routes>
+      <Route path='/' element={<Layout/>}>
+        <Route index element={<Home/>}/>
+      </Route>
+    </Routes>
+  </div>
 </>
 )
 }
