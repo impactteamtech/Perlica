@@ -2,7 +2,7 @@ import { IoMdArrowDropleft } from "react-icons/io";
 import type { JSX } from "react";
 const MainAboutDiv = ():JSX.Element => {
   return (
-    <div className='pt-33 flex flex-col items-center w-full pb-5'>
+    <div className='pt-33 flex flex-col items-center w-full pb-5' >
         <div className='card-background-color shadow-sm shadow-black/10  px-10 relative justify-between flex gap- w-full h-60  py-10'>
             {/* Waves */}
             <img 

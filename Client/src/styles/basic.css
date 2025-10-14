@@ -1,9 +1,5 @@
 /* i removed the margin 0 and padding 0 because those makes the padding in tailwindcss and margin didn't work */
 *{
-<<<<<<< HEAD:Client/src/basic.css
-    box-sizing: border-box;
-=======
->>>>>>> fad839501bc6fe4eeb48e666f43da07a73aa12fe:Client/src/styles/basic.css
     
   box-sizing: border-box;
   
