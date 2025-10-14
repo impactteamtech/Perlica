@@ -11,69 +11,70 @@ import EventPng from '../../../public/partner_with_us/event.jpg';
 import NGOtravelPng from '../../../public/partner_with_us/ngo.jpg';
 import AirlinePng from '../../../public/partner_with_us/airline.jpg';
 import RealEstatePng from '../../../public/partner_with_us/realestate.jpg';
+
 const PartnerWithUs: React.FC = () => {
-const items = [
-    {
-        image: hotelPng,
-        link: '/partner-with-us',
-        title: 'Hotel & Vendor Collaborations',
-        description: 'Partner hotels and service providers offering authentic local experiences.',
-    },
-    {
-        image: CooperatePng,
-        link: '/partner-with-us',
-        title: 'Corporate Travel Management',
-        description: 'Custom itineraries, meetings, and group coordination for businesses.',
-    },
-    {
-        image: TendersPng,
-        link: '/partner-with-us',
-        title: 'Business Tenders & Contracts',
-        description: 'Apply for government or private travel management bids.',
-    },
-    {
-        image: AgencyPng,
-        link: '/partner-with-us',
-        title: 'Affiliate & Agency Partnerships',
-        description: 'Join Perlica as a regional travel rep, guide, or digital partner.',
-    },
-    {
-        image: LogisticsPng,
-        link: '/partner-with-us',
-        title: 'Import & Export Logistics',
-        description: 'Connecting suppliers for goods & products related to tourism, crafts, hospitality.',
-    },
-    {
-        image: TourPng,
-        link: '/partner-with-us',
-        title: 'Tour & Safari Operators',
-        description: 'Collaborate with us on curated safaris, cultural tours, and eco-adventures across Africa.',
-    },
-    {
-        image: EventPng,
-        link: '/partner-with-us',
-        title: 'Event & Festival Organizers',
-        description: 'Partner to manage travel logistics for cultural festivals, conferences, and retreats.',
-    },
-    {
-        image: NGOtravelPng,
-        link: '/partner-with-us',
-        title: 'NGO & Mission Travel Support',
-        description: 'Custom travel coordination for humanitarian teams and development organizations.',
-    },
-    {
-        image: AirlinePng,
-        link: '/partner-with-us',
-        title: 'Airline & Transport Partners',
-        description: 'Collaborate with domestic and international carriers to simplify route connections.',
-    },
-    {
-        image: RealEstatePng,
-        link: '/partner-with-us',
-        title: 'Resort & Real Estate Developers',
-        description: 'Join ventures for eco-resort projects, sustainable lodges, and tourism investments.',
-    },
-];
+    const items = [
+        {
+            image: hotelPng,
+            link: '/partner-with-us',
+            title: 'Hotel & Vendor Collaborations',
+            description: 'Partner hotels and service providers offering authentic local experiences.',
+        },
+        {
+            image: CooperatePng,
+            link: '/partner-with-us',
+            title: 'Corporate Travel Management',
+            description: 'Custom itineraries, meetings, and group coordination for businesses.',
+        },
+        {
+            image: TendersPng,
+            link: '/partner-with-us',
+            title: 'Business Tenders & Contracts',
+            description: 'Apply for government or private travel management bids.',
+        },
+        {
+            image: AgencyPng,
+            link: '/partner-with-us',
+            title: 'Affiliate & Agency Partnerships',
+            description: 'Join Perlica as a regional travel rep, guide, or digital partner.',
+        },
+        {
+            image: LogisticsPng,
+            link: '/partner-with-us',
+            title: 'Import & Export Logistics',
+            description: 'Connecting suppliers for goods & products related to tourism, crafts, hospitality.',
+        },
+        {
+            image: TourPng,
+            link: '/partner-with-us',
+            title: 'Tour & Safari Operators',
+            description: 'Collaborate with us on curated safaris, cultural tours, and eco-adventures across Africa.',
+        },
+        {
+            image: EventPng,
+            link: '/partner-with-us',
+            title: 'Event & Festival Organizers',
+            description: 'Partner to manage travel logistics for cultural festivals, conferences, and retreats.',
+        },
+        {
+            image: NGOtravelPng,
+            link: '/partner-with-us',
+            title: 'NGO & Mission Travel Support',
+            description: 'Custom travel coordination for humanitarian teams and development organizations.',
+        },
+        {
+            image: AirlinePng,
+            link: '/partner-with-us',
+            title: 'Airline & Transport Partners',
+            description: 'Collaborate with domestic and international carriers to simplify route connections.',
+        },
+        {
+            image: RealEstatePng,
+            link: '/partner-with-us',
+            title: 'Resort & Real Estate Developers',
+            description: 'Join ventures for eco-resort projects, sustainable lodges, and tourism investments.',
+        },
+    ];
 
 
     return (
@@ -86,6 +87,7 @@ const items = [
             <section
                 id="partner-with-us"
                 className="min-h-screen w-full flex flex-col items-center justify-center gap-12 px-6 py-12">
+              
                 <h1 className='text-7xl lg:text-5xl font-mono font-bold color-primary mb-5'>"Let’s build unforgettable travel experiences together!"</h1>
                 {/* Content wrapper: OGL  Text (yp) */}
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-8xl">

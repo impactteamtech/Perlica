@@ -17,9 +17,8 @@ import { motion, useScroll, useTransform,  } from "framer-motion";
 import heroImg from "../../../public/heroSafari.mp4";
 import Heropng from "/Perlica_logo.png";
 import textImg from "/kenya.jpg";
-import HeroCTA from "./HeroCTA";
 import HeroShades from "./HeroShades";
-import SearchPackages from "../SearchPackages/SearchPackages";
+
 
 const Hero: React.FC = () => {
   const text = "Perlica";
