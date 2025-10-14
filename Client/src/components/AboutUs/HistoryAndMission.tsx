@@ -4,7 +4,7 @@ import TickerColumn from "./TickerColumn";
 import HotspotsMap from "./HotspotMap";
 const HistoryAndMission = (): JSX.Element => {
   return (
-    <div className="flex flex-col gap-10 min-h-screen py-10 px-4 md:px-15 mt-32">
+    <div className="flex flex-col gap-10 min-h-screen py-10 px-4 md:px-15 mt-32" id='about-us'>
       {/* div 1 */}
      <div className="flex gap-3">
         <div className="w-[50%] flex-col gap-4 flex">
