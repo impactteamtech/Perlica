@@ -5,6 +5,7 @@ import AboutUs from '../AboutUs/AboutUs';
 import Services from '../Services/Services';
 import Reviews from '../Reviews/Reviews';
 import PartnerWithUs from '../PartnerWithUs/PartnerWithUs';
+import Events from '../Events/Events';
 
 const Home: React.FC = () => {
     return (
@@ -16,8 +17,9 @@ const Home: React.FC = () => {
             </div> */}
             <AboutUs />
             <Services />
+            <Events />
             <Reviews />
-            <PartnerWithUs/>
+            <PartnerWithUs />
 
         </div>
     );
