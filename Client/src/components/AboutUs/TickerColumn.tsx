@@ -32,6 +32,31 @@ const TickerColumn = ():JSX.Element => {
       onTouchEnd={resume}
     
     >
+      {/* Decorative L-corner accents */}
+      <div className="pointer-events-none z-40 absolute inset-0">
+  
+        <div className="absolute top-0 left-0 flex items-start gap-0">
+          <div className="rounded-full h-30 w-1 bg-gradient-to-r from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-1 w-30 bg-gradient-to-b from-red-400 to-red-500 shadow-sm" />
+        </div>
+
+        <div className="absolute top-0 right-0 flex items-start gap-0">
+          <div className="rounded-full h-1 w-30 bg-gradient-to-l from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-30 w-1 bg-gradient-to-b from-red-400 to-red-500 shadow-sm" />
+        </div>
+
+        <div className="absolute bottom-0 left-0 flex items-end gap-0">
+          <div className="rounded-full h-30 w-1 bg-gradient-to-r from-red-400 to-red-500 shadow-sm" />
+          <div className="-ml-1 rounded-full h-1 w-30 bg-gradient-to-t from-red-400 to-red-500 shadow-sm" />
+        </div>
+
+        <div className="absolute bottom-0 right-0 flex items-end gap-0">
+          <div className="rounded-full h-1 w-30 bg-gradient-to-l from-red-400 to-red-500  shadow-sm" />
+          <div className="-ml-1 rounded-full h-30 w-1 bg-gradient-to-t from-red-400 to-red-500 shadow-sm" />
+        </div>
+
+        <div className="absolute inset-0 filter blur-xl opacity-30 bg-gradient-to-br from-green-400/10 to-transparent" />
+      </div>
       <motion.div
         ref={containerRef}
         className="flex flex-col gap-2 will-change-transform"
@@ -39,6 +64,7 @@ const TickerColumn = ():JSX.Element => {
       >
         {doubled.map((item, i) => (
           <div key={i} className="relative h-80 w-full overflow-hidden rounded-md shadow-sm shadow-black/20 group/item">
+           
             <img
               src={item.path}
               alt={item.placeName}
@@ -55,7 +81,6 @@ const TickerColumn = ():JSX.Element => {
                   {item.location}
                 </p>
               </div>
-              {/* subtle gradient fade behind text for readability */}
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 via-black/20 to-transparent -z-10" />
             </div>
           </div>

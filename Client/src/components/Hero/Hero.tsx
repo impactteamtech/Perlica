@@ -51,8 +51,8 @@ const Hero: React.FC = () => {
 
   // Scroll-based parallax effect
   const { scrollY } = useScroll();
-  const yVideo = useTransform(scrollY, [0, 500], [0, 250]); // video goes down slower
-  const yText = useTransform(scrollY, [0, 500], [0, -100]); // text floats opposite
+  const yVideo = useTransform(scrollY, [0, 500], [0, 250]); 
+  const yText = useTransform(scrollY, [0, 500], [0, -100]); 
 
   // Mouse-based parallax
   const [mouseX, setMouseX] = useState(0);
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden  flex flex-col items-center justify-center">
-      {/* Logo – top-left */}
+      {/* Logo  top left (yp) */}
       <motion.img
         src={Heropng}
         alt="Perlica"
@@ -179,8 +179,9 @@ const Hero: React.FC = () => {
           className="mt-8 inline-block"
         >
         
-          {/* <SearchPackages/> */}
+          <SearchPackages/>
         </motion.div>
+
       </div>
     </section>
   );

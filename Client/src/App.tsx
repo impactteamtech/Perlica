@@ -11,32 +11,21 @@
    ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
    ┃ Commits  ┃ feat(scope): message  [yp]              ┃
    ┗━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ */
-
-import Header from "./components/Header/Header"
-import Hero from "./components/Hero/Hero"
-import AboutUs from "./components/AboutUs/AboutUs"
-import SearchPackages from "./components/SearchPackages/SearchPackages"
-import Reviews from "./components/Reviews/Reviews"
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Services from "./components/Services/Services"
+import Layout from './components/Layout/Layout';
+import Home from './components/Layout/Home';
 function App() {
-
   return (
    <>
   <div className="background-color">
-    <div className="flex flex-col relative items-center justify-center">
-      <Header />
-      <Hero />
-      <div className="absolute top-[700px] z-[10]">
-        <SearchPackages />
-      </div>
-      <AboutUs />
-      <Services />
-      <Reviews />
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout/>}>
+        <Route index element={<Home/>}/>
+      </Route>
+    </Routes>
   </div>
 </>
 )
 }
-
-      export default App
+export default App

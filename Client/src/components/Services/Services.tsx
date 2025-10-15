@@ -5,6 +5,7 @@ import { services} from "../../lib/staticData";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import ImageTrail from "./ImageTrail";
 
+import TravelInformation from "./TravelInformation";
 
 const Services = ():JSX.Element => {
    const PAGE_SIZE = 3
@@ -31,12 +32,14 @@ const Services = ():JSX.Element => {
               <div className="h-22 w-[2px] rounded-full bg-gradient-to-t from-transparent via-black/30 to-transparent" />
               <div className="h-25 w-[3px] rounded-full bg-gradient-to-t from-transparent via-green-600/40 to-transparent shadow-[0_0_16px_rgba(22,163,74,0.25)]" />
             </div>
+
           </div>
 
           {/* Big ghost title */}
-          <h1 className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center title-font font-extrabold tracking-tight text-7xl md:text-8xl lg:text-8xl text-black/10 [text-shadow:_0_2px_0_rgba(0,0,0,0.05)]">
+          <h1 className="absolute inset-x-0  top-1/2 -translate-y-1/2 text-center title-font font-extrabold tracking-tight text-7xl md:text-8xl text-black/10 [text-shadow:_0_2px_0_rgba(0,0,0,0.05)]">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-700/20 via-green-600/20 to-black/20">SERVICES.</span>
           </h1>
+          
           <ImageTrail
             items={[
               '/services/hotel_reservation.jpg',
@@ -55,14 +58,14 @@ const Services = ():JSX.Element => {
       {/* div 1 */}
       <div className="w-full flex items-center justify-between">
         <div className="w-[60%] relative">
-          <img src="/shild.png"  className="w-20 opacity-70 top-18 absolute right-22" alt="kenya-shild"/>
-          <h1 className="text-7xl absolute [-webkit-text-stroke:4px_#efebe5] top-20 z-100 color-primary left-27 title-font  text-wrap font-bold">
+          <img src="/shild.png"  className="w-20 opacity-100 top-18 absolute right-22" alt="kenya-shild"/>
+          <h1 className="text-7xl absolute [-webkit-text-stroke:3px_#efebe5] top-20 z-100 color-primary left-27 title-font  text-wrap font-bold">
             TOP NOTCH QUALITY 
             <br/>
             SERVICES WE PROVIDE
           </h1>
           <div 
-          className="w-[40%] p-10 relative opacity-70 h-full bg-[url('/decorator_bg.png')] bg-cover bg-center">
+          className="w-[40%] p-10 relative opacity-60  h-full bg-[url('/decorator_bg.png')] bg-cover bg-center">
             <div className="w-40 background-color  h-80">
               <img src="/airplane.png" className="w-14 left-12 rotate-270 top-60 relative" alt="airplane"/>
             </div>
@@ -96,7 +99,7 @@ const Services = ():JSX.Element => {
       </div>
       {/* div 2 */}
       <div className="w-full relative flex gap-3">
-        <img src="/curve_arrow.png" className="w-30 h-30  ml-20  mr-10 -rotate-20" alt="curve_arrow" />
+        <img src="/curve_arrow.png" className="w-30 h-30 opacity-55  ml-20  mr-10 -rotate-20" alt="curve_arrow" />
         <div className="flex relative  bottom-8  gap-4 w-full justify-between">
           {visibleServices.map((service) => (
             <ServiceCard
@@ -108,6 +111,9 @@ const Services = ():JSX.Element => {
             />
           ))}
         </div>
+      </div>
+      <div>
+        <TravelInformation />
       </div>
     </section>
   )
