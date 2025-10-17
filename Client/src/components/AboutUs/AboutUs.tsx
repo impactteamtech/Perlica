@@ -18,7 +18,7 @@ const AboutUs = (): JSX.Element => {
       <HistoryAndMission />
       <SupDetailsSection />
       <PerlicaTeam />
-      <MainAboutDiv />
+      {/* <MainAboutDiv /> */}
     </>
   )
 }
