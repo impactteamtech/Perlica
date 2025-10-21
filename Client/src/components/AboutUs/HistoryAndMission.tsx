@@ -4,7 +4,7 @@ import TickerColumn from "./TickerColumn";
 import HotspotsMap from "./HotspotMap";
 const HistoryAndMission = (): JSX.Element => {
   return (
-    <div className="flex flex-col gap-10 min-h-screen py-10 px-4 md:px-15 mt-32" id='about-us'>
+    <div className="flex flex-col gap-10 min-h-screen py-10 px-4 md:px-15">
       {/* div 1 */}
      <div className="flex gap-3">
         <div className="w-[50%] flex-col gap-4 flex">
@@ -16,12 +16,9 @@ const HistoryAndMission = (): JSX.Element => {
             Our mission is to provide exceptional travel experiences that exceed our clients' expectations.
             We are committed to delivering personalized services, ensuring every journey is memorable and unique.
           </p>
-       
         </div>
-      
         <TickerColumn  />        
      </div>
-
       {/* div 2 */}
       <div className="flex mt-13 gap-4">
         <MotivationDiv />

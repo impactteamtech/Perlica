@@ -4,7 +4,7 @@ import TourGuideCard from './TourGuideCard'
 import PingDot from './PingDot'
 const PerlicaTeam = (): JSX.Element => {
   return (
-    <div className='w-full pt-60 pb-10 px-15 flex min-h-screen flex-col gap-40'>
+    <div className='w-full  pb-10 px-15 flex min-h-screen flex-col gap-40'>
     
       <div className='flex gap-10'>
         <div className='relative w-[40%] flex'>

@@ -11,9 +11,9 @@ const Home: React.FC = () => {
         <div>
          
             <Hero />
-            <div className="absolute left-1/2 transform -translate-x-1/2 top-[700px]  z-[10]">
+            {/* <div className="absolute left-1/2 transform -translate-x-1/2 top-[700px]  z-[10]">
              <SearchPackages />
-            </div>
+            </div> */}
             <AboutUs />
             <Services />
             <Reviews />

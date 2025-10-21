@@ -1102,7 +1102,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
-        className="cursor-grab w-full h-full overflow-hidden relative outline-none active:cursor-grabbing bg-transparent"
+        className="cursor-grab brightness-75 w-full h-full overflow-hidden relative outline-none active:cursor-grabbing bg-transparent"
       />
 
       {activeItem && (
@@ -1147,6 +1147,9 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
           text-[1.5rem]
           top-1/2
           right-[10%]
+          font-extrabold
+          text-white
+          [-webkit-text-stroke:1px_green]
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
@@ -1169,9 +1172,10 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
           h-[60px]
           grid
           place-items-center
-          bg-transparent
+          
           border-[5px]
-          border-black
+          border-green-500 
+          bg-green-900/60 text-white
           rounded-full
           cursor-pointer
           transition-all

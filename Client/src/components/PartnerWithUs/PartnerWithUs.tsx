@@ -11,7 +11,7 @@ import EventPng from '../../../public/partner_with_us/event.jpg';
 import NGOtravelPng from '../../../public/partner_with_us/ngo.jpg';
 import AirlinePng from '../../../public/partner_with_us/airline.jpg';
 import RealEstatePng from '../../../public/partner_with_us/realestate.jpg';
-
+import { IoIosArrowRoundForward } from 'react-icons/io';
 const PartnerWithUs: React.FC = () => {
     const items = [
         {
@@ -97,7 +97,7 @@ const PartnerWithUs: React.FC = () => {
                     </div>
                     {/* Right Text section (yp) */}
                     <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-                        <h2 className="text-4xl lg:text-5xl font-mono font-bold title-font leading-tight text-[#006600]">
+                        <h2 className="text-4xl lg:text-5xl font-mono font-bold title-font leading-tight text-secondary/50">
                             What You’ll Discover When You Partner With Us
                         </h2>
                         <p className="text-gray-700 text-lg max-w-xl mx-auto lg:mx-0">
@@ -105,8 +105,12 @@ const PartnerWithUs: React.FC = () => {
                             unlock endless opportunities to explore, connect, and grow. Join us in building the next
                             wave of adventure-driven impact.
                         </p>
-                        <button className="text-xl border-2 cursor-pointer border-[#006600] text-[#006600] px-8 py-3 rounded-full hover:bg-[#006600] hover:text-white transition-all duration-300">
-                            See More
+                       <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary/70 hover:bg-secondary transition-colors overflow-hidden">
+                                  <div className="flex items-center gap-2">
+                                    <span className="relative z-10">See More</span>
+                                    <IoIosArrowRoundForward size={30}/>
+                                  </div>
+                                  <span className="absolute inset-0 scale-0 group-hover:scale-100 transition-transform duration-500 origin-center bg-gradient-to-r from-secondary/40 to-secondary/60 mix-blend-overlay" />
                         </button>
                     </div>
                 </div>

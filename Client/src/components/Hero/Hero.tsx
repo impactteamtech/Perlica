@@ -18,6 +18,7 @@ import heroImg from "../../../public/heroSafari.mp4";
 import Heropng from "/Perlica_logo.png";
 import textImg from "/kenya.jpg";
 import HeroShades from "./HeroShades";
+import SearchPackages from "../SearchPackages/SearchPackages";
 
 
 const Hero: React.FC = () => {
@@ -178,8 +179,9 @@ const Hero: React.FC = () => {
           className="mt-8 inline-block"
         >
         
-          {/* <SearchPackages/> */}
+          <SearchPackages/>
         </motion.div>
+
       </div>
     </section>
   );

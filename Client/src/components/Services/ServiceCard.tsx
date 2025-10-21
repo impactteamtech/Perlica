@@ -7,13 +7,17 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
   const ringClass = index % 2 === 0 ? 'ring-primary/60' : 'ring-secondary/60'
 
   return (
-    <article
+    <div className="rounded-xl p-[1px] bg-gradient-to-br from-secondary/30 via-secondary/10 to-transparent">
+  <article
       aria-label={name}
-      className={`group relative w-full max-w-[560px] md:w-140 rounded-xl overflow-hidden flex items-stretch gap-6 p-5 bg-secondary/5  transition-all duration-500
-        shadow-sm shadow-black/15 hover:shadow-md
-        hover:-translate-y-1`}
+  className={` group relative rounded-xl bg-white/30 backdrop-blur-sm
+    p-7 md:p-3 shadow-sm transition-all flex gap-2  duration-500 ease-out
+    hover:shadow-xl h-55 hover:translate-y-[-2px]
+    overflow-hidden`}
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500 bg-[radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.35),transparent_60%)]" />
+      <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-secondary/10 blur-xl opacity-60 group-hover:opacity-80 transition-opacity" />
+      <div className="pointer-events-none absolute -left-8 -bottom-8 h-20 w-20 rounded-full bg-secondary/10 blur-xl opacity-50 group-hover:opacity-70 transition-opacity" />
 
       <span className={`absolute left-0 top-0 h-full w-1 ${accentClass}`} />
 
@@ -36,7 +40,7 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
           {name}
         </h3>
         <p className="text-md leading-relaxed opacity-90">
-          {description.length > 100 ? description.slice(0, 100) + '...' : description }
+          {description.length > 60 ? description.slice(0, 100) + '...' : description }
         </p>
 
         <div className="mt-auto pt-1">
@@ -48,6 +52,7 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
 
       <span className="absolute inset-0 rounded-xl ring-0 group-focus-within:ring-2 ring-offset-2 ring-primary/60 pointer-events-none" />
     </article>
+    </div>
   )
 }
 

@@ -1,4 +1,5 @@
-import type { Guide,KenyaImageDetails,Thing } from './types';
+import type { Guide,KenyaImageDetails,Event } from './types';
+// Tour guides data :
 export const tourGuides: Guide[] = [
   {
     id:1,
@@ -32,7 +33,7 @@ export const tourGuides: Guide[] = [
   // }
 ];
 
-
+// services data :
 export const services:{
     name:string,
     description:string,
@@ -73,6 +74,7 @@ export const services:{
     }
   ];
 
+// kenya places images data :
 export  const kenyaImages: KenyaImageDetails[] = [
   {
     placeName:"National parc in nairobi",
@@ -109,4 +111,33 @@ export  const kenyaImages: KenyaImageDetails[] = [
     path:"/kenya_places/uhuru_park.jpg",
     location:"Carte de Uhuru Park, 23 Uhuru Hwy, Nairobi, Kenya",
   }
+];
+
+// festivals and event data : 
+
+export const events: Event[] = [
+  {
+    id:1,
+    name:"Tobongu Lore (Lake Turkana Cultural Festival)",
+    description:"A celebration of indigenous culture among communities around Lake Turkana; includes music, dance, craft, cultural exchange.",
+    mainImage:"/events/tobongu/tobongu_festival_main.jpg",
+  },
+  {
+    id:2,
+    name:"Kenya Schools and Colleges Drama Festival",
+    description:"Annual school‐based drama competitions (plays, dance, film, storytelling",
+    mainImage:"/events/drama_festival/drama_festival_main.jpg",
+  },
+  {
+    id:3,
+    name:"Maragoli Cultural Festival in kenya",
+    description:"Held in Vihiga County (Mbale town) on 26 December; features traditions, music, dance of the Maragoli and Luhya communities",
+    mainImage:"/events/maragoli/maragoli_festival_main.jpg",
+  },
+    {
+    id:4,
+    name:"International Camel Derby (Maralal)",
+    description:"A cultural & sporting event involving camel races in Maralal, Northern Kenya",
+    mainImage:"/events/camel_derby/camel_derby_main.jpg",
+  },
 ];
