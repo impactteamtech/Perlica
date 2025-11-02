@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
       <motion.img
         src={Heropng}
         alt="Perlica"
-        className="absolute top-0 left-2 z-40 w-20 h-auto md:w-68"
+        className="absolute top-0 left-2 z-40 w-20 h-auto md:w-48"
         initial={{ y: -12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
