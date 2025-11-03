@@ -4,7 +4,7 @@ const TourGuideCard = ({ guide }: { guide: Guide }): JSX.Element => {
   return (
     <div
       aria-label={guide.name}
-      className="group relative h-120 w-90 overflow-hidden 
+      className="group relative w-75 h-100 md:h-120 md:w-90 overflow-hidden 
       rounded-2xl border border-black/10 bg-gray-50 shadow-sm 
       transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md 
       focus:outline-none focus-visible:-translate-y-0.5"

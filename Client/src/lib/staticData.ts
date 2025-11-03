@@ -40,37 +40,46 @@ export const services:{
     img:string,
   }[] = [
     {
-      name:"Ticketing",
+      name:"Flight & Hotel bookings",
       img:"/services/get_ticket.jpg",
-      description:"We will provide the most direct\
-      cost effective flight schedules and special fares two to three booking \
-      options will be emailed to help you make an informed decision"
+      description:"Domestic and international ticketing" 
     },
     {
-      name:"Corporate group discounts",
+      name:"Corporate & Group Travel",
       img:"/services/group_travel.jpg",
       description:"We negotiate special rates and volume \
-      discounts for large groups travelling together with preferred airlines \
-      Groups of  10 or more adults qualify for special rates."
+      discounts for large groups travelling together with preferred airlines."
     },
     {
       name:"Conference facilities",
       img:"/services/conference.jpg",
-      description:"We organize conferences for groups of all sizes in Nairobi and beyond \
-      Partnering with reputable hotel lodges."
+      description:"We organize conferences for groups of all sizes in Nairobi and beyond."
+    },
+    {
+      name:"Customized tour packages",
+      img:"/services/customized_tour.jpg",
+      description:"Tailor-made itineraries based on traveler interests"
+    },
+    {
+      name:"Transportation & Transfers",
+      img:"/services/transportation.jpg",
+      description:"Airport pickup and drop-off, Local transport arrangements and guided tours"
+
     },
     {
       name:"Hotel reservations",
       img:"/services/hotel_reservation.jpg",
-      description:"We proudly maintain strong, collaborative partnerships with hotel chains throught kenya, \
-      East Africa, and worldwid. Leveraging negotiated contract rates with leading hotel groups."
+      description:"Partnered with top airlines and hotels"
     },
     {
       name:"Safaris and tour packages",
       img:"/services/safari_tour_package1.jpg",
-      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris, prioritizing \
-      prioritizing client comfort and safety with well-maintained vehicles equipped with 24-hour VHF communication. \
-      We specialize in game viewing and beach holidays."
+      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris."
+    },
+    {
+      name:"Specialized Experiences",
+      img:"/services/specialized_experiences.jpg",
+      description:"Honeymoon packages, Adventure tours, Cultural and eco-tours"
     }
   ];
 

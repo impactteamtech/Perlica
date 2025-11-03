@@ -1,57 +1,111 @@
-import type {JSX} from 'react'
-import { tourGuides } from '../../lib/staticData'
-import TourGuideCard from './TourGuideCard'
-import PingDot from './PingDot'
+import type { JSX } from "react";
+import { motion } from "framer-motion";
+import { tourGuides } from "../../lib/staticData";
+import TourGuideCard from "./TourGuideCard";
+import PingDot from "./PingDot";
+
 const PerlicaTeam = (): JSX.Element => {
   return (
-    <div className='w-full  pb-10 px-15 flex min-h-screen flex-col gap-40'>
-    
-      <div className='flex gap-10'>
-        <div className='relative w-[40%] flex'>
-          <img 
-          className='w-100  hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90   border-4'
-          src="/tour_guides/perlica_team1.jpg" alt="team-member-1"/>
-          <img 
-          className='w-100 hover:scale-105 transition-transform duration-200 relative top-30 right-40 rounded-lg border-[#efebe5]/90 border-4'
-          src="/tour_guides/perlica_team2.jpg" alt="team-member-2"/>
-        </div>
-        <div className='flex w-[60%] flex-col gap-10 items-center justify-center'>
-          <div className='flex flex-col gap-3 items-center justify-center'>
-            <h2 className='text-6xl text-center color-primary title-font font-mono'>
+    <motion.div
+      className="w-full pb-10 px-4 sm:px-6 pt-10 lg:px-15 flex min-h-screen flex-col gap-16 lg:gap-40"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {/* First part */}
+      <motion.div
+        className="flex flex-col lg:flex-row gap-12 lg:gap-10 items-center"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <motion.div
+          className="relative w-full lg:w-[40%] flex justify-center lg:justify-start"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <img
+            className="w-64 sm:w-80 lg:w-100 hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
+            src="/tour_guides/perlica_team1.jpg"
+            alt="team-member-1"
+          />
+          <img
+            className="w-56 sm:w-72 lg:w-100 top-10 hover:scale-105 transition-transform duration-200 relative -ml-10 sm:-ml-14 lg:ml-0 lg:top-30 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
+            src="/tour_guides/perlica_team2.jpg"
+            alt="team-member-2"
+          />
+        </motion.div>
+
+        <motion.div
+          className="flex w-full lg:w-[60%] flex-col gap-6 lg:gap-10 items-center justify-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex flex-col gap-3 items-center justify-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center color-primary title-font font-mono">
               MEET OUR EXPERT TOUR GUIDES
             </h2>
-            <h3 className='text-4xl text-black/80 title-font font-mono text-center'>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/80 title-font font-mono text-center">
               Let's Make Your Next Journey Extraordinary
             </h3>
           </div>
-         <div className='w-[100%] flex flex-col gap-2 items-center justify-center'>
-            <p className='text-gray-900/80 lg:leading-loose text-center text-font text-xl w-[80%] leading-relaxed'>
-              Our Expert Team has combined deep local knowledge with global travel insight 
-              to create safaris and tours you'll never forget. All you have to do is explore
-              whether it's your first safari or your fiftieth, we'll show you the hidden gems
-              others miss, all at the the best value possible.<br />
+          <div className="w-full flex flex-col gap-2 items-center justify-center">
+            <p className="text-gray-900/80 leading-relaxed lg:leading-loose text-center text-font text-base sm:text-lg md:text-xl w-full lg:w-[80%]">
+              Our Expert Team has combined deep local knowledge with global
+              travel insight to create safaris and tours you'll never forget.
+              All you have to do is explore whether it's your first safari or
+              your fiftieth, we'll show you the hidden gems others miss, all at
+              the the best value possible.
+              <br />
             </p>
-         </div>
-        </div>
-      </div>
-      {/* Second part */}
-      <div className='flex flex-col gap-5'>
-        <div className="flex items-center  gap-2">
-          <PingDot />
-          <h4 className="text-2xl w-[10%] title-font font-medium ">Tour Guides</h4>
-          <div className="w-[90%] h-[1px] bg-black "/>
-       </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-        {tourGuides.map((guide, index) =>
-          <TourGuideCard 
-          key={index} guide={guide} />
-        )}
-      </div>
-      </div>
-    
-         
-    </div>
-  )
-}
+          </div>
+        </motion.div>
+      </motion.div>
 
-export default PerlicaTeam
+      {/* Second part */}
+      <motion.div
+        className="flex flex-col gap-5"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <div className="flex items-center gap-3">
+          <PingDot />
+          <h4 className="text-lg sm:text-xl md:text-2xl title-font font-medium whitespace-nowrap">
+            Tour Guides
+          </h4>
+          <div className="flex-1 h-px bg-black/30" />
+        </div>
+
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {tourGuides.map((guide, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <TourGuideCard guide={guide} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+export default PerlicaTeam;

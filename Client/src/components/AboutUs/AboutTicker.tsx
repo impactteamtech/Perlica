@@ -55,12 +55,10 @@ const AboutTicker = () => {
     initial: {
       scale: 1,
       y: 0,
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
     },
     hover: {
       scale: 1.05,
       y: -2,
-      boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -85,7 +83,7 @@ const AboutTicker = () => {
         {duplicatedCities.map((city, index) => (
           <motion.div
             key={index}
-            className="inline-flex items-center mx-6 px-3 py-2 rounded-md bg-white/50 backdrop-blur-md border border-white/40 flex-shrink-0"
+            className="inline-flex items-center mx-6 px-3 py-1  flex-shrink-0"
             initial="initial"
             whileHover="hover"
             variants={itemVariants}
@@ -101,7 +99,7 @@ const AboutTicker = () => {
               }}
             />
             <motion.span 
-              className="text-white font-semibold text-lg ml-4 tracking-wide whitespace-nowrap"
+              className="text-white font-bold text-xl ml-4 tracking-wide whitespace-nowrap"
             >
               {city.name}
             </motion.span>

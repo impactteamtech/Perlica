@@ -7,12 +7,12 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
   const ringClass = index % 2 === 0 ? 'ring-primary/60' : 'ring-secondary/60'
 
   return (
-    <div className="rounded-xl p-[1px] bg-gradient-to-br from-secondary/30 via-secondary/10 to-transparent">
+  <div className="rounded-xl p-[1px] bg-gradient-to-br from-secondary/30 via-secondary/10 to-transparent">
   <article
       aria-label={name}
   className={` group relative rounded-xl bg-white/30 backdrop-blur-sm
     p-7 md:p-3 shadow-sm transition-all flex gap-2  duration-500 ease-out
-    hover:shadow-xl h-55 hover:translate-y-[-2px]
+    hover:shadow-xl h-55 w-100 hover:translate-y-[-2px]
     overflow-hidden`}
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500 bg-[radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.35),transparent_60%)]" />
@@ -40,7 +40,7 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
           {name}
         </h3>
         <p className="text-md leading-relaxed opacity-90">
-          {description.length > 60 ? description.slice(0, 100) + '...' : description }
+          {description}   
         </p>
 
         <div className="mt-auto pt-1">
