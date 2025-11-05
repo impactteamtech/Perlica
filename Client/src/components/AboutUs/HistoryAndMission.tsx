@@ -7,7 +7,7 @@ import HotspotsMap from "./HotspotMap";
 const HistoryAndMission = (): JSX.Element => {
   return (
     <motion.div
-      className="flex flex-col gap-10 md:gap-34 min-h-screen py-10 px-4 md:px-15"
+      className="flex flex-col gap-10 md:gap-7 py-10 px-4 md:px-15"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -15,7 +15,7 @@ const HistoryAndMission = (): JSX.Element => {
     >
       {/* div 1 */}
       <motion.div
-        className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8"
+        className="flex flex-col lg:flex-row items-start"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -44,7 +44,7 @@ const HistoryAndMission = (): JSX.Element => {
       </motion.div>
 
       <motion.div
-        className="flex flex-col md:flex-row gap-6 md:gap-8"
+        className="flex flex-col md:flex-row gap-6 lg:mt-30 md:gap-8"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
