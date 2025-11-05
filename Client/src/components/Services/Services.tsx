@@ -96,7 +96,7 @@ const Services = (): JSX.Element => {
             <br />
             SERVICES WE PROVIDE
           </h1>
-          <div className="w-full hidden brightness-70 lg:block lg:w-[40%] p-6 lg:p-10 relative opacity-100 h-full bg-[url('/decorator_bg.png')] bg-cover bg-center mt-48 sm:mt-40 lg:mt-0">
+          <div className="w-full hidden lg:block lg:w-[40%] p-6 lg:p-10 relative opacity-80 rounded-xl h-full bg-[url('/decorator_bg.jpg')] bg-cover bg-center mt-48 sm:mt-40 lg:mt-0">
             <div className="w-32 sm:w-40 h-60 sm:h-72 lg:h-80"></div>
           </div>
         </div>
