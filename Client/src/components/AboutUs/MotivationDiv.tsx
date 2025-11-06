@@ -24,7 +24,7 @@ const MotivationDiv = ():JSX.Element => {
         </div>
 
       </div>
-      <div className="absolute left-10 sm:left-20 md:left-40 bottom-6 sm:bottom-10 md:bottom-20 z-100 w-[80%] sm:w-[90%] md:w-[100%] pointer-events-none select-none overflow-hidden">
+      <div className="absolute md:left-40 bottom-6 md:bottom-20 z-100 hidden md:block md:w-[100%] pointer-events-none select-none overflow-hidden">
         <img
           src="/kenya_airplane.png"
           alt="air-plane"

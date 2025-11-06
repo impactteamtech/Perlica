@@ -59,7 +59,6 @@ class ImageItem {
 
 class ImageTrailVariant1 {
   private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -73,7 +72,6 @@ class ImageTrailVariant1 {
 
   constructor(container: HTMLDivElement) {
     this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -173,8 +171,6 @@ class ImageTrailVariant1 {
 }
 
 class ImageTrailVariant2 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -187,8 +183,6 @@ class ImageTrailVariant2 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -300,8 +294,6 @@ class ImageTrailVariant2 {
 }
 
 class ImageTrailVariant3 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -314,8 +306,6 @@ class ImageTrailVariant3 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -430,8 +420,6 @@ class ImageTrailVariant3 {
 }
 
 class ImageTrailVariant4 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -444,8 +432,6 @@ class ImageTrailVariant4 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -495,9 +481,9 @@ class ImageTrailVariant4 {
     const img = this.images[this.imgPosition];
     gsap.killTweensOf(img.DOM.el);
 
-    let dx = this.mousePos.x - this.cacheMousePos.x;
-    let dy = this.mousePos.y - this.cacheMousePos.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
+  let dx = this.mousePos.x - this.cacheMousePos.x;
+  let dy = this.mousePos.y - this.cacheMousePos.y;
+  const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance !== 0) {
       dx /= distance;
       dy /= distance;
@@ -580,8 +566,6 @@ class ImageTrailVariant4 {
 }
 
 class ImageTrailVariant5 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -595,8 +579,6 @@ class ImageTrailVariant5 {
   private lastAngle: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -648,7 +630,7 @@ class ImageTrailVariant5 {
     if (angle > 90 && angle <= 270) angle += 180;
     const isMovingClockwise = angle >= this.lastAngle;
     this.lastAngle = angle;
-    let startAngle = isMovingClockwise ? angle - 10 : angle + 10;
+  const startAngle = isMovingClockwise ? angle - 10 : angle + 10;
     const distance = Math.sqrt(dx * dx + dy * dy);
     if (distance !== 0) {
       dx /= distance;
@@ -722,8 +704,6 @@ class ImageTrailVariant5 {
 }
 
 class ImageTrailVariant6 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -736,8 +716,6 @@ class ImageTrailVariant6 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -887,8 +865,6 @@ function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
 }
 
 class ImageTrailVariant7 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -903,8 +879,6 @@ class ImageTrailVariant7 {
   private visibleImagesTotal: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -1196,7 +1170,6 @@ export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps)
     if (!containerRef.current) return;
     const Cls = variantMap[variant] || variantMap[1];
     new Cls(containerRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variant, items]);
 
   return (
@@ -1206,9 +1179,12 @@ export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps)
           className="content__img w-[190px] aspect-[1.1] rounded-[15px] absolute top-0 left-0 opacity-0 overflow-hidden [will-change:transform,filter]"
           key={i}
         >
-          <div
-            className="content__img-inner bg-center bg-cover w-[calc(100%+20px)] h-[calc(100%+20px)] absolute top-[-10px] left-[-10px]"
-            style={{ backgroundImage: `url(${url})` }}
+          <img
+            src={url}
+            alt=""
+            className="content__img-inner w-[calc(100%+20px)] h-[calc(100%+20px)] absolute top-[-10px] left-[-10px] object-cover object-center"
+            loading="lazy"
+            draggable={false}
           />
         </div>
       ))}

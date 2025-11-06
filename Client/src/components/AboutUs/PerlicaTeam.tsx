@@ -7,7 +7,7 @@ import PingDot from "./PingDot";
 const PerlicaTeam = (): JSX.Element => {
   return (
     <motion.div
-      className="w-full pb-10 px-4 sm:px-6 pt-10 lg:px-15 flex min-h-screen flex-col gap-16 lg:gap-40"
+      className="w-full px-4 sm:px-6 lg:px-15 flex min-h-screen flex-col gap-16 lg:gap-30"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -15,7 +15,7 @@ const PerlicaTeam = (): JSX.Element => {
     >
       {/* First part */}
       <motion.div
-        className="flex flex-col lg:flex-row gap-12 lg:gap-10 items-center"
+        className="flex flex-col py-8 md:py-10 lg:flex-row gap-12 lg:gap-10 items-center"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -29,7 +29,7 @@ const PerlicaTeam = (): JSX.Element => {
           viewport={{ once: true }}
         >
           <img
-            className="w-64 sm:w-80 lg:w-100 hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-48 xs:w-100 sm:40 md:w-80 lg:w-100 hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team1.jpg"
             alt="team-member-1"
           />

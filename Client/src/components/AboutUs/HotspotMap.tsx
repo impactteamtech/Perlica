@@ -5,7 +5,6 @@ interface Hotspot {
   id: string;
   img: string;
   description?: string;
-  // tailwind positioning classes relative to container
   position: string; 
   previewOffset?: { x?: number; y?: number }; // fine tune preview placement
 }
@@ -20,7 +19,7 @@ const hotspots: Hotspot[] = [
   },
   {
     id: "north",
-    img: "/good-view-2.jpeg",
+    img: "/good-view-2.jpg",
     description: "GREAT RIFT VALLEY ",
     position: "left-86 -top-10",
     previewOffset: { x: -40, y: 20 }
@@ -106,7 +105,7 @@ const HotspotsMap = () => {
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
-                      className="mt-2 w-44 text-[11px] leading-snug bg-white/75 backdrop-blur-sm border text-center border-white/50 rounded-lg p-2 shadow-md text-black/70"
+                      className="mt-2 w-44 text-[13px] leading-snug  bg-white/75 backdrop-blur-sm border text-center border-white/50 rounded-lg p-2 shadow-md text-black/80 font-bold"
                     >
                       {h.description}
                     </motion.div>

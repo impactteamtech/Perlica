@@ -9,8 +9,8 @@ const SupDetailsSection = ():JSX.Element => {
   { id: 4, img: "/safari_animals/animal_4.jpg" }
 ];
   return (
-    <section className="px-15 flex min-h-screen items-center">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-center">
+    <section className="px-15 flex  py-10  md:py-12 lg:py-18">
+        <div className="flex flex-col lg:flex-row gap-18 lg:gap-12 xl:gap-16 ">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -38,15 +38,16 @@ const SupDetailsSection = ():JSX.Element => {
               Our team of experienced guides and travel experts are passionate about creating unforgettable experiences that go beyond the ordinary.
             </motion.p>
           </motion.div>
-
-       
-           <Stack
-              randomRotation={false}
-              sensitivity={180}
-              sendToBackOnClick={false}
-              cardDimensions={{ width: 550, height: 400 }}
-              cardsData={images}
-            />
+          <div className='hidden md:block'>
+            <Stack
+            randomRotation={false}
+            sensitivity={180}
+            sendToBackOnClick={false}
+            cardDimensions={{ width: 550, height: 300 }}
+            cardsData={images}
+          />
+          </div>
+        
         </div>
     </section>
   )

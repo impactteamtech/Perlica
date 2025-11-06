@@ -6,7 +6,6 @@ import Reviews from '../Reviews/Reviews';
 import PartnerWithUs from '../PartnerWithUs/PartnerWithUs';
 import Events from '../Events/Events';
 import ContactUs from '../contact/ContactUs';
-import KenyaMap from '../KenyaMap/KenyaMap';
 const Home: React.FC = () => {
     return (
         <div>
@@ -17,7 +16,6 @@ const Home: React.FC = () => {
             <Reviews />
             <PartnerWithUs />
             <ContactUs />
-            <KenyaMap />
         </div>
     );
 };
