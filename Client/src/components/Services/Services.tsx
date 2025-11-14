@@ -8,7 +8,7 @@ import ImageTrail from "./ImageTrail";
 import TravelInformation from "./TravelInformation";
 
 const Services = (): JSX.Element => {
-  const PAGE_SIZE = 3;
+  const PAGE_SIZE = 4;
   const [startIndex, setStartIndex] = useState(0);
 
   const visibleServices = Array.from(
@@ -77,50 +77,10 @@ const Services = (): JSX.Element => {
         />
       </motion.div>
 
-      {/* Description Section */}
-      <motion.div
-        className="w-full flex flex-col lg:flex-row items-start gap-6 lg:gap-10"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        viewport={{ once: true }}
-      >
-        <div className="w-full lg:w-[60%] flex flex-col relative">
-          <img
-            src="/shild.png"
-            className="w-14 sm:w-16 opacity-100 top-10 md:top-14 absolute md:right-20 sm:right-30"
-            alt="kenya-shild"
-          />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl absolute lg:[-webkit-text-stroke:3px_#efebe5] top-16 sm:top-13 z-100 color-primary left-6 sm:left-17 md:left-20 lg:left-27 title-font lg:font-bold font-mono">
-            TOP NOTCH QUALITY
-            <br />
-            SERVICES WE PROVIDE
-          </h1>
-          <div className="w-full hidden lg:block lg:w-[40%] p-6 lg:p-10 relative opacity-80 rounded-xl h-full bg-[url('/decorator_bg.jpg')] bg-cover bg-center mt-48 sm:mt-40 lg:mt-0">
-            <div className="w-32 sm:w-40 h-60 sm:h-72 lg:h-80"></div>
-          </div>
-        </div>
-
-        <motion.div
-          className="w-full lg:w-[40%] lg:border-l-2 lg:pl-12 border-black mt-36 lg:mt-0"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-font text-gray-900/80 leading-relaxed sm:text-lg md:text-xl lg:leading-8">
-            We offer a wide range of services to cater to your travel needs,
-            ensuring a seamless and memorable experience from start to finish.
-            Whether you're planning a solo adventure, a family vacation, or a
-            corporate trip, our dedicated team is here to assist you every step
-            of the way.
-          </p>
-        </motion.div>
-      </motion.div>
 
       {/* Buttons */}
       <motion.div
-        className="flex w-full justify-end my-6 lg:relative lg:bottom-10"
+        className="flex w-full justify-end my-6 mt-10 lg:relative lg:bottom-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
@@ -130,14 +90,14 @@ const Services = (): JSX.Element => {
           <button
             onClick={handlePrev}
             title="previous"
-            className="border-black/70 border-1 cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
+            className=" bg-black text-white  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
           >
             <IoMdArrowBack size={20} />
           </button>
           <button
             onClick={handleNext}
             title="next"
-            className="border-black/70 border-1 cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
+            className=" bg-secondary text-white  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
           >
             <IoMdArrowForward size={20} />
           </button>
@@ -146,29 +106,17 @@ const Services = (): JSX.Element => {
 
       {/* Services Cards */}
       <motion.div
-        className="w-full relative flex flex-col gap-4"
+        className="w-full relative flex  gap-4"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         viewport={{ once: true }}
       >
-        <img
-          src="/curve_arrow.png"
-          className="hidden md:block w-20 md:w-30 h-20 md:h-30 opacity-55 ml-10 md:ml-20 mr-6 md:mr-10 -rotate-20"
-          alt="curve_arrow"
-        />
-        <div className="absolute top-10 lg:bottom-0 lg:left-60 lg:top-0 gap-4 w-full flex">
-          {visibleServices.map((service, i) => (
+      
+        <div className="gap-4 w-full flex">
+          {visibleServices.map((service) => (
             <motion.div
               key={service._idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.7 + i * 0.1,
-              }}
-              viewport={{ once: true }}
             >
               <ServiceCard
                 index={service._idx}

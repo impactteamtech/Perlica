@@ -2,8 +2,8 @@ import type {JSX}  from 'react'
 import HistoryAndMission from './HistoryAndMission'
 import PerlicaTeam from './PerlicaTeam'
 import SupDetailsSection from './SupDetailsSection'
-import MainAboutDiv from './MainAboutDiv'
 import AboutTicker from './AboutTicker'
+import FirstSection from './FirstSection'
 const AboutUs = (): JSX.Element => {
   return (
     <>
@@ -15,10 +15,10 @@ const AboutUs = (): JSX.Element => {
         </div>
         <h1 className='text-2xl font-semibold leading-3.5 title-font  text-green-700'>ABOUT US</h1>
       </div>
+      <FirstSection />
       <HistoryAndMission />
       <SupDetailsSection />
       <PerlicaTeam />
-      {/* <MainAboutDiv /> */}
     </>
   )
 }
