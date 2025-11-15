@@ -14,9 +14,9 @@ const MotivationDiv = ():JSX.Element => {
           <p className="text-md leading-relaxed text-gray-700 font-sans">
             Discover breathtaking landscapes, vibrant cultures, and timeless safari adventures with Perlica.
           </p>
-          <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary/70 hover:bg-secondary transition-colors overflow-hidden">
+          <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary hover:bg-secondary/70 transition-colors overflow-hidden">
             <div className="flex items-center gap-2">
-              <span className="relative z-10">Discover More</span>
+              <span className="relative z-10">Book Now</span>
               <IoIosArrowRoundForward size={30}/>
             </div>
             <span className="absolute inset-0 scale-0 group-hover:scale-100 transition-transform duration-500 origin-center bg-gradient-to-r from-secondary/40 to-secondary/60 mix-blend-overlay" />

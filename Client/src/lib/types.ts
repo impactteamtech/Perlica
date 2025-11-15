@@ -49,3 +49,14 @@ export type TravelInfo = {
     icon:string,
     options:Option[]
 }
+
+export type FamousDest = {
+    name:string,
+    countryFlag:string,
+    image:string
+}
+export type City = {
+  name: string;
+  image: string;
+  description: string;
+};

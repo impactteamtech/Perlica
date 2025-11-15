@@ -46,7 +46,7 @@ const ContactUs = (): JSX.Element => {
           viewport={{ once: true }}
         >
           <div className="space-y-4">
-            <h1 className="text-6xl lg:text-7xl font-medium color-primary title-font leading-[1.1]">
+            <h1 className="text-6xl lg:text-7xl font-mono color-primary title-font leading-[1.1]">
               LET'S
               <br />
               GET IN TOUCH

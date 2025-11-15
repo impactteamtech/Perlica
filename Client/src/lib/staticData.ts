@@ -1,4 +1,4 @@
-import type { Guide,KenyaImageDetails,Event } from './types';
+import type { Guide,KenyaImageDetails,Event,FamousDest } from './types';
 // Tour guides data :
 export const tourGuides: Guide[] = [
   {
@@ -150,3 +150,26 @@ export const events: Event[] = [
     mainImage:"/events/camel_derby/camel_derby_main.jpg",
   },
 ];
+
+export const famousDestinations:FamousDest[] = [
+    {
+      name:"Nairobi",
+      countryFlag:"/popular_destinations/kenya.png",
+      image:"/popular_destinations/nairobi.jpg",
+    },
+    {
+      name:"Mombasa",
+      countryFlag:"/popular_destinations/kenya.png",
+      image:"/popular_destinations/mombasa.jpg",
+    },
+    {
+      name:"Kampala",
+      countryFlag:"/popular_destinations/uganda.png",
+      image:"/popular_destinations/kampala.jpg",
+    },
+    {
+      name:"Dar es Salam",
+      countryFlag:"/popular_destinations/tanzania.png",
+      image:"/popular_destinations/dar_salaam.jpg",
+    }
+  ]

@@ -40,7 +40,7 @@ const Layout: React.FC = () => {
 
   return (
     <div>
-      <div
+      {/* <div
         style={{
           opacity: isVisible ? 1 : 0,
           transition: 'opacity 0.8s ease-in-out',
@@ -48,7 +48,7 @@ const Layout: React.FC = () => {
         }}
       >
         <Header />
-      </div>
+      </div> */}
       <Outlet />
       <Footer/>
     </div>

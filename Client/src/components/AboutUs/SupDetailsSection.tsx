@@ -10,7 +10,7 @@ const SupDetailsSection = ():JSX.Element => {
 ];
   return (
     <section className="px-15 flex  py-10  md:py-12 lg:py-18">
-        <div className="flex flex-col lg:flex-row gap-18 lg:gap-12 xl:gap-16 ">
+        <div className="flex flex-col lg:flex-row  lg:justify-between gap-18 lg:gap-12 xl:gap-16 ">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

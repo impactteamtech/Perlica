@@ -211,9 +211,9 @@ const TravelInformation = (): JSX.Element => {
               <button
                 key={info.infoId}
                 onClick={() => handleSelect(info.infoId)}
-                className={`flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 ease-in-out transform hover:scale-105 ${
+                className={`flex items-center gap-3 px-4  rounded-xl sm:px-6 py-3 sm:py-4 transition-all duration-300 ease-in-out transform hover:scale-105 ${
                   selectedInfoId === info.infoId
-                    ? 'bg-secondary/40 text-white border-2 border-white'
+                    ? 'bg-secondary text-white'
                     : 'border border-black'
                 }`}
               >
@@ -249,10 +249,10 @@ const TravelInformation = (): JSX.Element => {
                 <div className="w-full text-center mt-4 sm:mt-6">
                   <button
                     onClick={() => setShowAll((prev) => !prev)}
-                    className={`inline-flex items-center px-4 sm:px-5 py-2.5 transition text-sm font-medium ${
+                    className={`inline-flex items-center px-4 rounded-lg sm:px-5 py-2.5 transition text-sm font-medium ${
                       showAll
-                        ? 'bg-secondary/40 hover:bg-transparent hover:text-black hover:border-black text-white border-1 border-white'
-                        : 'hover:bg-secondary/40 hover:border-white hover:text-white border-black border-1'
+                        ? 'bg-secondary/60 hover:bg-transparent hover:text-black hover:border-black text-white border-1 border-white'
+                        : 'hover:bg-secondary/70 hover:border-white hover:text-white border-black border-1'
                     }`}
                   >
                     {showAll ? 'Show less' : `Show ${remaining} more`}

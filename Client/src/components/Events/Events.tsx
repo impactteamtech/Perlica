@@ -19,7 +19,7 @@ const Events = (): JSX.Element => {
 
   return (
     <section className="min-h-screen flex flex-col gap-8 py-10 mb-3 relative bg-background-color">
-      <h1 className="text-5xl md:text-6xl title-font text-center w-full font-mono color-primary mb-6  z-50">EVENTS & FESTIVALS</h1>
+      <h1 className="text-5xl md:text-6xl title-font text-center w-full font-mono color-primary mb-6  z-50">ADVENTURE AND NATURE ACTIVITIES</h1>
    
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
         {/* Left: navigation and event info */}
@@ -32,16 +32,16 @@ const Events = (): JSX.Element => {
             <button 
             title='previous event'
             aria-label='Previous event'
-            onClick={handlePrev} className="cursor-pointer border-black/70 border-1  hover:scale-105 rounded-full duration-150 transition-transform p-4">
-              <IoMdArrowBack size={20} className="text-black/80" />
+            onClick={handlePrev} className="cursor-pointer bg-black text-white  hover:scale-105 rounded-full duration-150 transition-transform p-4">
+              <IoMdArrowBack size={20} />
             </button>
             <span className="text-xl font-medium text-black/60">{formatIdx(selectedIdx)}</span>
             <span className="text-lg text-black/60">/ {formatIdx(events.length - 1)}</span>
             <button 
             title="next event"
             aria-label='Next event'
-            onClick={handleNext} className="cursor-pointer border-black/70 border-1  hover:scale-105 rounded-full duration-150 transition-transform p-4">
-              <IoMdArrowForward size={20} className="text-black/80" />
+            onClick={handleNext} className="cursor-pointer bg-secondary text-white hover:scale-105 rounded-full duration-150 transition-transform p-4">
+              <IoMdArrowForward size={20} />
             </button>
           </div>
         </div>

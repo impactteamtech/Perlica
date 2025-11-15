@@ -12,9 +12,7 @@ const TourGuideCard = ({ guide }: { guide: Guide }): JSX.Element => {
       <img
         src={guide.image}
         alt={guide.name}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover transition-transform 
+        className="h-full object-cover w-full  transition-transform 
         duration-150 ease-out group-hover:scale-105"
       />
 

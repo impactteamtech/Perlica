@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { useState, useEffect, useRef } from "react";
-import { motion, useAnimation, type Variants } from "framer-motion";
+import { motion, useAnimation, type Variants, AnimatePresence } from "framer-motion";
 import ReviewCard from "./ReviewCard";
 import type { Review } from "../../lib/types";
 import { IoMdArrowForward, IoMdArrowBack } from "react-icons/io";
@@ -79,6 +79,7 @@ const Reviews = (): JSX.Element => {
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 16, scale: 0.995 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45 } },
+    exit: { opacity: 0, y: -16, scale: 0.995, transition: { duration: 0.25 } },
   };
 
   // start animation when section enters the viewport
@@ -115,22 +116,30 @@ const Reviews = (): JSX.Element => {
         <div className="w-full flex items-center justify-between">
            <h1 className="text-6xl font-mono title-font color-primary">WHAT PEOPLE SAY</h1>
           <div className="flex gap-4">
-            <button title="Previous Review" onClick={handlePrev}
-            className="border-black/70 border-1 cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
+            <button title="Previous Review" type="button" onClick={handlePrev}
+            className=" text-white bg-black  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
                 <IoMdArrowBack size={20}/>
                
             </button>
-            <button title="Next Review" onClick={handleNext} className="border-black/70 border-1 cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
+            <button title="Next Review" type="button" onClick={handleNext} className="text-white bg-secondary cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
                 <IoMdArrowForward size={20}/>
             </button>
           </div>
         </div>
-        <div className="flex  gap-6 md:gap-8">
-          {visibleReviews.map((r, i) => (
-            <motion.div key={`${r.email}-${i}`} variants={itemVariants} className="flex-1">
-              <ReviewCard review={r} />
-            </motion.div>
-          ))}
+        <div className="flex gap-6 md:gap-8">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {visibleReviews.map((r) => (
+              <motion.div
+                key={r.email}
+                variants={itemVariants}
+                className="flex-1"
+                layout
+                exit="exit"
+              >
+                <ReviewCard review={r} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
     </motion.section>
   )
