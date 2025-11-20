@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
+
 const SearchForm = () => {
   const contriesOptions:string[] = [
     "kenya",
@@ -38,8 +40,8 @@ const SearchForm = () => {
         </datalist>
         <button
           type="submit"
-          className='bg-black w-[20%] text-white py-2 px-4 rounded-full'
-        >Search</button>
+          className='bg-black w-[20%] cursor-pointer hover:bg-black/85 text-white py-2 px-4 rounded-full flex items-center justify-center gap-2'
+        ><IoSearch />Search</button>
     </form>
   )
 }
