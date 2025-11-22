@@ -64,7 +64,7 @@ const Services = (): JSX.Element => {
           </span>
         </motion.h1>
 
-        <ImageTrail
+        {/* <ImageTrail
           items={[
             "/services/hotel_reservation.jpg",
             "/services/get_ticket.jpg",
@@ -74,7 +74,7 @@ const Services = (): JSX.Element => {
             "/services/conference.jpg",
           ]}
           variant={1}
-        />
+        /> */}
       </motion.div>
 
 
