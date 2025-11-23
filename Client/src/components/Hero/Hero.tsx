@@ -24,29 +24,18 @@ import SearchPackages from "../SearchPackages/SearchPackages";
 const Hero: React.FC = () => {
   const text = "Perlica";
 
-  // Stagger containers
+  // Parent container
   const container = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.06, delayChildren: 0.25 },
+      transition: { staggerChildren: 0.15 },
     },
   };
+  // animation
   const char = {
-    hidden: { y: 40, opacity: 0, scale: 0.96, filter: "blur(6px)" },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.75,
-        ease: [0.25, 0.1, 0.25, 1],
-        type: 'spring',
-        damping: 18,
-        stiffness: 140,
-      },
-    },
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, },
   };
 
   // Scroll-based parallax effect
@@ -68,8 +57,8 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden  flex flex-col items-center justify-center">
-      {/* Logo  top left (yp) */}
+    <section className="relative min-h-screen w-full overflow-hidden  flex flex-col items-center text-center py-20">
+      {/* Logo top left (yp) */}
       <motion.img
         src={Heropng}
         alt="Perlica"
@@ -117,17 +106,8 @@ const Hero: React.FC = () => {
         className="relative z-30 px-4 text-center"
         style={{ transform: `translate(${mouseX}px, ${mouseY}px)` }}
       >
-        {/* Welcome (yp) */}
-        <motion.span
-          className="hero-font text-black text-[clamp(1.25rem,4vw,3rem)] leading-tight"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
-        >
-          Welcome to
-        </motion.span>
-
-        {/* Perlica (yp) */}
+       
+        {/*Perlica Tours & Travel (yp) */}
         <motion.h1
           variants={container}
           initial="hidden"
@@ -143,31 +123,36 @@ const Hero: React.FC = () => {
             backgroundImage: `url(${Heropng})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            y: yText,
+            backgroundRepeat: "no-repeat",
+           
           }}
+        > 
+        {/*Perlica in black*/}
+        <motion.span
+          key={"Perlica"}
+          variants={char}
+          className="block text-black"
         >
-          {text.split("").map((c, i) => (
-            <motion.span key={i} variants={char} className="inline-block">
-              {c}
-            </motion.span>
-          ))}
+        Perlica {""}
+        </motion.span>
+
+
+          {[ "Tours & Travel"].map((word, i) =>
+            <motion.span
+            key="tours"
+            variants={char}
+            className="block text-transparent bg-clip-text"
+          >
+              
+  
+
+            {word}
+          </motion.span>
+        
+        )}
         </motion.h1>
 
-        {/* Tours & Travel (yp) */}
-        <motion.h2
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="
-            mt-2 hero-font font-bold leading-[0.95]
-            text-[clamp(3rem,10vw,12rem)] tracking-[-0.01em]
-            bg-clip-text text-transparent bg-cover bg-center bg-no-repeat
-            [-webkit-text-stroke:2px_rgba(255,255,255,1)]
-          "
-          style={{ backgroundImage: `url(${textImg})`, y: yText }}
-        >
-          Tours &amp; Travel
-        </motion.h2>
+      
 
         {/* CTA  (yp) */}
         <motion.div

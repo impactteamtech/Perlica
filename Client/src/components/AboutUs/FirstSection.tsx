@@ -26,7 +26,7 @@ const FirstSection = ():React.JSX.Element => {
                     />
             </div>
             <div className='w-100'>
-                <h1 className='text-5xl  title-font color-primary'>ADVENTURE AWAITS & LIVE THE VIBE</h1>
+                <h1 className='text-6xl  title-font color-primary'>Perlica Tours- Where professionalism meets adventure</h1>
             </div>
                 <div>
                     <div className='w-55 h-65 relative bottom-10'>
