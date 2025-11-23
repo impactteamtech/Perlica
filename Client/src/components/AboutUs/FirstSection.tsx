@@ -29,7 +29,7 @@ const FirstSection = ():React.JSX.Element => {
                 <h1 className='text-6xl  title-font color-primary'>Perlica Tours- Where professionalism meets adventure</h1>
             </div>
                 <div>
-                    <div className='w-55 h-65 relative bottom-10'>
+                    <div className='w-55 h-65 relative bottom-10'> 
                         <div
                             className='absolute inset-0 rounded-xl bg-secondary/20 -rotate-3 -translate-x-2 -translate-y-4'
                             aria-hidden='true'
