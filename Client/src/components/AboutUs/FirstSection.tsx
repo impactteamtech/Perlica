@@ -26,7 +26,7 @@ const FirstSection = ():React.JSX.Element => {
                     />
             </div>
             <div className='w-100'>
-                <h1 className='text-6xl  title-font color-primary'>Perlica Tours- Where professionalism meets adventure</h1>
+                <h1 className='text-5xl  title-font color-primary'>Perlica Tours & Travel where professionalism meets adventure</h1>
             </div>
                 <div>
                     <div className='w-55 h-65 relative bottom-10'> 
@@ -101,7 +101,7 @@ const FirstSection = ():React.JSX.Element => {
                     </div>
                 </div>
                 <div className='flex ml-10 w-[40%] flex-col gap-6'>
-                    <p className='text-font text-2xl'>
+                    <p className='text-font text-3xl'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat doloribus iure, autem sint quod!
                     </p>
                     <button className='px-3 py-3 text-center  justify-center w-45 flex items-center  bg-black text-white rounded-full'>

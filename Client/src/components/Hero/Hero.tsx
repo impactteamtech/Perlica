@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
           }}
           initial={{ scale: 0.96, opacity: 0.8, filter: "blur(10px)" }} 
           animate={{ scale: 1.15, opacity: 1, filter: "blur(0px)" }} 
-          transition={{ duration: 12, ease: "easeOut" }} 
+          transition={{ duration: 10, ease: "easeOut" }} 
         >
           <source src={heroImg} type="video/mp4" />
         </motion.video>
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-           
+            y:yText,
           }}
         > 
         {/*Perlica in black*/}
@@ -141,13 +141,19 @@ const Hero: React.FC = () => {
             <motion.span
             key="tours"
             variants={char}
-            className="block text-transparent bg-clip-text"
-          >
+            className="block text bg-clip-text"
+              style={{ 
+              backgroundImage: `url(${textImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no repeat",
+              y: yText,
+            }}
               
-  
-
+        >
             {word}
           </motion.span>
+          
         
         )}
         </motion.h1>
