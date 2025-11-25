@@ -8,25 +8,13 @@ const HistoryAndMission = (): JSX.Element => {
   return (
     <motion.div
       className="flex flex-col gap-10 md:gap-7 py-10 px-4 md:px-15"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
     >
       {/* div 1 */}
       <motion.div
-        className="flex flex-col lg:flex-row items-start"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
+        className="flex flex-col lg:flex-row gap-10 md:gap-15 items-start"
       >
         <motion.div
           className="w-full lg:w-1/2 flex flex-col gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          viewport={{ once: true }}
         >
           <h1 className="color-primary title-font font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             WE'RE DEDICATED TO MAKE EVERY JOURNEY EXCEPTIONAL
@@ -45,18 +33,10 @@ const HistoryAndMission = (): JSX.Element => {
 
       <motion.div
         className="flex flex-col md:flex-row gap-6 lg:mt-30 md:gap-8"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        viewport={{ once: true }}
       >
         {/* part 1 */}
         <motion.div
           className="w-full md:w-1/2 min-w-0"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          viewport={{ once: true }}
         >
           <MotivationDiv />
         </motion.div>
@@ -64,10 +44,6 @@ const HistoryAndMission = (): JSX.Element => {
         {/* part 2 */}
         <motion.div
           className="w-full hidden md:block md:w-1/2 min-w-0"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-          viewport={{ once: true }}
         >
           <HotspotsMap />
         </motion.div>

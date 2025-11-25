@@ -8,25 +8,13 @@ const PerlicaTeam = (): JSX.Element => {
   return (
     <motion.div
       className="w-full px-4 sm:px-6 lg:px-15 flex min-h-screen flex-col gap-16 lg:gap-30"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
     >
       {/* First part */}
       <motion.div
         className="flex flex-col py-8 md:py-10 lg:flex-row gap-12 lg:gap-10 items-center"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
       >
         <motion.div
           className="relative w-full lg:w-[40%] flex justify-center lg:justify-start"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          viewport={{ once: true }}
         >
           <img
             className="w-48 xs:w-100 sm:40 md:w-80 lg:w-100 hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
@@ -42,10 +30,6 @@ const PerlicaTeam = (): JSX.Element => {
 
         <motion.div
           className="flex w-full lg:w-[60%] flex-col gap-6 lg:gap-10 items-center justify-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true }}
         >
           <div className="flex flex-col gap-3 items-center justify-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center color-primary title-font font-mono">
@@ -71,10 +55,6 @@ const PerlicaTeam = (): JSX.Element => {
       {/* Second part */}
       <motion.div
         className="flex flex-col gap-5"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        viewport={{ once: true }}
       >
         <div className="flex items-center gap-3">
           <PingDot />
@@ -86,18 +66,12 @@ const PerlicaTeam = (): JSX.Element => {
 
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-          viewport={{ once: true }}
+        
         >
           {tourGuides.map((guide, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-              viewport={{ once: true }}
+             
             >
               <TourGuideCard guide={guide} />
             </motion.div>

@@ -12,24 +12,14 @@ const SupDetailsSection = ():JSX.Element => {
     <section className="px-15 flex  py-10  md:py-12 lg:py-18">
         <div className="flex flex-col lg:flex-row  lg:justify-between gap-18 lg:gap-12 xl:gap-16 ">
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
             className="flex flex-col w-full lg:w-[50%] gap-6 lg:gap-8"
           >
             <div className="space-y-4">
-  
               <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
                 ARE YOU READY TO SEE THE MOST BEAUTIFUL THINGS?
               </h1>
             </div>
-
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
               className="text-lg lg:text-xl text-font  text-gray-900 leading-relaxed lg:leading-loose"
             >
               At Perlica Safaris, we believe that travel is not just about visiting new places,

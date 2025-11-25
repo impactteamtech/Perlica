@@ -1,8 +1,16 @@
 import React from 'react'
-
+import CarsMainSection from './CarsMainSection'
+import CarsSecondSection from './CarsSecondSection'
+import CarsFeatures from './CarsFeatures'
+import CarsCTA from './CarsCTA'
 const Cars = (): React.JSX.Element => {
   return (
-    <div>Cars</div>
+    <>
+      <CarsMainSection />
+      <CarsSecondSection />
+      <CarsFeatures />
+      <CarsCTA />
+    </>
   )
 }
 

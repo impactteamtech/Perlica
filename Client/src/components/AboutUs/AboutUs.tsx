@@ -2,8 +2,8 @@ import type {JSX}  from 'react'
 import HistoryAndMission from './HistoryAndMission'
 import PerlicaTeam from './PerlicaTeam'
 import SupDetailsSection from './SupDetailsSection'
-import AboutTicker from './AboutTicker'
 import FirstSection from './FirstSection'
+import AboutTicker from './AboutTicker'
 const AboutUs = (): JSX.Element => {
   return (
     <>

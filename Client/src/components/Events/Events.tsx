@@ -18,7 +18,7 @@ const Events = (): JSX.Element => {
   const handleNext = () => setSelectedIdx(idx => (idx + 1) % events.length);
 
   return (
-    <section className="min-h-screen flex flex-col gap-8 py-10 mb-3 relative bg-background-color">
+    <section className="min-h-screen flex flex-col gap-8 py-10 mb-3 relative overflow-hidden">
       <h1 className="text-5xl md:text-6xl title-font text-center w-full font-mono color-primary mb-6  z-50">ADVENTURE AND NATURE ACTIVITIES</h1>
    
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">

@@ -26,18 +26,11 @@ const Services = (): JSX.Element => {
   return (
     <motion.section
       className="px-4 sm:px-6 lg:px-15 py-10"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
     >
       {/* Hero Section */}
       <motion.div
         className="relative overflow-hidden h-80 md:h-[500px]"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        viewport={{ once: true }}
+   
       >
         {/* Decorative vertical lines */}
         <div className="pointer-events-none absolute inset-0">
@@ -54,17 +47,13 @@ const Services = (): JSX.Element => {
         {/* Big ghost title */}
         <motion.h1
           className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center title-font font-extrabold tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black/10 [text-shadow:_0_2px_0_rgba(0,0,0,0.05)]"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-700/20 via-green-600/20 to-black/20">
             SERVICES.
           </span>
         </motion.h1>
 
-        {/* <ImageTrail
+        <ImageTrail
           items={[
             "/services/hotel_reservation.jpg",
             "/services/get_ticket.jpg",
@@ -74,17 +63,13 @@ const Services = (): JSX.Element => {
             "/services/conference.jpg",
           ]}
           variant={1}
-        /> */}
+        />
       </motion.div>
 
 
       {/* Buttons */}
       <motion.div
         className="flex w-full justify-end my-6 mt-10 lg:relative lg:bottom-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-        viewport={{ once: true }}
       >
         <div className="flex gap-4 items-center">
           <button
@@ -107,10 +92,6 @@ const Services = (): JSX.Element => {
       {/* Services Cards */}
       <motion.div
         className="w-full relative flex  gap-4"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-        viewport={{ once: true }}
       >
       
         <div className="gap-4 w-full flex">
@@ -131,10 +112,6 @@ const Services = (): JSX.Element => {
 
       {/* Travel Info */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
-        viewport={{ once: true }}
       >
         <TravelInformation />
       </motion.div>

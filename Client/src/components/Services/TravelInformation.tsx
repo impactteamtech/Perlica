@@ -148,7 +148,7 @@ const TravelInformation = (): JSX.Element => {
   const remaining = Math.max(0, options.length - initialVisible);
 
   return (
-  <section className="w-full flex flex-col gap-6 px-4 sm:px-6 lg:px-8 pt-80 md:pt-36">
+  <section className="w-full flex flex-col gap-6 px-4 sm:px-6 lg:px-8 md:pb-10 md:pt-36">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-5xl md:text-6xl title-font font-mono color-primary mb-4 tracking-tight">

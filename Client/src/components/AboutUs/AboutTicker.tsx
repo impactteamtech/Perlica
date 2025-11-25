@@ -68,7 +68,7 @@ const AboutTicker = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-red-600 via-black to-white overflow-hidden py-4">
+    <div className="relative bg-gradient-to-br from-black via-black to-white overflow-hidden py-4">
       {/* Gradient overlays for fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-secondary/30 to-transparent z-20 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-secondary/30 to-transparent z-20 pointer-events-none" />
