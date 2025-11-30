@@ -58,7 +58,6 @@ const CarsForm = () => {
                                 <input 
                                     type="date" 
                                     name="pickupDate"
-                                    requigreen
                                     className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700" 
                                 />
                             </div>
@@ -72,7 +71,6 @@ const CarsForm = () => {
                                 <input 
                                     type="time" 
                                     name="pickupTime" 
-                                    requigreen
                                     className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700" 
                                 />
                             </div>
