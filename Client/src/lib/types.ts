@@ -60,3 +60,16 @@ export type City = {
   image: string;
   description: string;
 };
+
+export type Car = {
+  name:string,
+  image:string,
+  features:string[],
+  numberOfPassengers:number,
+  numberOfBags:number,
+  price:number,
+  type:string,
+  location:string,
+  available:boolean
+}
+

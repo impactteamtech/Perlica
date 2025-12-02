@@ -1,4 +1,4 @@
-import type { Guide,KenyaImageDetails,Event,FamousDest } from './types';
+import type { Guide,KenyaImageDetails,Event,FamousDest, Car } from './types';
 // Tour guides data :
 export const tourGuides: Guide[] = [
   {
@@ -172,4 +172,75 @@ export const famousDestinations:FamousDest[] = [
       countryFlag:"/popular_destinations/tanzania.png",
       image:"/popular_destinations/dar_salaam.jpg",
     }
-  ]
+  ];
+
+export const perlcaCars: Car[] = [
+  {
+    name:"Mercedes G-Wagon",
+    image:"https://rendezvous-dubai.com/wp-content/uploads/2023/04/G-class-Rendez-vous-dubai-1.jpg",
+    features:[
+      "Leather seats",
+      "Climate control",
+      "WiFi available",
+      "Bottled water",
+      "Phone chargers",
+      "Privacy glass"
+    ],
+    numberOfBags:3,
+    numberOfPassengers:3,
+    price:100,
+    type: "Luxury SUV (Mercedes G-Wagon)",
+    location: "Jomo Kenyatta International (NBO)",
+    available: true
+  },
+  {
+    name:"Range Rover Vogue",
+    image:"https://www.topgear.com/sites/default/files/2021/10/TopGear%20-%20Range%20Rover%20-%20025.jpg",
+    features:[
+      "Premium leather seats",
+      "4WD capability",
+      "Wifi available",
+      "Panoramic roof",
+      "Phone chargers",
+      "Extra space"
+    ],
+    numberOfBags:4,
+    numberOfPassengers:4,
+    price:150,
+    type: "Luxury SUV (Mercedes G-Wagon)",
+    location: "Moi International Airport (MBA)",
+    available: true
+  },
+  {
+    name:"Toyota Corolla",
+    image:"https://journalauto.com/wp-content/uploads/2023/04/Toy.jpg",
+    features:["Air conditioning",
+    "Compact and fuel efficient",
+    "Easy to maneuver in city traffic",
+    "Bluetooth connectivity",
+    "AM/FM radio with USB port",
+    "Spacious trunk for luggage"
+    ],
+    numberOfBags:2,
+    numberOfPassengers:3,
+    price:50,
+    type: "Economy Sedan (Toyota Corolla)",
+    location: "Eldoret International Airport (EDL)",
+    available: true
+  },
+  {
+    name:"Toyota Voxy",
+    image:"https://i.ytimg.com/vi/skKUfVUqWGE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD31MsvlfTpruBZP0BMcr_DFIjS6g",
+    features:[
+      "Spacious interior with seating for up to 7 passengers",
+      "Sliding doors for easy access",
+      "Air conditioning for all rows",
+      "Rearview camera for easier parking"],
+    numberOfBags:5,
+    numberOfPassengers:7,
+    price:80,
+    type: "7-Seater Van (Toyota Hiace)",
+    location: "Jomo Kenyatta International (NBO)",
+    available: true
+  }
+];

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Plane, Car, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, MapPin, Plane, Car, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const CarsForm = () => {
+    const navigate = useNavigate();
     // Data
     const airports: string[] = [
         "Jomo Kenyatta International (NBO)",
@@ -13,19 +15,30 @@ const CarsForm = () => {
     ];
 
     const vehiculesTypes: string[] = [
-        "Luxury Sedan (Mercedes S-class)",
         "Luxury SUV (Mercedes G-Wagon)",
         "7-Seater Van (Toyota Hiace)",
         "Economy Sedan (Toyota Corolla)",
     ];
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [formData, setFormData] = useState({
+        pickupDate: '',
+        pickupTime: '',
+        fromAirport: airports[0],
+        toDestination: '',
+        vehicleType: vehiculesTypes[0]
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitted(true);
-        // Simulate API call
-        setTimeout(() => setIsSubmitted(false), 3000);
+        const queryParams = new URLSearchParams(formData).toString();
+        navigate(`/cars/existingcars?${queryParams}`);
     };
 
     return (
@@ -58,6 +71,8 @@ const CarsForm = () => {
                                 <input 
                                     type="date" 
                                     name="pickupDate"
+                                    value={formData.pickupDate}
+                                    onChange={handleChange}
                                     className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700" 
                                 />
                             </div>
@@ -71,6 +86,8 @@ const CarsForm = () => {
                                 <input 
                                     type="time" 
                                     name="pickupTime" 
+                                    value={formData.pickupTime}
+                                    onChange={handleChange}
                                     className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700" 
                                 />
                             </div>
@@ -85,6 +102,8 @@ const CarsForm = () => {
                             <div className="relative">
                                 <select 
                                     name="fromAirport" 
+                                    value={formData.fromAirport}
+                                    onChange={handleChange}
                                     className="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none appearance-none transition-all text-gray-700 cursor-pointer"
                                 >
                                     {airports.map((airport, index) => (
@@ -105,7 +124,9 @@ const CarsForm = () => {
                             </label>
                             <input 
                                 type="text" 
-                                name="toDestination" 
+                                name="toDestination"
+                                value={formData.toDestination}
+                                onChange={handleChange} 
                                 placeholder="e.g. Nairobi CBD, Westlands..." 
                                 requigreen
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
@@ -121,7 +142,9 @@ const CarsForm = () => {
                             <div className="grid grid-cols-1 gap-3">
                                 <div className="relative">
                                      <select 
-                                        name="vehicleType" 
+                                        name="vehicleType"
+                                        value={formData.vehicleType}
+                                        onChange={handleChange} 
                                         className="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none appearance-none transition-all text-green-700 cursor-pointer"
                                     >
                                         {vehiculesTypes.map((type, index) => (
@@ -142,17 +165,8 @@ const CarsForm = () => {
                             type="submit"
                             className="w-full bg-[#29b43e] hover:bg-green-700 text-white font-bold py-4 rounded-lg shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 transition-colors mt-4"
                         >
-                            {isSubmitted ? (
-                                <>
-                                    <CheckCircle2 className="w-5 h-5" />
-                                    Request Sent!
-                                </>
-                            ) : (
-                                <>
-                                    Book Now
-                                    <ArrowRight className="w-5 h-5" />
-                                </>
-                            )}
+                            Book Now
+                            <ArrowRight className="w-5 h-5" />
                         </motion.button>
 
                     </form>
