@@ -21,6 +21,8 @@ import Cars from './components/Cars/Cars';
 import Stays from './components/Stays/Stays';
 import DestinationsLayout from './components/Destinations/DestinationsLayout';
 import Contry from './components/Destinations/Contry/Contry';
+import ExistingCars from './components/Cars/ExistingCars';
+import CarsLayout from './components/Cars/CarsLayout';
 function App() {
   return (
    <>
@@ -34,7 +36,10 @@ function App() {
   
         </Route>
         <Route path="packages" element={<Packages />} />
-        <Route path="cars" element={<Cars />} />
+        <Route path='cars' element={<CarsLayout />}>
+          <Route index element={<Cars />} />
+          <Route path="existingCars" element={<ExistingCars />} />
+        </Route>
         <Route path="stays" element={<Stays />} />
       </Route>
     </Routes>
