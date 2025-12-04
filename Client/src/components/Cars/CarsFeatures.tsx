@@ -1,11 +1,6 @@
 import React from 'react';
 
 const CarsFeatures = () => {
-  // Color Palette based on your image:
-  // Background: #F3F0EA (Light Beige)
-  // Accent: Forest Green (replacing the red)
-  // Text Body: Serif font (matching the description in your image)
-  // Headings: Bold Sans-serif Condensed (matching the header in your image)
 
   const features = [
     {
