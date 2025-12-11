@@ -31,7 +31,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Home/>}/>
-        <Route path="destinations" element={<DestinationsLayout />} >
+        <Route path="destinations" element={<Destinations />} >
           <Route index element={<Destinations />} />
           <Route path="country" element={<Contry />} />
   
