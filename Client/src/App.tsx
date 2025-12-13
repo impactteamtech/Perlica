@@ -23,6 +23,7 @@ import DestinationsLayout from './components/Destinations/DestinationsLayout';
 import Contry from './components/Destinations/Contry/Contry';
 import ExistingCars from './components/Cars/ExistingCars';
 import CarsLayout from './components/Cars/CarsLayout';
+import HotelSearchPage from './components/hotels/HotelSearchPage';
 function App() {
   return (
    <>
@@ -30,7 +31,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Home/>}/>
-        <Route path="destinations" element={<DestinationsLayout />} >
+        <Route path="destinations" element={<Destinations />} >
           <Route index element={<Destinations />} />
           <Route path="country" element={<Contry />} />
   
@@ -40,7 +41,7 @@ function App() {
           <Route index element={<Cars />} />
           <Route path="existingCars" element={<ExistingCars />} />
         </Route>
-        <Route path="stays" element={<Stays />} />
+        <Route path="hotels" element={<HotelSearchPage />} />
       </Route>
     </Routes>
   </div>
