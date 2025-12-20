@@ -16,7 +16,7 @@ const SearchPackages: React.FC = () => {
                 duration: 0.8,
                 ease: [0.25, 0.1, 0.25, 1.0],
             }}
-            className="w-full mt-32 mx-auto flex flex-col items-center gap-6 p-2"
+            className="w-full mt-32 mx-auto  flex flex-col items-center gap-6 p-2"
         >
 
             <motion.div
@@ -32,12 +32,7 @@ const SearchPackages: React.FC = () => {
                     },
                 }}
             >
-                <PackagesIcons
-                    onSelect={(category) => {
-                        setSelectedGallery(category);
-                        setIsOpen(true);
-                    }}
-                />
+                <PackagesIcons />
             </motion.div>
 
             <AnimatePresence>

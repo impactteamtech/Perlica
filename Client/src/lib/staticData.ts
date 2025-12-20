@@ -1,4 +1,4 @@
-import type { Guide,KenyaImageDetails,Event } from './types';
+import type { Guide,KenyaImageDetails,Event,FamousDest, Car } from './types';
 // Tour guides data :
 export const tourGuides: Guide[] = [
   {
@@ -40,37 +40,46 @@ export const services:{
     img:string,
   }[] = [
     {
-      name:"Ticketing",
+      name:"Flight & Hotel bookings",
       img:"/services/get_ticket.jpg",
-      description:"We will provide the most direct\
-      cost effective flight schedules and special fares two to three booking \
-      options will be emailed to help you make an informed decision"
+      description:"Domestic and international ticketing" 
     },
     {
-      name:"Corporate group discounts",
+      name:"Corporate & Group Travel",
       img:"/services/group_travel.jpg",
       description:"We negotiate special rates and volume \
-      discounts for large groups travelling together with preferred airlines \
-      Groups of  10 or more adults qualify for special rates."
+      discounts for large groups travelling together with preferred airlines."
     },
     {
       name:"Conference facilities",
       img:"/services/conference.jpg",
-      description:"We organize conferences for groups of all sizes in Nairobi and beyond \
-      Partnering with reputable hotel lodges."
+      description:"We organize conferences for groups of all sizes in Nairobi and beyond."
+    },
+    {
+      name:"Customized tour packages",
+      img:"/services/customized_tour.jpg",
+      description:"Tailor-made itineraries based on traveler interests"
+    },
+    {
+      name:"Transportation & Transfers",
+      img:"/services/transportation.jpg",
+      description:"Airport pickup and drop-off, Local transport arrangements and guided tours"
+
     },
     {
       name:"Hotel reservations",
       img:"/services/hotel_reservation.jpg",
-      description:"We proudly maintain strong, collaborative partnerships with hotel chains throught kenya, \
-      East Africa, and worldwid. Leveraging negotiated contract rates with leading hotel groups."
+      description:"Partnered with top airlines and hotels"
     },
     {
       name:"Safaris and tour packages",
       img:"/services/safari_tour_package1.jpg",
-      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris, prioritizing \
-      prioritizing client comfort and safety with well-maintained vehicles equipped with 24-hour VHF communication. \
-      We specialize in game viewing and beach holidays."
+      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris."
+    },
+    {
+      name:"Specialized Experiences",
+      img:"/services/specialized_experiences.jpg",
+      description:"Honeymoon packages, Adventure tours, Cultural and eco-tours"
     }
   ];
 
@@ -140,4 +149,98 @@ export const events: Event[] = [
     description:"A cultural & sporting event involving camel races in Maralal, Northern Kenya",
     mainImage:"/events/camel_derby/camel_derby_main.jpg",
   },
+];
+
+export const famousDestinations:FamousDest[] = [
+    {
+      name:"Nairobi",
+      countryFlag:"/popular_destinations/kenya.png",
+      image:"/popular_destinations/nairobi.jpg",
+    },
+    {
+      name:"Mombasa",
+      countryFlag:"/popular_destinations/kenya.png",
+      image:"/popular_destinations/mombasa.jpg",
+    },
+    {
+      name:"Kampala",
+      countryFlag:"/popular_destinations/uganda.png",
+      image:"/popular_destinations/kampala.jpg",
+    },
+    {
+      name:"Dar es Salam",
+      countryFlag:"/popular_destinations/tanzania.png",
+      image:"/popular_destinations/dar_salaam.jpg",
+    }
+  ];
+
+export const perlcaCars: Car[] = [
+  {
+    name:"Mercedes G-Wagon",
+    image:"https://rendezvous-dubai.com/wp-content/uploads/2023/04/G-class-Rendez-vous-dubai-1.jpg",
+    features:[
+      "Leather seats",
+      "Climate control",
+      "WiFi available",
+      "Bottled water",
+      "Phone chargers",
+      "Privacy glass"
+    ],
+    numberOfBags:3,
+    numberOfPassengers:3,
+    price:100,
+    type: "Luxury SUV (Mercedes G-Wagon)",
+    location: "Jomo Kenyatta International (NBO)",
+    available: true
+  },
+  {
+    name:"Range Rover Vogue",
+    image:"https://static.oneclickdrive.com/car-for-rent/mobile/Land-Rover_Range-Rover-Vogue_2024_32170_32170_26192132044-1_small.jpg",
+    features:[
+      "Premium leather seats",
+      "4WD capability",
+      "Wifi available",
+      "Panoramic roof",
+      "Phone chargers",
+      "Extra space"
+    ],
+    numberOfBags:4,
+    numberOfPassengers:4,
+    price:150,
+    type: "Luxury SUV (Mercedes G-Wagon)",
+    location: "Moi International Airport (MBA)",
+    available: true
+  },
+  {
+    name:"Toyota Corolla",
+    image:"https://journalauto.com/wp-content/uploads/2023/04/Toy.jpg",
+    features:["Air conditioning",
+    "Compact and fuel efficient",
+    "Easy to maneuver in city traffic",
+    "Bluetooth connectivity",
+    "AM/FM radio with USB port",
+    "Spacious trunk for luggage"
+    ],
+    numberOfBags:2,
+    numberOfPassengers:3,
+    price:50,
+    type: "Economy Sedan (Toyota Corolla)",
+    location: "Eldoret International Airport (EDL)",
+    available: true
+  },
+  {
+    name:"Toyota Voxy",
+    image:"https://i.ytimg.com/vi/skKUfVUqWGE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD31MsvlfTpruBZP0BMcr_DFIjS6g",
+    features:[
+      "Spacious interior with seating for up to 7 passengers",
+      "Sliding doors for easy access",
+      "Air conditioning for all rows",
+      "Rearview camera for easier parking"],
+    numberOfBags:5,
+    numberOfPassengers:7,
+    price:80,
+    type: "7-Seater Van (Toyota Hiace)",
+    location: "Jomo Kenyatta International (NBO)",
+    available: true
+  }
 ];

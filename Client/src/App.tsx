@@ -15,7 +15,15 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './components/Layout/Layout';
 import Home from './components/Layout/Home';
-import PartnerPage from './components/Pages/PartnerPage/PartnerPage';
+import Destinations from './components/Destinations/Destinations';
+import Packages from './components/Packages/Packages';
+import Cars from './components/Cars/Cars';
+import Stays from './components/Stays/Stays';
+import DestinationsLayout from './components/Destinations/DestinationsLayout';
+import Contry from './components/Destinations/Contry/Contry';
+import ExistingCars from './components/Cars/ExistingCars';
+import CarsLayout from './components/Cars/CarsLayout';
+import HotelSearchPage from './components/hotels/HotelSearchPage';
 function App() {
   return (
    <>
@@ -23,8 +31,6 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Home/>}/>
-        <Route path='/home' element={<Home/>}/>
-      <Route path='/partner-with-us' element={<PartnerPage/>}/>
       </Route>
     </Routes>
   </div>

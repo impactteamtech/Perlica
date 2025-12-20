@@ -3,7 +3,8 @@ import { BiSolidBed } from "react-icons/bi";
 import { MdFlight } from "react-icons/md";
 import { TbCarSuvFilled, TbPackages } from "react-icons/tb";
 import { RiFunctionLine } from "react-icons/ri";
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 // icons component (yp)
 type Icon = React.ComponentType<{ size: number,  style: React.CSSProperties }>;
 type Items = { label: string; size: number; icon: Icon };
@@ -11,7 +12,7 @@ type Items = { label: string; size: number; icon: Icon };
 interface PackagesProps {
   onSelect: (category: 'stays' | 'destinations' | 'cars' | 'packages' | 'thingsToDo') => void;
 }
-const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
+const PackagesIcons: React.FC = () => {
   const icons: Items[] = [
     { label: "Stays", size: 42, icon: BiSolidBed },
     { label: "Destinations",  size: 42, icon: MdFlight },
@@ -21,7 +22,7 @@ const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
   ];
 
   const kenyaColors = ['#000000', '#BB0000', '#006600', '#c00000ff']; // kenyan flag color (yp)
-  
+  const navigate = useNavigate();
 
   return (
     <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
@@ -42,12 +43,11 @@ const PackagesIcons: React.FC<PackagesProps> = ({onSelect}) => {
             <li key={i} className="flex justify-center ">
               <button
                 aria-label={label}
-                onClick={() => onSelect(categoryKey)}
-                
+                onClick={()=> navigate(`/${categoryKey}`)}
                 className='flex flex-col items-center gap-3 p-3 bg-white/50 hover:bg-white rounded-4xl hover:shadow-lg  hover:shadow-xl hover:scale-110  transition-transform duration-300 ease-out cursor-pointer w-full'
               >
-          <Icon size={size} style={{color}}/>
-          <span className="text-gray-800 font-medium text-lg">{label}</span>
+                <Icon size={size} style={{color}}/>
+                <span className="text-gray-800 font-medium text-lg">{label}</span>
               </button>
             </li>
           );

@@ -7,10 +7,9 @@ interface CardRotateProps {
   onSendToBack: () => void;
   sensitivity: number;
   isTopCard: boolean;
-  cardDimensions: { width: number; height: number };
 }
 
-function CardRotate({ children, onSendToBack, sensitivity, isTopCard, cardDimensions }: CardRotateProps) {
+function CardRotate({ children, onSendToBack, sensitivity, isTopCard }: CardRotateProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
@@ -43,7 +42,7 @@ function CardRotate({ children, onSendToBack, sensitivity, isTopCard, cardDimens
         rotateX, 
         rotateY,
         scale,
-        zIndex: isTopCard ? cardDimensions.height + 1 : cardDimensions.height - 1, // Better z-index management
+        zIndex: isTopCard ? 2 : 1,
       }}
       drag={isTopCard}
       dragConstraints={{ 
@@ -82,7 +81,7 @@ interface StackProps {
 export default function Stack({
   randomRotation = true,
   sensitivity = 80,
-  cardDimensions = { width: 280, height: 350 },
+  
   cardsData = [],
   animationConfig = { stiffness: 300, damping: 25 },
   sendToBackOnClick = true,
@@ -145,12 +144,7 @@ export default function Stack({
   return (
     <div
       ref={stackRef}
-      className="stack-container relative"
-      style={{
-        width: cardDimensions.width,
-        height: cardDimensions.height,
-        perspective: 1200
-      }}
+      className="stack-container relative mx-auto touch-pan-y w-[240px] h-[180px] sm:w-[400px] sm:h-[200px] md:w-[460px] md:h-[400px] lg:w-[480px] lg:h-[100px] xl:w-[520px] xl:h-[180px] 2xl:w-[560px] 2xl:h-[100px] [perspective:1000px]"
     >
       {cards.map((card, index) => {
         const isTopCard = card.id === topCardId;
@@ -165,15 +159,15 @@ export default function Stack({
             onSendToBack={() => sendToBack(card.id)} 
             sensitivity={sensitivity}
             isTopCard={isTopCard}
-            cardDimensions={cardDimensions}
           >
             <motion.div
-              className="card relative cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm safari_animals border-10 border-secondary/20"
+              className="card relative cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm safari_animals border-10 border-secondary/20 w-full h-full"
               onClick={() => handleCardClick(card.id)}
               animate={{
                 rotateZ: depth * 2 + randomRotate,
-                scale: 1 - depth * 0.08,
-                y: -depth * 8,
+                // Slightly reduce stacking compression on small sizes
+                scale: 1 - depth * 0.07,
+                y: -depth * 6,
                 transformOrigin: 'center',
                 zIndex: cards.length - depth // Ensure proper stacking
               }}
@@ -184,11 +178,7 @@ export default function Stack({
                 damping: animationConfig.damping,
                 mass: 0.8
               }}
-              style={{
-                width: cardDimensions.width,
-                height: cardDimensions.height,
-                zIndex: cards.length - depth // CSS z-index for proper stacking
-              }}
+              style={{ zIndex: cards.length - depth }}
               whileHover={isTopCard ? {
                 boxShadow: "0 5px 8px -6px rgba(0, 0, 0, 0.5)"
               } : {}}
@@ -197,7 +187,7 @@ export default function Stack({
               <motion.img 
                 src={card.img} 
                 alt={`card-${card.id}`} 
-                className="card-image w-full h-full"
+                className="card-image w-full h-full object-cover"
                 whileHover={isTopCard ? { scale: 1.1 } : {}}
                 transition={{ duration: 0.4 }}
               />
@@ -209,7 +199,7 @@ export default function Stack({
                   
                   {/* Drag Hint for Top Card */}
                   <motion.div
-                    className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm backdrop-blur-sm"
+                    className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-black/50 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm backdrop-blur-sm"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1 }}
@@ -220,7 +210,7 @@ export default function Stack({
               )}
               
               {/* Card Index Indicator */}
-              <div className="absolute top-4 left-4 bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold backdrop-blur-sm">
+              <div className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4 bg-black/70 text-white w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold backdrop-blur-sm">
                 {cards.length - depth}
               </div>
             </motion.div>
@@ -229,7 +219,7 @@ export default function Stack({
       })}
       
       {/* Stack Counter */}
-      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm border border-white/20">
+      <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm backdrop-blur-sm border border-white/20">
         {cards.length} cards in stack
       </div>
     </div>

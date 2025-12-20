@@ -23,7 +23,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="w-full bg-black mt-10 border-t bg-no-repeat border-gray-300 relative overflow-hidden">
+    <footer className="w-full bg-black  border-t bg-no-repeat border-gray-300 relative overflow-hidden">
       {/* Background image with gentle parallax */}
       <motion.img
         src="/footer_image.jpg"
