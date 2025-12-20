@@ -18,22 +18,21 @@ import Home from './components/Layout/Home';
 import Destinations from './components/Destinations/Destinations';
 import Packages from './components/Packages/Packages';
 import Cars from './components/Cars/Cars';
-import Stays from './components/Stays/Stays';
-import DestinationsLayout from './components/Destinations/DestinationsLayout';
-import Contry from './components/Destinations/Contry/Contry';
 import ExistingCars from './components/Cars/ExistingCars';
 import CarsLayout from './components/Cars/CarsLayout';
 import HotelSearchPage from './components/hotels/HotelSearchPage';
+import TouristDestinationsApp from './components/Destinations/Contry/Contry';
 function App() {
   return (
-   <>
+  <>
   <div className="background-color">
     <Routes>
+      <Route path="/test" element ={<TouristDestinationsApp />}/>
       <Route path='/' element={<Layout/>}>
-        <Route index element={<Home/>}/>
+    
+        <Route index element={<Home/>}/>  
         <Route path="destinations" element={<Destinations />} >
           <Route index element={<Destinations />} />
-          <Route path="country" element={<Contry />} />
   
         </Route>
         <Route path="packages" element={<Packages />} />
