@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     { label: "Destination", icon: GiPlanetConquest, link: '/destination' },
     { label: "Services", icon: FaTools, link: '/services' },
     { label: "About Us", icon: FaInfoCircle, link: '#about-us' },
-    { label: "Partner With Us", icon: FaPeopleGroup, link: '#partner-with-us' },
+    { label: "Partner With Us", icon: FaPeopleGroup, link: '/partner-with-us' },
     { label: "Contact", icon: FaPhoneAlt, link: '/contact' },
   ];
 

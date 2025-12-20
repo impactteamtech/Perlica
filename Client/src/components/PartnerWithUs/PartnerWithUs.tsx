@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import InfiniteMenu from './InfiniteMenu';
 import PingDot from '../AboutUs/PingDot';
 import hotelPng from '../../../public/partner_with_us/hotel.jpg';
@@ -12,7 +13,9 @@ import NGOtravelPng from '../../../public/partner_with_us/ngo.jpg';
 import AirlinePng from '../../../public/partner_with_us/airline.jpg';
 import RealEstatePng from '../../../public/partner_with_us/realestate.jpg';
 import { IoIosArrowRoundForward } from 'react-icons/io';
+
 const PartnerWithUs: React.FC = () => {
+    const navigate = useNavigate()
     const items = [
         {
             image: hotelPng,
@@ -105,7 +108,9 @@ const PartnerWithUs: React.FC = () => {
                             unlock endless opportunities to explore, connect, and grow. Join us in building the next
                             wave of adventure-driven impact.
                         </p>
-                       <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary/70 hover:bg-secondary transition-colors overflow-hidden">
+                       <button 
+                            onClick={()=>(navigate("/partner-with-us"))}
+                            className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary/70 hover:bg-secondary transition-colors overflow-hidden">
                                   <div className="flex items-center gap-2">
                                     <span className="relative z-10">See More</span>
                                     <IoIosArrowRoundForward size={30}/>
