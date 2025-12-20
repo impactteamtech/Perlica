@@ -30,6 +30,6 @@ async def read_root():
     return{"message": "SERVER is up and running"} #our root route
 
 #our main function to run our fastApi app
-if __name__ == "__main__":
-    uvicorn.run("main:app", host=str(host), port=int(port), reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host=str(host), port=int(port), reload=True)
 
