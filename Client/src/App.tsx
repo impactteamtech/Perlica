@@ -29,6 +29,7 @@ function App() {
     <Routes>
       <Route path="/test" element ={<TouristDestinationsApp />}/>
       <Route path='/' element={<Layout/>}>
+<<<<<<< HEAD
     
         <Route index element={<Home/>}/>  
         <Route path="destinations" element={<Destinations />} >
@@ -41,6 +42,9 @@ function App() {
           <Route path="existingCars" element={<ExistingCars />} />
         </Route>
         <Route path="hotels" element={<HotelSearchPage />} />
+=======
+        <Route index element={<Home/>}/>
+>>>>>>> 868d9c652e5dbab65b7b22b7437721f750303095
       </Route>
     </Routes>
   </div>

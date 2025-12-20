@@ -650,11 +650,7 @@ export default function CircularGallery({
       />
 
       {/* Overlay layer (UI on top of the 3D scene) */}
-      <div className="absolute inset-0 flex justify-center items-center z-10">
-        <button className="text-black p-4 font-lg border rounded-md bg-white text-lg md:text-lg">
-          Check Availability
-        </button>
-      </div>
+      
     </div>
   );
 }
