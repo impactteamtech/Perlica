@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Page Translator</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .lang-btn { margin-right: 8px; padding: 6px 12px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h1>Welcome to My Website</h1>
+<p>This page will be translated instantly without reload.</p>
+<p>Click any language button below.</p>
+
+<div>
+    <button class="lang-btn" onclick="translatePage('en')">English</button>
+    <button class="lang-btn" onclick="translatePage('fr')">French</button>
+    <button class="lang-btn" onclick="translatePage('es')">Spanish</button>
+    <button class="lang-btn" onclick="translatePage('de')">German</button>
+    <button class="lang-btn" onclick="translatePage('ja')">Japanese</button>
+</div>
+
+<script>
+let originalTexts = [];
+let elements = [];
+
+function collectElements() {
+    elements = [];
+    originalTexts = [];
+
+    const selectable = document.querySelectorAll(
+        "p, h1, h2, h3, h4, h5, h6, span, li, a, div"
+    );
+
+    selectable.forEach(el => {
+        // only elements that contain direct text (no child elements)
+        if (el.children.length === 0) {
+            const text = el.innerText.trim();
+            if (text.length > 1) {
+                elements.push(el);
+                originalTexts.push(text);
+            }
+        }
+    });
+
+    console.log("COLLECTED ELEMENTS:", elements.length);
+}
+
+async function translatePage(lang) {
+    if (elements.length === 0) {
+        collectElements();
+    }
+
+    if (lang === "en") {
+        elements.forEach((el, i) => {
+            el.innerText = originalTexts[i];
+        });
+        return;
+    }
+
+    const res = await fetch("/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            texts: originalTexts,
+            target: lang
+        })
+    });
+
+    const data = await res.json();
+
+    data.translations.forEach((t, i) => {
+        elements[i].innerText = t;
+    });
+}
+
+</script>
+
+
+
+</body>
+</html>
