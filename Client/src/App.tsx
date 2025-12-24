@@ -31,8 +31,6 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Home/>}/>
-<<<<<<< HEAD
-=======
         <Route path="destinations" element={<Destinations />} >
           <Route index element={<Destinations />} />
           <Route path="country" element={<Country />} />
@@ -44,7 +42,6 @@ function App() {
           <Route path="existingCars" element={<ExistingCars />} />
         </Route>
         <Route path="hotels" element={<HotelSearchPage />} />
->>>>>>> b6fc1c064a8ea9b0fd82599be5c570abc4726af1
       </Route>
     </Routes>
   </div>
