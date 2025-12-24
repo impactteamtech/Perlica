@@ -5,7 +5,7 @@ import type { Country } from './types';
 const countryNames: Record<Country, string> = {
   KE: 'Kenya',
   UG: 'Uganda',
-  TZ: 'Zanzibar (Tanzania)'
+  TZ: 'Tanzania'
 };
 
 interface CountryTabsProps {

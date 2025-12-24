@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import NavBar from './NavBar';
 
+
 const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
 
