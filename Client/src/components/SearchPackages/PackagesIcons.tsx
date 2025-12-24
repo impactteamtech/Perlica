@@ -9,9 +9,6 @@ import { useNavigate } from "react-router-dom";
 type Icon = React.ComponentType<{ size: number,  style: React.CSSProperties }>;
 type Items = { label: string; size: number; icon: Icon };
 
-interface PackagesProps {
-  onSelect: (category: 'stays' | 'destinations' | 'cars' | 'packages' | 'thingsToDo') => void;
-}
 const PackagesIcons: React.FC = () => {
   const icons: Items[] = [
     { label: "Stays", size: 42, icon: BiSolidBed },

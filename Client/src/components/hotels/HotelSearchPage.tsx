@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Search, Loader2 } from 'lucide-react'; 
+import { MapPin, Search } from 'lucide-react'; 
 import type { Hotel, Country } from './types';
+// @ts-ignore
 import { searchHotels } from './api';
 import CountryTabs from './CountryTabs';
 import SearchForm from './SearchForm';
