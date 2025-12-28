@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom"; // Assuming you use Router, otherwise use <a>
 
 const NavBar = () => {

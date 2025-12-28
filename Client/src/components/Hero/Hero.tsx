@@ -17,7 +17,7 @@ import { motion, useScroll, useTransform,  } from "framer-motion";
 import heroImg from "../../../public/heroSafari.mp4";
 import Heropng from "/Perlica_logo.png";
 import textImg from "/kenya.jpg";
-import HeroShades from "./HeroShades";
+// HeroShades removed – module not found
 import SearchPackages from "../SearchPackages/SearchPackages";
 
 
@@ -104,13 +104,14 @@ const Hero: React.FC = () => {
           animate={{ scale: 1.15, opacity: 1, filter: "blur(0px)" }} 
           transition={{ duration: 12, ease: "easeOut" }} 
         >
-          <source src={heroImg} type="video/mp4" />
+          <source src={heroImg} type="video/mp4"/>
         </motion.video>
         
       </motion.div>
 
-      {/* Glows */}
-      <HeroShades />
+      {/* commenting out for production error code cannot find name HeroShades (YP) */}
+      {/* Glows
+      <HeroShades /> */}
 
       {/* Content (yp) */}
       <div
@@ -147,7 +148,8 @@ const Hero: React.FC = () => {
           }}
         >
           {text.split("").map((c, i) => (
-            <motion.span key={i} variants={char} className="inline-block">
+            // got to add a type for the variants 
+            <motion.span key={i} variants={char as any} className="inline-block">
               {c}
             </motion.span>
           ))}

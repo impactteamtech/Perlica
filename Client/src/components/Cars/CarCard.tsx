@@ -8,15 +8,15 @@ type CarCardProps = {
 }
 const CarCard = ({ car }: CarCardProps) => {
     const [isFlipped, setIsFlipped] = useState(false);
-
-    const cardVariants = {
-        front: {
-            rotateY: 0
-        },
-        back: {
-            rotateY: 180
-        }
-    };
+// THIS CARD VARIANT WAS NEVER USED COMMENTING OUT FOR PRODUCTION (YP)
+    // const cardVariants = {
+    //     front: {
+    //         rotateY: 0
+    //     },
+    //     back: {
+    //         rotateY: 180
+    //     }
+    // };
 
     return (
         <div className="w-full h-100 [perspective:1000px]" onClick={() => setIsFlipped(!isFlipped)}>

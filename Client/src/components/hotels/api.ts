@@ -140,7 +140,9 @@ export const searchHotels = async (
       }
     } else if (hotel.hotelImages && Array.isArray(hotel.hotelImages) && hotel.hotelImages.length > 0) {
       heroImage = hotel.hotelImages[0].url || hotel.hotelImages[0];
-      imagesList = hotel.hotelImages.map(img => img.url || img);
+      imagesList = hotel.hotelImages.map((img: { url?: string } | string) => 
+        typeof img === 'string' ? img : (img.url || '')
+      );
     }
 
     return {
@@ -160,11 +162,11 @@ export const searchHotels = async (
       rates: hotelRates || null,
       minPrice: minPrice,
       roomCount: roomCount,
-      available: hotelRates && hotelRates.roomTypes && hotelRates.roomTypes.length > 0
+      available: !!(hotelRates && hotelRates.roomTypes && hotelRates.roomTypes.length > 0)
     };
   });
 
-  const availableHotels = hotelsWithRates.filter(h => h.available);
+  const availableHotels = hotelsWithRates.filter((h: Hotel) => h.available);
 
   if (availableHotels.length === 0) {
     throw new Error('No available rooms found for these dates. Try different dates or destination.');

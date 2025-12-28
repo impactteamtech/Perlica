@@ -1,3 +1,4 @@
+
 const CarsCTA = () => {
   const number: string = "fake-phone-number"; // Replace with actual phone number
   
@@ -31,7 +32,8 @@ const CarsCTA = () => {
           
           {/* Secondary Button */}
           <button className='
-            border-1 border-black
+
+border-1 border-black
             font-semibold bg-white py-4 px-8 rounded-xl transition-all duration-300 
             transform hover:scale-105 w-full sm:w-auto text-lg
             flex items-center justify-center gap-2

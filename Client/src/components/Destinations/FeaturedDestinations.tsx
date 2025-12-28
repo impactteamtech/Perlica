@@ -80,7 +80,7 @@ const FeaturedDestinations = (): JSX.Element => {
       ]
     },
     {
-      country: "Zanzibar",
+      country: "Tanzania",
       cities: [
         {
           name: "Zanzibar Island (Stone Town)",

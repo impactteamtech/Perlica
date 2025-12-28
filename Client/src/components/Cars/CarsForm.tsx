@@ -128,7 +128,7 @@ const CarsForm = () => {
                                 value={formData.toDestination}
                                 onChange={handleChange} 
                                 placeholder="e.g. Nairobi CBD, Westlands..." 
-                                requigreen
+                                required
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400" 
                             />
                         </div>

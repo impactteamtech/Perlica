@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { motion } from 'framer-motion'
 
 const AboutTicker = () => {
@@ -72,21 +72,22 @@ const AboutTicker = () => {
       {/* Gradient overlays for fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-secondary/30 to-transparent z-20 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-secondary/30 to-transparent z-20 pointer-events-none" />
-      
+      {/* WE NEED TO SPECIFY A TYPE FOR THE VARIANTS */}
       {/* Scrolling container with Framer Motion */}
       <motion.div
         className="flex whitespace-nowrap"
-        variants={scrollVariants}
+        variants={scrollVariants as any}
         animate="animate"
         whileHover={{ animationPlayState: "paused" }}
       >
+        {/* adding any type for variant for production (yp) */}
         {duplicatedCities.map((city, index) => (
           <motion.div
             key={index}
             className="inline-flex items-center mx-6 px-3 py-1  flex-shrink-0"
             initial="initial"
             whileHover="hover"
-            variants={itemVariants}
+            variants={itemVariants as any}
           >
             <motion.img
               src={city.icon}
