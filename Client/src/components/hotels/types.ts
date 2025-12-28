@@ -38,6 +38,7 @@ export interface Hotel {
   starRating: number;
   rating: number;
   facilities: string[];
+  facilityIds: number[];
   latitude: number;
   longitude: number;
   rates: HotelRate | null;

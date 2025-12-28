@@ -1,9 +1,11 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
 import type { JSX } from "react";
+import { useNavigate } from "react-router-dom";
 const MotivationDiv = ():JSX.Element => {
+  const navigate = useNavigate();
   return (
     <div className="relative w-full md:w-[100%] rounded-2xl card-background-color p-5 sm:p-6 md:p-6 flex flex-col min-h-[18rem]">
-      <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-secondary drop-shadow-sm">
+      <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-[#00d404]">
         EXPLORE
         <br />
         KENYA
@@ -14,7 +16,9 @@ const MotivationDiv = ():JSX.Element => {
           <p className="text-md leading-relaxed text-gray-700 font-sans">
             Discover breathtaking landscapes, vibrant cultures, and timeless safari adventures with Perlica.
           </p>
-          <button className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary hover:bg-secondary/70 transition-colors overflow-hidden">
+          <button 
+            onClick={()=>navigate('/hotels')}
+            className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-[#0cce10] hover:bg-secondary/70 transition-colors overflow-hidden">
             <div className="flex items-center gap-2">
               <span className="relative z-10">Book Now</span>
               <IoIosArrowRoundForward size={30}/>

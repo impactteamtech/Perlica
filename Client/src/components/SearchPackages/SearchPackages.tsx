@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const SearchPackages: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [selectedGallery, setSelectedGallery] = useState<'stays' | 'destinations' | 'cars' | 'packages' | 'thingsToDo' | null>(null);
+    const [selectedGallery] = useState<'stays' | 'destinations' | 'cars' | 'packages' | 'thingsToDo' | null>(null);
 
     return (
         <motion.section

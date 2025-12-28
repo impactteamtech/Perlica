@@ -1,43 +1,48 @@
 import type { City } from "../../lib/types";
+import { MapPin } from 'lucide-react';
 
 const CityCard = ({ city, index }: { city: City; index: number }) => {
-    // Placeholder images for demonstration
     const placeholderImages = [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1000&q=80",
+        "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1000&q=80",
+        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1000&q=80"
     ];
+
+    // The specific green requested used in arbitrary tailwind values
+    const greenHex = "#0cce10";
 
     return (
         <div 
-            className="group w-full h-80 rounded-2xl relative overflow-hidden transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
+            className="group relative w-full h-[400px] rounded-2xl overflow-hidden cursor-pointer bg-slate-900 transition-all duration-500"
         >
-            {/* Image with overlay and hover effect */}
             <img 
                 src={city.image || placeholderImages[index % placeholderImages.length]} 
                 alt={city.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform ease-out"
             />
             
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
             
-            {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform transition-all duration-500 group-hover:translate-y-0">
-                {/* City Name */}
-                <h1 className="text-2xl font-bold mb-2 transform transition-transform duration-500 group-hover:translate-y-0">
+
+            <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end min-h-[50%]">
+                
+                <div className={`flex items-center gap-1 text-[${greenHex}] mb-2 transform transition-transform duration-500 group-hover:-translate-y-1`}>
+                    <MapPin className="w-3 h-3" />
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold">
+                        {city.countryName || 'Destination'}
+                    </span>
+                </div>
+
+                <h2 className="text-3xl font-extrabold text-white mb-3 tracking-tight transform transition-all duration-500 group-hover:-translate-y-2">
                     {city.name}
-                </h1>
+                </h2>
                 
-                {/* Description with fade-in on hover */}
-                <p className="text-gray-200 mb-4 opacity-0 transform translate-y-4 max-h-0 group-hover:opacity-100 group-hover:translate-y-0 group-hover:max-h-20 transition-all duration-500 delay-200 overflow-hidden">
-                    {city.description}
-                </p>
-                
-                {/* Explore Button */}
-                <button className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-600 text-white font-semibold rounded-full transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-blue-500 hover:to-purple-500 border border-white/20 backdrop-blur-sm">
-                    Explore More
-                </button>
+
+                <div className="overflow-hidden">
+                    <p className="text-gray-300 text-sm leading-relaxed opacity-0 transform translate-y-10 transition-all duration-700 ease-in-out group-hover:opacity-100 group-hover:translate-y-0">
+                        {city.description || "Discover the hidden gems and vibrant culture of this breathtaking East African destination."}
+                    </p>
+                </div>
             </div>
         </div>
     );

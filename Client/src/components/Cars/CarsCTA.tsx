@@ -1,10 +1,11 @@
+
 const CarsCTA = () => {
   const number: string = "fake-phone-number"; // Replace with actual phone number
   
   return (
-    <section className='px-4 md:px-8 bg-secondary/30 lg:px-15 py-16 '>
+    <section className='px-4 md:px-8 bg-secondary/25 lg:px-15 py-16 '>
       <div className='max-w-4xl mx-auto text-center'>
-        {/* Header */}
+        
         <h1 className='text-5xl text-black title-font mb-6'>
           Ready to Drive Your Dream Car? 
           <span className='color-primary block mt-2'>Contact Us Today!</span>
@@ -21,7 +22,7 @@ const CarsCTA = () => {
         <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
           {/* Primary Button */}
           <button className='
-            bg-secondary/40 border-white border text-white font-semibold 
+            bg-secondary border-white border text-white font-semibold 
             py-4 px-8 rounded-xl transition-all duration-300 
             transform hover:scale-105
             w-full sm:w-auto text-lg
@@ -31,7 +32,8 @@ const CarsCTA = () => {
           
           {/* Secondary Button */}
           <button className='
-            border-1 border-black
+
+border-1 border-black
             font-semibold bg-white py-4 px-8 rounded-xl transition-all duration-300 
             transform hover:scale-105 w-full sm:w-auto text-lg
             flex items-center justify-center gap-2

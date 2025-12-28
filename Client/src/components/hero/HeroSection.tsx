@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -15,13 +17,11 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/85 z-10 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent z-10 pointer-events-none" />
       
-      {/* Subtle Pattern Overlay */}
       <div className="absolute inset-0 z-10 opacity-10 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }} />
       <NavBar />
 
-      {/* Main Content Wrapper */}
       <div className='w-full h-full absolute top-10 left-0 px-6 md:px-24 pt-[15vh] flex flex-col z-20 justify-between pb-10'>
         
         {/* Top Section */}
@@ -37,17 +37,14 @@ const HeroSection = () => {
 
           <div className='flex w-full flex-col md:flex-row justify-between items-end relative mt-6'>
             
-            {/* Main Headline Area */}
             <div className="relative z-20 w-full md:w-2/3">
               
-              {/* Giant Title with Animation */}
               <div className={`transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <h1 className='text-7xl md:text-[10rem] leading-[0.8] text-white font-black tracking-tighter drop-shadow-2xl relative'>
                   PERLICA
                 </h1>
               </div>
               
-              {/* Enhanced Subtitle */}
               <div className={`transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <h3 className='text-2xl md:text-4xl mt-6 ml-2 text-white/95 font-light tracking-wide'>
                   Your Gateway to Unforgettable 
@@ -68,7 +65,9 @@ const HeroSection = () => {
               </div>
 
               {/* Enhanced CTA Button */}
-                <button className='flex mt-10 ml-2 group overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95'>
+                <button 
+                  onClick={()=>navigate('/hotels')}
+                  className='flex mt-10 ml-2 group overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95'>
                   <div className='relative overflow-hidden'>
                     <div className='relative bg-[#04c41a] text-white px-10 py-5 font-bold text-xl'>
                       Let's Go!
@@ -80,7 +79,6 @@ const HeroSection = () => {
                 </button>
             </div>
 
-            {/* Right Side: Enhanced Steps */}
             <div className={`hidden md:flex flex-col items-end absolute right-0 bottom-10 transition-all duration-1000 delay-700`}>
               <div className='w-[500px] h-[1px] bg-gradient-to-l from-white/60 via-white/30 to-transparent mb-6' />
               
@@ -146,7 +144,6 @@ const HeroSection = () => {
         </div>      
       </div>
 
-      {/* Background Video with enhanced overlay */}
       <video
         className="absolute inset-0 w-full h-full object-cover scale-105 brightness-75"
         autoPlay
@@ -157,7 +154,6 @@ const HeroSection = () => {
         <source src="/heroSafari.mp4" type="video/mp4" />
       </video>
 
-      {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-10 pointer-events-none" />
     </div>
   );

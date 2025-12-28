@@ -338,7 +338,7 @@ export default function DomeGallery({
 
   useGesture(
     {
-      onDragStart: ({ event }) => {
+      onDragStart: ({ event }: { event: any }) => {
         if (focusedElRef.current) return;
         stopInertia();
 
@@ -354,7 +354,19 @@ export default function DomeGallery({
         const potential = (evt.target as Element).closest?.('.item__image') as HTMLElement | null;
         tapTargetRef.current = potential || null;
       },
-      onDrag: ({ event, last, velocity: velArr = [0, 0], direction: dirArr = [0, 0], movement }) => {
+      onDrag: ({
+        event,
+        last,
+        velocity: velArr = [0, 0],
+        direction: dirArr = [0, 0],
+        movement,
+      }: {
+        event: any;
+        last: boolean;
+        velocity?: [number, number];
+        direction?: [number, number];
+        movement: [number, number];
+      }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
 
         const evt = event as PointerEvent;

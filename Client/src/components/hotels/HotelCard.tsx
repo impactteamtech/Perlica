@@ -17,13 +17,13 @@ const stripHtml = (html: string) => {
 };
 
 const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
-  <div className="bg-white  rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-    <div className="md:flex">
+  <div className="bg-white   rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="md:flex h-70">
       <div className="">
         <img
           src={hotel.heroImage || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400'}
           alt={hotel.name}
-          className="w-100 object-cover"
+          className="w-100 h-full object-cover"
           onError={(e) => {
             e.currentTarget.src = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400';
           }}

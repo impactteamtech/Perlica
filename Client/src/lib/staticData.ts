@@ -1,4 +1,4 @@
-import type { Guide,KenyaImageDetails,Event,FamousDest, Car } from './types';
+import type { Guide,KenyaImageDetails,Event,FamousDest, Car, City } from './types';
 // Tour guides data :
 export const tourGuides: Guide[] = [
   {
@@ -174,6 +174,102 @@ export const famousDestinations:FamousDest[] = [
     }
   ];
 
+export  const destinations: {
+    country: string;
+    cities: City[];
+  }[] = [
+    {
+      country: 'Kenya',
+      cities: [
+        {
+          name: "Nairobi",
+          image: "/popular_destinations/countries/kenya/nairobi.jpg",
+          description: "The bustling capital city of Kenya, known for its vibrant culture and wildlife."
+        },
+        {
+          name: "Maasai Mara National Reserve",
+          image: "/popular_destinations/countries/kenya/maasai_mara_national_reserve.jpg",
+          description: "A world-renowned wildlife reserve in Kenya, famous for the Great Migration."
+        },
+        {
+          name: "Mombasa",
+          image: "/popular_destinations/countries/kenya/mombasa.jpg",
+          description: "A coastal city famous for its beautiful beaches and historical sites."
+        },
+        {
+          name: "Mount Kenya National Park",
+          image: "/popular_destinations/countries/kenya/mount_kenya_national_park.jpg",
+          description: "Home to Africa's second-highest mountain, great for hiking and adventure."
+        },
+        {
+          name: "Lake Nakuru",
+          image: "/popular_destinations/countries/kenya/lake_nakuru.jpg",
+          description: "Famous for its flamingos and beautiful pink-colored lake views."
+        },
+        {
+          name: "Hell's Gate National Park",
+          image: "/popular_destinations/countries/kenya/hells_gate_national_park.jpg",
+          description: "Known for rock formations, geothermal features, and cycling between giraffes!"
+        }
+      ]
+    },
+    {
+      country: 'Uganda',
+      cities: [
+        {
+          name: "Bwindi Impenetrable National Park",
+          description: "Famous for mountain gorilla trekking, one of the most unique experiences in Africa.",
+          image: "/popular_destinations/countries/uganda/bwindi_impenetrable_national_park.jpg"
+        },
+        {
+          name: "Murchison Falls National Park",
+          description: "Where the Nile River explodes through a narrow gorge — breathtaking waterfall.",
+          image: "/popular_destinations/countries/uganda/murchison_falls_national_park.jpg"
+        },
+        {
+          name: "Kampala",
+          description: "The capital city lively markets, culture, and great nightlife.",
+          image: "/popular_destinations/countries/uganda/kampala.jpg"
+        },
+        {
+          name: "Queen Elizabeth National Park",
+          description: "Diverse wildlife including tree-climbing lions and beautiful landscapes.",
+          image: "/popular_destinations/countries/uganda/queen_elizabeth_national_park.jpg"
+        },
+        {
+          name: "Lake Bunyonyi",
+          description: "A serene lake surrounded by hills, perfect for relaxation and birdwatching.",
+          image: "/popular_destinations/countries/uganda/lake_bunyonyi.jpg",
+        },
+        {
+          name: "Rwenzori Mountains National Park",
+          description: "Known as the 'Mountains of the Moon,' great for trekking and stunning scenery.",
+          image: "/popular_destinations/countries/uganda/rwenzori_mountains_national_park.jpg",
+        }
+      ]
+    },
+    {
+      country: "Tanzania",
+      cities: [
+        {
+          name: "Zanzibar Island (Stone Town)",
+          description: "A UNESCO site with Arab-Swahili architecture, spice markets, and rich culture.",
+          image: "/popular_destinations/countries/tanzania/zanzibar_island_stone_town.jpg",
+        },
+        {
+          name: "Nungwi Beach",
+          description: "Stunning sunsets, clear waters, and perfect for diving and relaxation.",
+          image: "/popular_destinations/countries/tanzania/nungwi_beach.jpg",
+        },
+        {
+          name: "Mnemba Atoll",
+          description: "Famous for snorkeling, dolphins, and crystal-clear coral reefs.",
+          image: "/popular_destinations/countries/tanzania/mnemba_atoll.jpg"
+        }
+      ]
+    }
+  ];
+
 export const perlcaCars: Car[] = [
   {
     name:"Mercedes G-Wagon",
@@ -244,3 +340,4 @@ export const perlcaCars: Car[] = [
     available: true
   }
 ];
+

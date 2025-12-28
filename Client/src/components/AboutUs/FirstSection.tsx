@@ -1,8 +1,9 @@
 import React from 'react'
 import { GoArrowRight, GoPlus } from "react-icons/go";
 import { IoStarSharp } from "react-icons/io5";
-
+import { useNavigate } from 'react-router-dom';
 const FirstSection = ():React.JSX.Element => {
+    const navigate = useNavigate();
     const persons:string[] = [
         "/partner_with_us/person1.jpg",
         "/partner_with_us/person2.jpg",
@@ -10,15 +11,12 @@ const FirstSection = ():React.JSX.Element => {
     ]
   return (
     <section className='min-h-screen px-15 pt-15  pb-10'>
-        {/* top part */}
         <div className='w-full  relative flex justify-between'>
             <div className='w-45 h-50 relative top-10'>
-                    {/* Rotated green background behind the image */}
                     <div
-                        className='absolute inset-0 rounded-xl bg-secondary/20 -rotate-3 -translate-x-2 -translate-y-4'
+                        className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                         aria-hidden='true'
                     />
-                    {/* Portrait image on top */}
                     <img
                         src='/image1.jpg'
                         alt=''
@@ -31,7 +29,7 @@ const FirstSection = ():React.JSX.Element => {
                 <div>
                     <div className='w-55 h-65 relative bottom-10'> 
                         <div
-                            className='absolute inset-0 rounded-xl bg-secondary/20 -rotate-3 -translate-x-2 -translate-y-4'
+                            className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                             aria-hidden='true'
                         />
                         <img 
@@ -73,7 +71,7 @@ const FirstSection = ():React.JSX.Element => {
                         <button
                             type='button'
                             aria-label='Add partner'
-                            className='w-12 h-12 -ml-4 rounded-full bg-secondary text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
+                            className='w-12 h-12 -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
                         >
                             <GoPlus size={30} className='text-white' />
                         </button>
@@ -104,7 +102,9 @@ const FirstSection = ():React.JSX.Element => {
                     <p className='text-font text-3xl'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat doloribus iure, autem sint quod!
                     </p>
-                    <button className='px-3 py-3 text-center  justify-center w-45 flex items-center  bg-black text-white rounded-full'>
+                    <button 
+                        onClick={()=>navigate('/destinations')}
+                        className='px-3 py-3 text-center  justify-center w-45 flex items-center hover:bg-gray-800 transition-all duration-150  cursor-pointer bg-black text-white rounded-full'>
                         EXPLORE MORE
                         <GoArrowRight 
                             size={20}
