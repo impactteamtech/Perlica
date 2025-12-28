@@ -116,7 +116,6 @@ const CarsForm = () => {
                             </div>
                         </div>
 
-                        {/* Destination */}
                         <div className="space-y-2">
                             <label className="text-sm font-semibold text-gray-100 flex items-center gap-2">
                                 <MapPin className="w-4 h-4 text-green-500" />
@@ -133,7 +132,6 @@ const CarsForm = () => {
                             />
                         </div>
 
-                        {/* Vehicle Type */}
                         <div className="space-y-2">
                             <label className="text-sm font-semibold text-gray-100 flex items-center gap-2">
                                 <Car className="w-4 h-4 text-green-500" />
@@ -163,7 +161,7 @@ const CarsForm = () => {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             type="submit"
-                            className="w-full bg-[#29b43e] hover:bg-green-700 text-white font-bold py-4 rounded-lg shadow-lg shadow-green-500/30 flex items-center justify-center gap-2 transition-colors mt-4"
+                            className="w-full bg-secondary text-white font-bold py-4 rounded-lg s flex items-center justify-center gap-2 transition-colors mt-4"
                         >
                             Book Now
                             <ArrowRight className="w-5 h-5" />

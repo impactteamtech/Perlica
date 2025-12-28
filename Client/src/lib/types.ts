@@ -59,6 +59,7 @@ export type City = {
   name: string;
   image: string;
   description: string;
+    countryName?: string;
 };
 
 export type Car = {
@@ -72,4 +73,63 @@ export type Car = {
   location:string,
   available:boolean
 }
+
+// --- Country / LiteAPI (cities) types ---
+
+export type CitySortBy = 'name';
+
+export type CountryConfig = {
+    name: string;
+    code: string;
+};
+
+export type LiteApiCity = {
+    city?: string;
+    name?: string;
+};
+
+export type LiteApiCitiesResponse = {
+    data?: LiteApiCity[];
+};
+
+export type LiteApiHotel = {
+    name?: string;
+    hotelDescription?: string;
+    address?: string;
+    city?: string;
+    rating?: number;
+    reviewCount?: number;
+    stars?: number;
+    main_photo?: string;
+    thumbnail?: string;
+    deletedAt?: string | null;
+};
+
+export type LiteApiHotelsResponse = {
+    data?: LiteApiHotel[];
+};
+
+export type CityDestination = {
+    id: string;
+    cityName: string;
+    countryName: string;
+    countryCode: string;
+    displayName: string;
+    description: string;
+    image: string;
+    isZanzibar: boolean;
+};
+
+export type CityTheme = 'beach' | 'nature' | 'wildlife' | 'city';
+export type ThemeFilter = 'all' | CityTheme;
+
+export type CityDetails = {
+    images: string[];
+    hotelName?: string;
+    hotelRating?: number;
+    reviewCount?: number;
+    stars?: number;
+    address?: string;
+    snippet?: string;
+};
 

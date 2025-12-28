@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import type { Hotel } from './types';
+import { fetchHotelDetailImages } from './api';
 
 interface HotelDetailsModalProps {
   hotel: Hotel;
   onClose: () => void;
 }
 
-// 1. Default Facilities List
 const DEFAULT_FACILITIES = [
-  "Free High-Speed WiFi",
-  "Air Conditioning",
-  "24/7 Room Service",
-  "Private Parking",
-  "Daily Housekeeping"
+  'Free WiFi',
+  'Air Conditioning',
+  'Breakfast Available',
+  'Parking',
+  '24/7 Front Desk'
 ];
 
 // 2. Helper to select icons based on facility keywords
@@ -47,16 +47,67 @@ const stripHtml = (html: string) => {
 };
 
 const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose }) => {
+  const [detailImages, setDetailImages] = useState<string[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string>('');
   
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'unset'; };
   }, []);
 
-  // Use hotel facilities or fallback to default
-  const displayFacilities = (hotel.facilities && hotel.facilities.length > 0) 
-    ? hotel.facilities 
-    : DEFAULT_FACILITIES;
+  useEffect(() => {
+    let cancelled = false;
+    setDetailImages([]);
+
+    fetchHotelDetailImages(hotel.id)
+      .then((imgs) => {
+        if (cancelled) return;
+        setDetailImages(imgs);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setDetailImages([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [hotel.id]);
+
+  const displayFacilities = Array.from(
+    new Set(
+      (hotel.facilities || [])
+        .filter((v): v is string => typeof v === 'string')
+        .map((v) => v.trim())
+        .filter((v) => v.length > 0)
+    )
+  );
+
+  const facilitiesToRender = displayFacilities.length > 0 ? displayFacilities : DEFAULT_FACILITIES;
+
+  const images = useMemo(() => {
+    const raw = (detailImages.length > 0)
+      ? detailImages
+      : (hotel.images && hotel.images.length > 0)
+        ? hotel.images
+        : (hotel.heroImage ? [hotel.heroImage] : []);
+
+    return Array.from(
+      new Set(
+        raw
+          .filter((v): v is string => typeof v === 'string')
+          .map((v) => v.trim())
+          .filter((v) => v.length > 0)
+      )
+    ).slice(0, 4);
+  }, [detailImages, hotel.heroImage, hotel.images]);
+
+  const fallbackImage = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600';
+
+  useEffect(() => {
+    const first = images[0] || hotel.heroImage || fallbackImage;
+    setSelectedImage(first);
+  }, [images, hotel.heroImage]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -66,38 +117,70 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
       />
 
       <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
-        
-        <div className="relative h-72 shrink-0 group">
-          <img
-            src={hotel.heroImage || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600'}
-            alt={hotel.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            onError={(e) => {
-              e.currentTarget.src = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600';
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-          <button
-            title='Close modal'
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all hover:rotate-90"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
+        <div className="relative shrink-0">
+          <div className="relative h-72 group bg-gray-100">
+            <img
+              src={selectedImage || fallbackImage}
+              alt={hotel.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onError={(e) => {
+                e.currentTarget.src = fallbackImage;
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-          <div className="absolute bottom-6 left-6 right-6 text-white">
-            <h2 className="text-4xl font-bold mb-2 ">{hotel.name}</h2>
-            <div className="flex items-center gap-2 text-gray-200">
-              <svg className="w-5 h-5 text-[#04c41a]" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+            <button
+              title='Close modal'
+              onClick={onClose}
+              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all hover:rotate-90"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
-              <span className="text-lg">{hotel.address}, {hotel.city}</span>
+            </button>
+
+            <div className="absolute bottom-6 left-6 right-6 text-white">
+              <h2 className="text-4xl font-bold mb-2 ">{hotel.name}</h2>
+              <div className="flex items-center gap-2 text-gray-200">
+                <svg className="w-5 h-5 text-[#04c41a]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg">{hotel.address}, {hotel.city}</span>
+              </div>
             </div>
           </div>
+
+          {images.length > 1 && (
+            <div className="bg-white px-6 py-4 border-b border-gray-100">
+              <div className="flex gap-3 overflow-x-auto">
+                {images.map((src, idx) => {
+                  const isActive = src === selectedImage;
+                  return (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setSelectedImage(src)}
+                      className={`shrink-0 rounded-lg overflow-hidden border transition-colors ${isActive ? 'border-[#04c41a]' : 'border-gray-200 hover:border-gray-300'}`}
+                      aria-label={`Show photo ${idx + 1}`}
+                      title={`Photo ${idx + 1}`}
+                    >
+                      <img
+                        src={src}
+                        alt={`Thumbnail ${idx + 1}`}
+                        className="h-16 w-24 object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = fallbackImage;
+                        }}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
         </div>
 
         <div className="flex-1 overflow-y-auto p-8 space-y-8">
@@ -111,19 +194,23 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
 
           <div>
             <h3 className="text-xl font-bold text-gray-800 mb-4">Amenities</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {displayFacilities.map((facility, idx) => (
-                <div 
-                  key={idx} 
-                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:border-[#04c41a]/30 transition-colors"
-                >
-                  <div className="text-[#04c41a]">
-                    {getFacilityIcon(facility)}
+            {facilitiesToRender.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {facilitiesToRender.map((facility, idx) => (
+                  <div 
+                    key={`${facility}-${idx}`} 
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:border-[#04c41a]/30 transition-colors"
+                  >
+                    <div className="text-[#04c41a]">
+                      {getFacilityIcon(facility)}
+                    </div>
+                    <span className="text-gray-700 font-medium">{facility}</span>
                   </div>
-                  <span className="text-gray-700 font-medium">{facility}</span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500">No amenities provided by the API for this hotel.</p>
+            )}
           </div>
         </div>
 
@@ -139,7 +226,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
               </div>
             </div>
             
-            <button className="bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3.5 px-10 rounded-xl shadow-lg shadow-[#04c41a]/20 transition-all hover:scale-[1.02] active:scale-95">
+            <button className="bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
               Book Now
             </button>
           </div>

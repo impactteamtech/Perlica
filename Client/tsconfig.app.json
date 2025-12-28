@@ -22,7 +22,10 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
+    ,
+    "forceConsistentCasingInFileNames": true
     
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/components/hero/**"]
 }
