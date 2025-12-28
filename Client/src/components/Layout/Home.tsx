@@ -5,7 +5,7 @@ import Reviews from '../Reviews/Reviews';
 import PartnerWithUs from '../PartnerWithUs/PartnerWithUs';
 import Events from '../Events/Events';
 import ContactUs from '../contact/ContactUs';
-import HeroSection from '../Hero/HeroSection';
+import HeroSection from '../hero/HeroSection';
 const Home: React.FC = () => {
     return (
         <div>
