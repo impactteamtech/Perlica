@@ -43,17 +43,15 @@ const ImageGallery = () => {
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      <div className="w-full h-full relative overflow-hidden rounded-2xl">
+      <div className="w-full rounded-2xl h-full relative overflow-hidden rounded-">
         {/* Main Image with smooth transition */}
         <div className="relative w-full h-full">
           <img 
             src={`/bg-images-destination/${selectedImage}`} 
             alt="Destination" 
-            className="w-full h-full object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105" 
+            className="w-full brightness-50 h-full object- transition-all duration-500 ease-in-out transform group-hover:scale-105" 
           />
           
-          {/* Gradient overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
         </div>
 
         {/* Navigation Buttons with enhanced styling */}
@@ -94,7 +92,7 @@ const ImageGallery = () => {
                 } h-3 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm`}
               >
                 <span className={`block w-full h-full rounded-full transition-colors duration-300 ${
-                  isActive ? 'bg-green-400 shadow-lg' : 'bg-white/70 hover:bg-white'
+                  isActive ? 'bg-[#0cce10] shadow-lg' : 'bg-white/70 hover:bg-white'
                 }`} />
               </button>
             );

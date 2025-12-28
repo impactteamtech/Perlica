@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Search } from 'lucide-react'; 
 import type { Hotel, Country } from './types';
-// @ts-ignore
 import { searchHotels } from './api';
 import CountryTabs from './CountryTabs';
 import SearchForm from './SearchForm';
 import HotelCard from './HotelCard';
 import HotelDetailsModal from './HotelDetailsModal';
+import HotelFilters, { type HotelSortBy } from './HotelFilters';
 
 const HotelSearchPage: React.FC = () => {
   // State
@@ -21,6 +21,16 @@ const HotelSearchPage: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country>('KE');
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+
+  // Filters + paging
+  const [minPrice, setMinPrice] = useState<string>('');
+  const [maxPrice, setMaxPrice] = useState<string>('');
+  const [minStars, setMinStars] = useState<number>(0);
+  const [minGuestRating, setMinGuestRating] = useState<string>('');
+  const [minRoomTypes, setMinRoomTypes] = useState<string>('');
+  const [onlyAvailable, setOnlyAvailable] = useState<boolean>(true);
+  const [sortBy, setSortBy] = useState<HotelSortBy>('recommended');
+  const [visibleCount, setVisibleCount] = useState<number>(12);
 
   // Default dates
   useEffect(() => {
@@ -40,30 +50,89 @@ const HotelSearchPage: React.FC = () => {
     setHasSearched(true);
     // Clear previous results while loading for better UX
     setHotels([]); 
+    setVisibleCount(12);
 
     try {
       const results = await searchHotels(destination, checkIn, checkOut, guests, selectedCountry);
       setHotels(results);
-    } catch (err: any) {
-      setError(err.message || 'An error occurred while searching');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'An error occurred while searching';
+      setError(message);
       console.error('❌ Search error:', err);
     } finally {
       setLoading(false);
     }
   };
+
+  const filteredHotels = React.useMemo(() => {
+    const minPriceNum = minPrice.trim().length ? Number(minPrice) : null;
+    const maxPriceNum = maxPrice.trim().length ? Number(maxPrice) : null;
+    const minGuestRatingNum = minGuestRating.trim().length ? Number(minGuestRating) : null;
+    const minRoomTypesNum = minRoomTypes.trim().length ? Number(minRoomTypes) : null;
+
+    const withinPrice = (h: Hotel) => {
+      if (minPriceNum === null && maxPriceNum === null) return true;
+      if (h.minPrice === null || Number.isNaN(h.minPrice)) return false;
+      if (minPriceNum !== null && h.minPrice < minPriceNum) return false;
+      if (maxPriceNum !== null && h.minPrice > maxPriceNum) return false;
+      return true;
+    };
+
+    const withinRatings = (h: Hotel) => {
+      if (minStars > 0 && (h.starRating ?? 0) < minStars) return false;
+      if (minGuestRatingNum !== null && (h.rating ?? 0) < minGuestRatingNum) return false;
+      if (minRoomTypesNum !== null && (h.roomCount ?? 0) < minRoomTypesNum) return false;
+      if (onlyAvailable && !h.available) return false;
+      return true;
+    };
+
+    const list = hotels.filter((h) => withinPrice(h) && withinRatings(h));
+
+    const compareRecommended = (a: Hotel, b: Hotel) => {
+      if (a.available !== b.available) return a.available ? -1 : 1;
+      if (a.minPrice === null && b.minPrice !== null) return 1;
+      if (a.minPrice !== null && b.minPrice === null) return -1;
+      if (a.minPrice !== null && b.minPrice !== null) return a.minPrice - b.minPrice;
+      return (b.rating ?? 0) - (a.rating ?? 0);
+    };
+
+    const compare = (a: Hotel, b: Hotel) => {
+      switch (sortBy) {
+        case 'price_low':
+          return (a.minPrice ?? Number.POSITIVE_INFINITY) - (b.minPrice ?? Number.POSITIVE_INFINITY);
+        case 'price_high':
+          return (b.minPrice ?? Number.NEGATIVE_INFINITY) - (a.minPrice ?? Number.NEGATIVE_INFINITY);
+        case 'rating_high':
+          return (b.rating ?? 0) - (a.rating ?? 0);
+        case 'stars_high':
+          return (b.starRating ?? 0) - (a.starRating ?? 0);
+        case 'rooms_high':
+          return (b.roomCount ?? 0) - (a.roomCount ?? 0);
+        case 'recommended':
+        default:
+          return compareRecommended(a, b);
+      }
+    };
+
+    return list.slice().sort(compare);
+  }, [hotels, minPrice, maxPrice, minStars, minGuestRating, minRoomTypes, onlyAvailable, sortBy]);
+
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [minPrice, maxPrice, minStars, minGuestRating, minRoomTypes, onlyAvailable, sortBy]);
+
+  const visibleHotels = filteredHotels.slice(0, visibleCount);
   console.log("selected hotel", selectedHotel?.facilities);
   return (
     <div className="min-h-screen  flex flex-col font-sans">
       
       <div className="relative h-[100vh] w-full flex items-center justify-center flex-col overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0  z-0">
           <img 
             src="/hotels-main-image.jpg" 
             alt="Luxury Hotel"
             className="h-full w-full object-cover object-center"
           />
-          {/* Gradient Overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#efebe5]" />
         </div>
 
@@ -84,7 +153,6 @@ const HotelSearchPage: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Search Container - Glassmorphism Effect */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -118,25 +186,42 @@ const HotelSearchPage: React.FC = () => {
       </div>
 
       <div className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 relative z-20 pb-20">
-        
-     
-        {/* Results Header */}
         {hotels.length > 0 && (
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center justify-between mb-8 mt-30"
+            className="flex items-center justify-between mb-8 mt-20"
           >
             <h2 className="text-4xl color-primary font-bold text-gray-900">
-              Available Stays
+              STAYS
             </h2>
             <span className="bg-orange-100 text-orange-800 text-sm font-medium px-4 py-1 rounded-full">
-              {hotels.length} results found
+              {filteredHotels.length} results found
             </span>
           </motion.div>
         )}
 
-        {/* Loading State Skeleton */}
+        {hotels.length > 0 && !loading && (
+          <HotelFilters
+            minPrice={minPrice}
+            setMinPrice={setMinPrice}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+            minStars={minStars}
+            setMinStars={setMinStars}
+            minGuestRating={minGuestRating}
+            setMinGuestRating={setMinGuestRating}
+            minRoomTypes={minRoomTypes}
+            setMinRoomTypes={setMinRoomTypes}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            onlyAvailable={onlyAvailable}
+            setOnlyAvailable={setOnlyAvailable}
+            visibleCount={visibleCount}
+            totalCount={filteredHotels.length}
+          />
+        )}
+
         {loading && (
           <div className="grid grid-cols-1 gap-8">
             {[1, 2, 3].map((n) => (
@@ -152,13 +237,12 @@ const HotelSearchPage: React.FC = () => {
           </div>
         )}
 
-        {/* Grid of Hotels */}
         <AnimatePresence>
           <motion.div 
             className="grid grid-cols-1  gap-8"
             layout
           >
-            {hotels.map((hotel, index) => (
+            {visibleHotels.map((hotel, index) => (
               <motion.div
                 key={hotel.id || index}
                 initial={{ opacity: 0, y: 20 }}
@@ -172,7 +256,17 @@ const HotelSearchPage: React.FC = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Empty State (Before Search or No Results) */}
+        {!loading && filteredHotels.length > visibleCount && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setVisibleCount((c) => c + 12)}
+              className="bg-[#04c41a] hover:bg-[#039e14] text-white font-semibold py-3 px-8 rounded-xl transition-colors"
+            >
+              See more hotels
+            </button>
+          </div>
+        )}
+
         {!loading && hotels.length === 0 && !error && (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -196,9 +290,24 @@ const HotelSearchPage: React.FC = () => {
             </p>
           </motion.div>
         )}
+
+        {!loading && hotels.length > 0 && filteredHotels.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-16"
+          >
+            <div className="bg-gray-50 p-6 rounded-full mb-6">
+              <Search className="w-12 h-12 text-red-500" />
+            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-2">No results match your filters</h3>
+            <p className="text-gray-600 text-lg text-center max-w-md">
+              Try widening your price range, lowering rating thresholds, or disabling “Only available”.
+            </p>
+          </motion.div>
+        )}
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedHotel && (
           <HotelDetailsModal hotel={selectedHotel} onClose={() => setSelectedHotel(null)} />

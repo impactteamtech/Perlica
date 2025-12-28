@@ -4,6 +4,171 @@ import type { Hotel, HotelRate, Destination, Country } from './types';
 
 const API_KEY = 'sand_c0155ab8-c683-4f26-8f94-b5e92c5797b9';
 
+const toUniqueImageUrls = (values: unknown[]): string[] => {
+  return Array.from(
+    new Set(
+      values
+        .filter((v): v is string => typeof v === 'string')
+        .map((v) => v.trim())
+        .filter((v) => v.length > 0)
+    )
+  );
+};
+
+const extractHotelDetailImageUrls = (payload: unknown): string[] => {
+  const root = (payload && typeof payload === 'object' && 'data' in (payload as Record<string, unknown>))
+    ? (payload as Record<string, unknown>).data
+    : payload;
+
+  if (!root || typeof root !== 'object') return [];
+  const obj = root as Record<string, unknown>;
+
+  const candidates: unknown[] = [];
+
+  const pushStringArray = (key: string) => {
+    const val = obj[key];
+    if (Array.isArray(val)) {
+      for (const item of val) {
+        if (typeof item === 'string') candidates.push(item);
+      }
+    }
+  };
+
+  pushStringArray('images');
+  pushStringArray('photos');
+  pushStringArray('gallery');
+
+  const hotelImages = obj['hotelImages'];
+  if (Array.isArray(hotelImages)) {
+    for (const item of hotelImages) {
+      if (typeof item === 'string') {
+        candidates.push(item);
+      } else if (item && typeof item === 'object') {
+        const url = (item as Record<string, unknown>)['url'];
+        if (typeof url === 'string') candidates.push(url);
+      }
+    }
+  }
+
+  const mainPhoto = obj['main_photo'];
+  if (typeof mainPhoto === 'string') candidates.push(mainPhoto);
+  const thumbnail = obj['thumbnail'];
+  if (typeof thumbnail === 'string') candidates.push(thumbnail);
+
+  return toUniqueImageUrls(candidates);
+};
+
+export const fetchHotelDetailImages = async (hotelId: string): Promise<string[]> => {
+  if (!hotelId) return [];
+  const resp = await fetch(
+    `https://api.liteapi.travel/v3.0/data/hotel?hotelId=${encodeURIComponent(hotelId)}`,
+    {
+      headers: {
+        'X-API-Key': API_KEY,
+        accept: 'application/json'
+      }
+    }
+  );
+
+  if (!resp.ok) return [];
+  const json = (await resp.json()) as unknown;
+  return extractHotelDetailImageUrls(json);
+};
+
+type LiteApiFacility = {
+  id?: number;
+  facilityId?: number;
+  name?: string;
+  title?: string;
+};
+
+type LiteApiHotelImage = string | { url?: string };
+
+type LiteApiHotel = {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  country: string;
+  main_photo?: string;
+  thumbnail?: string;
+  hotelDescription?: string;
+  stars?: number;
+  starRating?: number;
+  rating?: number;
+  latitude?: number;
+  longitude?: number;
+  facilityIds?: number[];
+  facilities?: string[];
+  hotelFacilities?: string[];
+  hotelImages?: LiteApiHotelImage[];
+};
+
+type LiteApiHotelsResponse = {
+  data?: LiteApiHotel[];
+};
+
+type LiteApiRatesResponse = {
+  data?: HotelRate[];
+};
+
+let facilityNameByIdCache: Map<number, string> | null = null;
+let facilityNameByIdPromise: Promise<Map<number, string>> | null = null;
+
+const getFacilityNameById = async (): Promise<Map<number, string>> => {
+  if (facilityNameByIdCache) return facilityNameByIdCache;
+  if (facilityNameByIdPromise) return facilityNameByIdPromise;
+
+  facilityNameByIdPromise = (async () => {
+    try {
+      const resp = await fetch('https://api.liteapi.travel/v3.0/data/facilities', {
+        headers: {
+          'X-API-Key': API_KEY,
+          accept: 'application/json'
+        }
+      });
+
+      if (!resp.ok) {
+        return new Map();
+      }
+
+      const json = await resp.json();
+      const list: LiteApiFacility[] = Array.isArray(json?.data)
+        ? json.data
+        : Array.isArray(json)
+          ? json
+          : [];
+
+      const map = new Map<number, string>();
+      for (const item of list) {
+        const id = typeof item?.id === 'number'
+          ? item.id
+          : typeof item?.facilityId === 'number'
+            ? item.facilityId
+            : null;
+        const name = typeof item?.name === 'string'
+          ? item.name
+          : typeof item?.title === 'string'
+            ? item.title
+            : null;
+
+        if (typeof id === 'number' && typeof name === 'string' && name.trim().length > 0) {
+          map.set(id, name.trim());
+        }
+      }
+
+      facilityNameByIdCache = map;
+      return map;
+    } catch {
+      return new Map();
+    } finally {
+      facilityNameByIdPromise = null;
+    }
+  })();
+
+  return facilityNameByIdPromise;
+};
+
 const destinations: Record<Country, Destination[]> = {
   KE: [
     { name: 'Nairobi', code: 'KE', city: 'Nairobi' },
@@ -58,31 +223,30 @@ export const searchHotels = async (
   const hotelsData = await hotelsResponse.json();
   console.log('🏨 Hotels data received:', hotelsData);
 
-  if (!hotelsData.data || hotelsData.data.length === 0) {
+  const hotelsPayload = hotelsData as LiteApiHotelsResponse;
+  if (!hotelsPayload.data || hotelsPayload.data.length === 0) {
     throw new Error('No hotels found for this destination');
   }
 
-  const hotelsList = hotelsData.data.slice(0, 5);
+  const hotelsList = hotelsPayload.data;
   console.log('📋 Processing hotels:', hotelsList.length);
 
-  const hotelIds = hotelsList.map((h: any) => h.id);
+  const hotelIds = hotelsList.map((h) => h.id);
 
-  console.log('💰 Fetching rates for hotels:', hotelIds);
-  const ratesResponse = await fetch(
-    'https://api.liteapi.travel/v3.0/hotels/rates',
-    {
+  const fetchRatesForHotelIds = async (ids: string[]): Promise<HotelRate[]> => {
+    const ratesResponse = await fetch('https://api.liteapi.travel/v3.0/hotels/rates', {
       method: 'POST',
       headers: {
         'X-API-Key': API_KEY,
         'Content-Type': 'application/json',
-        'accept': 'application/json'
+        accept: 'application/json'
       },
       body: JSON.stringify({
         checkin: checkIn,
         checkout: checkOut,
         currency: 'USD',
         guestNationality: 'US',
-        hotelIds: hotelIds,
+        hotelIds: ids,
         includeHotelData: true,
         occupancies: [
           {
@@ -91,18 +255,36 @@ export const searchHotels = async (
           }
         ]
       })
-    }
-  );
+    });
 
-  if (!ratesResponse.ok) {
-    throw new Error(`Failed to fetch rates: ${ratesResponse.status}`);
+    if (!ratesResponse.ok) {
+      throw new Error(`Failed to fetch rates: ${ratesResponse.status}`);
+    }
+
+    const ratesData = (await ratesResponse.json()) as LiteApiRatesResponse;
+    return Array.isArray(ratesData.data) ? ratesData.data : [];
+  };
+
+  const RATE_BATCH_SIZE = 50;
+  const allRates: HotelRate[] = [];
+
+  console.log('💰 Fetching rates for hotels:', hotelIds.length);
+  for (let i = 0; i < hotelIds.length; i += RATE_BATCH_SIZE) {
+    const batch = hotelIds.slice(i, i + RATE_BATCH_SIZE);
+    const batchIndex = Math.floor(i / RATE_BATCH_SIZE) + 1;
+    const totalBatches = Math.ceil(hotelIds.length / RATE_BATCH_SIZE);
+    console.log(`💰 Rates batch ${batchIndex}/${totalBatches}:`, batch.length);
+    const batchRates = await fetchRatesForHotelIds(batch);
+    allRates.push(...batchRates);
   }
 
-  const ratesData = await ratesResponse.json();
-  console.log('💵 Rates data received:', ratesData);
+  const ratesData: LiteApiRatesResponse = { data: allRates };
+  console.log('💵 Rates data received:', { count: allRates.length });
 
-  const hotelsWithRates = hotelsList.map((hotel: any): Hotel => {
-    const hotelRates = ratesData.data?.find((r: any) => r.hotelId === hotel.id) as HotelRate | undefined;
+  const facilityNameById = await getFacilityNameById();
+
+  const hotelsWithRates = hotelsList.map((hotel): Hotel => {
+    const hotelRates = ratesData.data?.find((r) => r.hotelId === hotel.id);
 
     let minPrice: number | null = null;
     let roomCount = 0;
@@ -126,24 +308,53 @@ export const searchHotels = async (
       }
     }
 
-    let heroImage: string | null = null;
-    let imagesList: string[] = [];
+    const candidateImages: string[] = [];
+
+    if (hotel.main_photo) candidateImages.push(hotel.main_photo);
+    if (hotel.thumbnail && hotel.thumbnail !== hotel.main_photo) candidateImages.push(hotel.thumbnail);
+
+    if (hotel.hotelImages && Array.isArray(hotel.hotelImages) && hotel.hotelImages.length > 0) {
+      for (const img of hotel.hotelImages) {
+        if (typeof img === 'string') {
+          candidateImages.push(img);
+        } else if (img && typeof img.url === 'string') {
+          candidateImages.push(img.url);
+        }
+      }
+    }
 
     if (hotelRates?.hotelData?.images && Array.isArray(hotelRates.hotelData.images) && hotelRates.hotelData.images.length > 0) {
-      heroImage = hotelRates.hotelData.images[0];
-      imagesList = hotelRates.hotelData.images;
-    } else if (hotel.main_photo) {
-      heroImage = hotel.main_photo;
-      imagesList = [hotel.main_photo];
-      if (hotel.thumbnail && hotel.thumbnail !== hotel.main_photo) {
-        imagesList.push(hotel.thumbnail);
-      }
-    } else if (hotel.hotelImages && Array.isArray(hotel.hotelImages) && hotel.hotelImages.length > 0) {
-      heroImage = hotel.hotelImages[0].url || hotel.hotelImages[0];
-      imagesList = hotel.hotelImages.map((img: { url?: string } | string) => 
-        typeof img === 'string' ? img : (img.url || '')
-      );
+      candidateImages.push(...hotelRates.hotelData.images);
     }
+
+    const heroImage: string | null = candidateImages.length > 0 ? candidateImages[0] : null;
+    const imagesList: string[] = candidateImages;
+
+    const uniqueImages = toUniqueImageUrls(imagesList);
+
+    const facilityIds: number[] = Array.isArray(hotel.facilityIds)
+      ? hotel.facilityIds
+          .map((v: unknown) => {
+            if (typeof v === 'number') return v;
+            if (typeof v === 'string') return Number(v);
+            return Number.NaN;
+          })
+          .filter((n) => Number.isFinite(n))
+      : [];
+
+    const directFacilities: string[] = Array.isArray(hotel.hotelFacilities)
+      ? hotel.hotelFacilities
+      : Array.isArray(hotel.facilities)
+        ? hotel.facilities
+        : [];
+
+    const mappedFacilities: string[] = directFacilities.length
+      ? directFacilities
+      : facilityIds
+          .map((id) => facilityNameById.get(id))
+          .filter((v): v is string => typeof v === 'string');
+
+    const facilities = toUniqueImageUrls(mappedFacilities);
 
     return {
       id: hotel.id,
@@ -151,14 +362,15 @@ export const searchHotels = async (
       address: hotel.address,
       city: hotel.city,
       country: hotel.country,
-      heroImage: heroImage || '',
-      images: imagesList,
-      description: hotel.hotelDescription,
-      starRating: hotel.stars || hotel.starRating,
-      rating: hotel.rating,
-      facilities: hotel.hotelFacilities || [],
-      latitude: hotel.latitude,
-      longitude: hotel.longitude,
+      heroImage: heroImage || uniqueImages[0] || '',
+      images: uniqueImages,
+      description: hotel.hotelDescription || '',
+      starRating: hotel.stars ?? hotel.starRating ?? 0,
+      rating: hotel.rating ?? 0,
+      facilities,
+      facilityIds,
+      latitude: hotel.latitude ?? 0,
+      longitude: hotel.longitude ?? 0,
       rates: hotelRates || null,
       minPrice: minPrice,
       roomCount: roomCount,
@@ -166,11 +378,13 @@ export const searchHotels = async (
     };
   });
 
-  const availableHotels = hotelsWithRates.filter((h: Hotel) => h.available);
+  hotelsWithRates.sort((a, b) => {
+    if (a.available !== b.available) return a.available ? -1 : 1;
+    if (a.minPrice === null && b.minPrice !== null) return 1;
+    if (a.minPrice !== null && b.minPrice === null) return -1;
+    if (a.minPrice !== null && b.minPrice !== null) return a.minPrice - b.minPrice;
+    return 0;
+  });
 
-  if (availableHotels.length === 0) {
-    throw new Error('No available rooms found for these dates. Try different dates or destination.');
-  }
-
-  return availableHotels;
+  return hotelsWithRates;
 };
