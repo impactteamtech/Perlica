@@ -27,7 +27,7 @@ const CountryCityCard = ({ destination, imageUrl, ensureImage, onSelect }: Count
         <img
           src={imageUrl}
           alt={destination.cityName}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object- transition-transform duration-700 group-hover:scale-110"
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
             e.currentTarget.src = CITY_IMAGE_FALLBACK;
           }}

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import NavBar from './NavBar';
 import { useNavigate } from 'react-router-dom';
-
-const HeroSection = () => {
+import type { JSX } from 'react';
+const HeroSection = (): JSX.Element => {
   const [mounted, setMounted] = useState(false);
   const navigate = useNavigate();
 
