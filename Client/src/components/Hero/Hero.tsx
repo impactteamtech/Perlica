@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden  flex flex-col items-center justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
       {/* Logo  top left (yp) */}
       <motion.img
         src={Heropng}
