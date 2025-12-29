@@ -1,6 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, {lazy } from 'react';
 import HeroSection from '../hero/HeroSection';
-import { Loading } from '../ui/loading';
 
 const AboutUs = lazy(() => import('../AboutUs/AboutUs'));
 const Services = lazy(() => import('../Services/Services'));
