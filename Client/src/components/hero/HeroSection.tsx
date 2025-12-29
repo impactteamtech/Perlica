@@ -150,6 +150,8 @@ const HeroSection = (): JSX.Element => {
         loop
         muted
         playsInline
+        preload="metadata"
+        poster='/'
       >
         <source src="/heroSafari.mp4" type="video/mp4" />
       </video>
