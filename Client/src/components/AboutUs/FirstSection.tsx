@@ -41,11 +41,8 @@ const FirstSection = ():React.JSX.Element => {
                 </div>
         </div>
 
-
-        {/* bottom part */}
         <div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-30 mt-10 lg:mt-0'>
-            {/* happy costumers */}
-            <div className='flex-col gap-4 flex w-full lg:w-[20%] items-center lg:items-start text-center lg:text-left'>
+            <div className='flex-col gap-4 flex w-full lg:w-[20%] lg:mt-18 items-center lg:items-start text-center lg:text-left'>
                 <div>
                     <h2  className='text-5xl sm:text-6xl lg:text-7xl font-bold'>4.9/5</h2>
                 </div>
@@ -70,12 +67,12 @@ const FirstSection = ():React.JSX.Element => {
                         <button
                             type='button'
                             aria-label='Add partner'
-                            className='w-10 h-10 sm:w-12 sm:h-12 -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
+                            className='w-10 h-10 md:w-12 md:h-12  -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
                         >
                             <GoPlus size={30} className='text-white' />
                         </button>
                     </div>
-                    <p className='text-wrap text-base sm:text-lg w-auto lg:w-[40%]'>
+                    <p className='text-wrap text-base sm:text-md w-[50%] lg:w-[10%]'>
                         100K Happy Customers
                     </p>
                 </div>
@@ -97,9 +94,9 @@ const FirstSection = ():React.JSX.Element => {
                             alt='Experience highlight 4'/>
                     </div>
                 </div>
-                <div className='flex ml-0 lg:ml-10 w-full lg:w-[40%] flex-col gap-6 items-center lg:items-start text-center lg:text-left'>
-                    <p className='text-font text-lg sm:text-xl lg:text-3xl'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat doloribus iure, autem sint quod!
+                <div className='flex ml-0 lg:ml-3 w-full lg:w-[33%] flex-col lg:px-6 gap-6 items-center lg:items-start text-center lg:text-left'>
+                    <p className='text-font text-gray-600 text-lg sm:text-xl lg:text-3xl'>
+                     Discover the destinations that make Perlica Tours & Travel your gateway to unforgettable adventures. 
                     </p>
                     <button 
                         onClick={()=>navigate('/destinations')}

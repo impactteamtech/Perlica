@@ -36,14 +36,14 @@ const HistoryAndMission = (): JSX.Element => {
       >
         {/* part 1 */}
         <motion.div
-          className="w-full md:w-1/2 min-w-0"
+          className="w-full lg:w-1/2 min-w-0"
         >
           <MotivationDiv />
         </motion.div>
 
         {/* part 2 */}
         <motion.div
-          className="w-full hidden md:block md:w-1/2 min-w-0"
+          className="w-full hidden lg:block md:w-1/2 min-w-0"
         >
           <HotspotsMap />
         </motion.div>

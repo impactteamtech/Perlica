@@ -53,7 +53,7 @@ const NavBar = () => {
                         key={i} 
                         to={link.path} 
                         className={`group relative lg:text-md xl:text-lg font-medium tracking-wide transition-colors duration-300
-                        ${isScrolled ? "text-black hover:text-secondary" : "text-white/90 hover:text-white"}`}
+                        ${isScrolled ? "tex-black hover:text-secondary" : "text-white/90 hover:text-white"}`}
                     >
                         {link.name}
                         <span className={`absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full 

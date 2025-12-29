@@ -20,7 +20,7 @@ const SupDetailsSection = ():JSX.Element => {
               </h1>
             </div>
             <motion.p 
-              className="text-lg lg:text-xl text-font  text-gray-900 leading-relaxed lg:leading-loose"
+              className="text-lg lg:text-xl text-font  text-gray-600  lg:leading-loose"
             >
               At Perlica Safaris, we believe that travel is not just about visiting new places,
               it's about immersing yourself in the culture, history, 
