@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const MotivationDiv = ():JSX.Element => {
   const navigate = useNavigate();
   return (
-    <div className="relative w-full md:w-[100%] rounded-2xl card-background-color p-5 sm:p-6 md:p-6 flex flex-col min-h-[18rem]">
+    <div className="relative w-full md:w-[100%] rounded-2xl bg-secondary/15 p-5 sm:p-6 md:p-4 lg:p-6 flex flex-col min-h-[1rem]">
       <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-[#00d404]">
         EXPLORE
         <br />
@@ -12,7 +12,7 @@ const MotivationDiv = ():JSX.Element => {
       </h1>
 
       <div className="relative z-10 mt-4 flex flex-1 items-start">
-        <div className="w-full sm:w-[65%] md:w-[55%] flex flex-col gap-5 pr-0 sm:pr-4">
+        <div className="w-full sm:w-[65%] md:w-[50%] flex flex-col gap-5 pr-0 sm:pr-4">
           <p className="text-md leading-relaxed text-gray-700 font-sans">
             Discover breathtaking landscapes, vibrant cultures, and timeless safari adventures with Perlica.
           </p>
@@ -28,11 +28,11 @@ const MotivationDiv = ():JSX.Element => {
         </div>
 
       </div>
-      <div className="absolute md:left-40 bottom-6 md:bottom-20 z-100 hidden md:block md:w-[100%] pointer-events-none select-none overflow-hidden">
+      <div className="absolute md:bottom-20 md:w-[100%] md:right-0 z-100 hidden md:block xl:w-[100%] pointer-events-none ">
         <img
           src="/kenya_airplane.png"
           alt="air-plane"
-          className="max-w-full drop-shadow-xl animate-[float_6s_ease-in-out_infinite]" />
+          className="drop-shadow-xl h-full w-full animate-[float_6s_ease-in-out_infinite]" />
       </div>
       <style>{`
         @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }

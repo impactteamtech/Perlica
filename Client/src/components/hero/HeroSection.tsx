@@ -22,7 +22,7 @@ const HeroSection = (): JSX.Element => {
       <NavBar />
 
       <div className='w-full h-full absolute md:top-10 left-0 px-6 md:px-16 pt-[15vh] flex flex-col z-20 justify-between pb-10'>
-        <div className='flex flex-col gap-10 lg:gap-2 xl:gap-1 w-full'>
+        <div className='flex flex-col gap-6 lg:gap-2 xl:gap-1 w-full'>
           <div className={`flex items-center gap-3 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="w-12 h-[2px] bg-gradient-to-r from-emerald-700 to-transparent" />
             <h2 className='text-base lg:text-[10px] xl:text-lg font-bold text-[#04c41a] tracking-[0.3em] uppercase drop-shadow-lg'>
@@ -32,7 +32,7 @@ const HeroSection = (): JSX.Element => {
 
           <div className='flex w-full  flex-col md:flex-row justify-between items-end relative mt-6'>
             
-            <div className="relative flex flex-col lg:gap-0 xl:gap-2 gap-5 z-20 w-full md:w-2/3">
+            <div className="relative flex flex-col lg:gap-0 xl:gap-2 gap-3 z-20 w-full md:w-2/3">
               
               <div className={`transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <h1 className='text-6xl kenya-name-font md:text-[5rem] xl:text-[10rem]   leading-[0.8] text-white font-black tracking-tighter drop-shadow-2xl relative'>
@@ -67,7 +67,7 @@ const HeroSection = (): JSX.Element => {
                       Let's Go!
                     </div>
                   </div>
-                  <div className='xl:px-6 lg:py-4 lg:px-6 flex xl:py-5 px-3 py-3  relative items-center justify-center bg-red-600 transition-colors'>
+                  <div className='xl:px-6 lg:py-4 lg:px-6 flex xl:py-5 px-3 py-3  items-center justify-center bg-red-600 transition-colors'>
                     <ArrowRight size={22} className='text-white group-hover:translate-x-2 transition-transform duration-300' />
                   </div>
                 </button>
