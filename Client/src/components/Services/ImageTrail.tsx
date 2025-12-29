@@ -55,6 +55,12 @@ class ImageItem {
   private getRect() {
     this.rect = this.DOM.el.getBoundingClientRect();
   }
+
+  public destroy() {
+    if (this.resize) {
+      window.removeEventListener('resize', this.resize);
+    }
+  }
 }
 
 class ImageTrailVariant1 {
@@ -69,6 +75,10 @@ class ImageTrailVariant1 {
   private mousePos: { x: number; y: number };
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
     this.container = container;
@@ -83,26 +93,32 @@ class ImageTrailVariant1 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
       const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
       const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
@@ -114,7 +130,7 @@ class ImageTrailVariant1 {
     if (this.isIdle && this.zIndexVal !== 1) {
       this.zIndexVal = 1;
     }
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -168,9 +184,24 @@ class ImageTrailVariant1 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant2 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -181,8 +212,13 @@ class ImageTrailVariant2 {
   private mousePos: { x: number; y: number };
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -194,26 +230,32 @@ class ImageTrailVariant2 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
@@ -225,7 +267,7 @@ class ImageTrailVariant2 {
     if (this.isIdle && this.zIndexVal !== 1) {
       this.zIndexVal = 1;
     }
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -291,9 +333,24 @@ class ImageTrailVariant2 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant3 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -304,8 +361,13 @@ class ImageTrailVariant3 {
   private mousePos: { x: number; y: number };
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -317,26 +379,32 @@ class ImageTrailVariant3 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
@@ -348,7 +416,7 @@ class ImageTrailVariant3 {
     if (this.isIdle && this.zIndexVal !== 1) {
       this.zIndexVal = 1;
     }
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -417,9 +485,24 @@ class ImageTrailVariant3 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant4 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -430,8 +513,13 @@ class ImageTrailVariant4 {
   private mousePos: { x: number; y: number };
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -443,26 +531,32 @@ class ImageTrailVariant4 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     if (distance > this.threshold) {
       this.showNextImage();
@@ -472,7 +566,7 @@ class ImageTrailVariant4 {
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
 
     if (this.isIdle && this.zIndexVal !== 1) this.zIndexVal = 1;
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -563,9 +657,24 @@ class ImageTrailVariant4 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant5 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -577,8 +686,13 @@ class ImageTrailVariant5 {
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
   private lastAngle: number;
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -591,26 +705,32 @@ class ImageTrailVariant5 {
     this.cacheMousePos = { x: 0, y: 0 };
     this.lastAngle = 0;
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     if (distance > this.threshold) {
       this.showNextImage();
@@ -619,7 +739,7 @@ class ImageTrailVariant5 {
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
     if (this.isIdle && this.zIndexVal !== 1) this.zIndexVal = 1;
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -701,9 +821,24 @@ class ImageTrailVariant5 {
     this.activeImagesCount--;
     if (this.activeImagesCount === 0) this.isIdle = true;
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant6 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -714,8 +849,13 @@ class ImageTrailVariant6 {
   private mousePos: { x: number; y: number };
   private lastMousePos: { x: number; y: number };
   private cacheMousePos: { x: number; y: number };
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -727,26 +867,32 @@ class ImageTrailVariant6 {
     this.lastMousePos = { x: 0, y: 0 };
     this.cacheMousePos = { x: 0, y: 0 };
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.3);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.3);
@@ -758,7 +904,7 @@ class ImageTrailVariant6 {
     if (this.isIdle && this.zIndexVal !== 1) {
       this.zIndexVal = 1;
     }
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private mapSpeedToSize(speed: number, minSize: number, maxSize: number) {
@@ -853,6 +999,20 @@ class ImageTrailVariant6 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
@@ -865,6 +1025,7 @@ function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
 }
 
 class ImageTrailVariant7 {
+  private container: HTMLDivElement;
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -877,8 +1038,13 @@ class ImageTrailVariant7 {
   private cacheMousePos: { x: number; y: number };
   private visibleImagesCount: number;
   private visibleImagesTotal: number;
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
+    this.container = container;
     this.images = [...container.querySelectorAll('.content__img')].map(img => new ImageItem(img as HTMLDivElement));
     this.imagesTotal = this.images.length;
     this.imgPosition = 0;
@@ -893,26 +1059,32 @@ class ImageTrailVariant7 {
     this.visibleImagesTotal = 9;
     this.visibleImagesTotal = Math.min(this.visibleImagesTotal, this.imagesTotal - 1);
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = container.getBoundingClientRect();
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
+      const rect = this.container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.3);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.3);
@@ -923,7 +1095,7 @@ class ImageTrailVariant7 {
     }
     if (this.isIdle && this.zIndexVal !== 1) this.zIndexVal = 1;
 
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -986,6 +1158,20 @@ class ImageTrailVariant7 {
   private onImageDeactivated() {
     this.activeImagesCount--;
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 class ImageTrailVariant8 {
@@ -1005,6 +1191,10 @@ class ImageTrailVariant8 {
   private cachedRotation: { x: number; y: number };
   private zValue: number;
   private cachedZValue: number;
+  private rafId: number | null;
+  private destroyed: boolean;
+  private handlePointerMove: (ev: MouseEvent | TouchEvent) => void;
+  private initRender: (ev: MouseEvent | TouchEvent) => void;
 
   constructor(container: HTMLDivElement) {
     this.container = container;
@@ -1024,26 +1214,32 @@ class ImageTrailVariant8 {
     this.zValue = 0;
     this.cachedZValue = 0;
 
-    const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+    this.rafId = null;
+    this.destroyed = false;
+
+    this.handlePointerMove = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
       const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
-    container.addEventListener('mousemove', handlePointerMove);
-    container.addEventListener('touchmove', handlePointerMove);
+    container.addEventListener('mousemove', this.handlePointerMove);
+    container.addEventListener('touchmove', this.handlePointerMove);
 
-    const initRender = (ev: MouseEvent | TouchEvent) => {
+    this.initRender = (ev: MouseEvent | TouchEvent) => {
+      if (this.destroyed) return;
       const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
-      requestAnimationFrame(() => this.render());
-      container.removeEventListener('mousemove', initRender as EventListener);
-      container.removeEventListener('touchmove', initRender as EventListener);
+      this.rafId = requestAnimationFrame(() => this.render());
+      container.removeEventListener('mousemove', this.initRender as EventListener);
+      container.removeEventListener('touchmove', this.initRender as EventListener);
     };
-    container.addEventListener('mousemove', initRender as EventListener);
-    container.addEventListener('touchmove', initRender as EventListener);
+    container.addEventListener('mousemove', this.initRender as EventListener);
+    container.addEventListener('touchmove', this.initRender as EventListener);
   }
 
   private render() {
+    if (this.destroyed) return;
     const distance = getMouseDistance(this.mousePos, this.lastMousePos);
     this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
     this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
@@ -1055,7 +1251,7 @@ class ImageTrailVariant8 {
     if (this.isIdle && this.zIndexVal !== 1) {
       this.zIndexVal = 1;
     }
-    requestAnimationFrame(() => this.render());
+    this.rafId = requestAnimationFrame(() => this.render());
   }
 
   private showNextImage() {
@@ -1135,6 +1331,20 @@ class ImageTrailVariant8 {
       this.isIdle = true;
     }
   }
+
+  public destroy() {
+    this.destroyed = true;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.container.removeEventListener('mousemove', this.handlePointerMove);
+    this.container.removeEventListener('touchmove', this.handlePointerMove);
+    this.container.removeEventListener('mousemove', this.initRender as EventListener);
+    this.container.removeEventListener('touchmove', this.initRender as EventListener);
+    for (const img of this.images) {
+      gsap.killTweensOf(img.DOM.el);
+      if (img.DOM.inner) gsap.killTweensOf(img.DOM.inner);
+      img.destroy();
+    }
+  }
 }
 
 type ImageTrailConstructor =
@@ -1169,8 +1379,12 @@ export default function ImageTrail({ items = [], variant = 1 }: ImageTrailProps)
   useEffect(() => {
     if (!containerRef.current) return;
     const Cls = variantMap[variant] || variantMap[1];
-    new Cls(containerRef.current);
-  }, [variant, items]);
+    const instance = new Cls(containerRef.current) as unknown as { destroy?: () => void };
+
+    return () => {
+      instance?.destroy?.();
+    };
+  }, [variant]);
 
   return (
     <div className="w-full h-full relative z-[100] rounded-lg bg-transparent overflow-visible" ref={containerRef}>

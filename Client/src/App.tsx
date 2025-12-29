@@ -15,35 +15,43 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './components/Layout/Layout';
 import Home from './components/Layout/Home';
-import Destinations from './components/Destinations/Destinations';
-import DestinationsLayout from './components/Destinations/DestinationsLayout';
-import Packages from './components/Packages/Packages';
-import Cars from './components/Cars/Cars';
-import Country from './components/Destinations/Country/Country';
-import ExistingCars from './components/Cars/ExistingCars';
-import CarsLayout from './components/Cars/CarsLayout';
-import HotelSearchPage from './components/hotels/HotelSearchPage';
+import { Suspense, lazy } from 'react';
+const Packages = lazy(() => import('./components/Packages/Packages'));
+
+const CarsLayout = lazy(() => import('./components/Cars/CarsLayout'));
+const Cars = lazy(() => import('./components/Cars/Cars'));
+const ExistingCars = lazy(() => import('./components/Cars/ExistingCars'));
+
+const HotelSearchPage = lazy(() => import('./components/hotels/HotelSearchPage'));
+
+const DestinationsLayout = lazy(() => import('./components/Destinations/DestinationsLayout'));
+const Destinations = lazy(() => import('./components/Destinations/Destinations'));
+const Country = lazy(() => import('./components/Destinations/Country/Country'));
 function App() {
   return (
   <>
   <div className="background-color">
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-        <Route index element={<Home/>}/>  
-        <Route path="packages" element={<Packages />} />
-        <Route path='cars' element={<CarsLayout />}>
-          <Route index element={<Cars />} />
-          <Route path="existingCars" element={<ExistingCars />} />
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Home/>}/>
+
+          <Route path="packages" element={<Packages />} />
+
+          <Route path='cars' element={<CarsLayout />}>
+            <Route index element={<Cars />} />
+            <Route path="existingCars" element={<ExistingCars />} />
+          </Route>
+
+          <Route path="hotels" element={<HotelSearchPage />} />
+
+          <Route path="destinations" element={<DestinationsLayout />}>
+            <Route index element={<Destinations />} />
+            <Route path="countries" element={<Country />} />
+          </Route>
         </Route>
-        <Route path="hotels" element={<HotelSearchPage />} />
-        <Route index element={<Home/>}/>
-        <Route path="destinations" element={<DestinationsLayout />}>
-          <Route index element={<Destinations />} />
-          <Route path="countries" element={<Country />} />
-        </Route>
-        <Route path="packages" element={<Packages />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Suspense>
   </div>
 </>
 )
