@@ -151,6 +151,7 @@ const HeroSection = (): JSX.Element => {
         muted
         playsInline
         preload="metadata"
+        poster="/kenya.jpg"
       >
         <source src="/heroSafari.mp4" type="video/mp4" />
       </video>
