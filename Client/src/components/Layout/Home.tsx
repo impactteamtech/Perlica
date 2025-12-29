@@ -9,7 +9,7 @@ const PartnerWithUs = lazy(() => import('../PartnerWithUs/PartnerWithUs'));
 const ContactUs = lazy(() => import('../contact/ContactUs'));
 const Home: React.FC = () => {
     return (
-        <div>
+        <>
             <HeroSection />
             <AboutUs />
             <Services />
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
             <Reviews />
             <PartnerWithUs />
             <ContactUs />
-        </div>
+        </>
     );
 };
 
