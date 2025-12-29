@@ -12,14 +12,12 @@ const Home: React.FC = () => {
     return (
         <div>
             <HeroSection />
-            <Suspense fallback={<Loading label="Loading sections..." />}>
-                <AboutUs />
-                <Services />
-                <Events />
-                <Reviews />
-                <PartnerWithUs />
-                <ContactUs />
-            </Suspense>
+            <AboutUs />
+            <Services />
+            <Events />
+            <Reviews />
+            <PartnerWithUs />
+            <ContactUs />
         </div>
     );
 };
