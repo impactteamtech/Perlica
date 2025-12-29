@@ -31,10 +31,10 @@ const NavBar = () => {
 
     return (
         <nav 
-            className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 md:px-16 lg:px-24 transition-all duration-300 z-300 
+            className={`fixed top-0  right-0 w-full flex items-center justify-between px-6 md:px-16 lg:px-24 transition-all duration-300 z-200 
             ${isScrolled 
-                ? "bg-orange-50/50  border-b-1 border-black/20 backdrop-blur-md py-2" 
-                : "bg-transparent py-2"
+                ? "border-gray-600/10 border-b-1 backdrop-blur-md py-2" 
+                : "bg-transparent py-2 border-none"
             }`}
         >
 
@@ -52,7 +52,7 @@ const NavBar = () => {
                     <NavLink 
                         key={i} 
                         to={link.path} 
-                        className={`group relative text-lg font-medium tracking-wide transition-colors duration-300
+                        className={`group relative lg:text-md xl:text-lg font-medium tracking-wide transition-colors duration-300
                         ${isScrolled ? "text-black hover:text-secondary" : "text-white/90 hover:text-white"}`}
                     >
                         {link.name}
@@ -89,23 +89,31 @@ const NavBar = () => {
             </div>
 
             {/* --- Mobile Menu Overlay --- */}
-            <div className={`fixed inset-0 bg-black/50 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-500 ease-in-out md:hidden
-                ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+            <div
+                className={`fixed inset-0 z-40 md:hidden overflow-x-hidden transition-opacity duration-300
+                ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
             >
-                {navLinks.map((link, i) => (
-                    <NavLink 
-                        key={i} 
-                        to={link.path} 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-2xl font-semibold text-white hover:text-secondary transition-colors"
-                    >
-                        {link.name}
-                    </NavLink>
-                ))}
-                
-                <button className="bg-secondary text-white text-xl px-10 py-3 rounded-full shadow-lg active:scale-95 transition-transform">
-                    Login
-                </button>
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-xl" />
+
+                <div
+                    className={`relative h-full w-full flex flex-col items-center justify-center gap-8 transition-transform duration-500 ease-in-out
+                    ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+                >
+                    {navLinks.map((link, i) => (
+                        <NavLink 
+                            key={i} 
+                            to={link.path} 
+                            onClick={() => setIsMenuOpen(false)}
+                            className="text-2xl font-semibold text-white hover:text-secondary transition-colors"
+                        >
+                            {link.name}
+                        </NavLink>
+                    ))}
+                    
+                    <button className="bg-secondary text-white text-xl px-10 py-3 rounded-full shadow-lg active:scale-95 transition-transform">
+                        Login
+                    </button>
+                </div>
             </div>
         </nav>
     );

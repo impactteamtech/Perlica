@@ -10,9 +10,9 @@ const FirstSection = ():React.JSX.Element => {
         "/partner_with_us/person3.jpg",
     ]
   return (
-    <section className='min-h-screen px-15 pt-15  pb-10'>
-        <div className='w-full  relative flex justify-between'>
-            <div className='w-45 h-50 relative top-10'>
+    <section className='min-h-screen px-4 sm:px-8 lg:px-15 pt-10 sm:pt-12 lg:pt-15 pb-10'>
+        <div className='w-full relative flex flex-col lg:flex-row lg:justify-between gap-8 sm:gap-10 lg:gap-0'>
+            <div className='w-full sm:w-[22rem] lg:w-45 h-64 sm:h-80 lg:h-50 relative top-0 lg:top-10 mx-auto lg:mx-0'>
                     <div
                         className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                         aria-hidden='true'
@@ -23,11 +23,11 @@ const FirstSection = ():React.JSX.Element => {
                         className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                     />
             </div>
-            <div className='w-100'>
-                <h1 className='text-5xl  title-font color-primary'>Perlica Tours & Travel where professionalism meets adventure</h1>
+            <div className='w-full lg:w-100'>
+                <h1 className='text-3xl sm:text-4xl lg:text-5xl title-font color-primary text-center lg:text-left'>Perlica Tours & Travel where professionalism meets adventure</h1>
             </div>
                 <div>
-                    <div className='w-55 h-65 relative bottom-10'> 
+                    <div className='w-full sm:w-[26rem] lg:w-55 h-72 sm:h-[26rem] lg:h-65 relative bottom-0 lg:bottom-10 mx-auto lg:mx-0'> 
                         <div
                             className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                             aria-hidden='true'
@@ -43,47 +43,46 @@ const FirstSection = ():React.JSX.Element => {
 
 
         {/* bottom part */}
-        <div className='flex items-center justify-between gap-30'>
+        <div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-30 mt-10 lg:mt-0'>
             {/* happy costumers */}
-            <div className='flex-col gap-4 flex w-[20%]'>
+            <div className='flex-col gap-4 flex w-full lg:w-[20%] items-center lg:items-start text-center lg:text-left'>
                 <div>
-                    <h2  className='text-7xl font-bold'>4.9/5</h2>
+                    <h2  className='text-5xl sm:text-6xl lg:text-7xl font-bold'>4.9/5</h2>
                 </div>
                 <div className='flex gap-2 items-center'>
                     {Array.from({length:5}).map((_, index) => (
                         <IoStarSharp 
-                            size={30}
                             key={index}
-                            className='text-yellow-500'
+                            className='text-yellow-500 text-[20px] sm:text-[26px] lg:text-[30px]'
                         />
                     ))}
                 </div>
-                <div className='flex gap-2 items-center '>
-                    <div className='flex flex-row mt-4 items-center'>
+                <div className='flex flex-col sm:flex-row gap-2 items-center'>
+                    <div className='flex flex-row mt-4 items-center justify-center lg:justify-start'>
                         {persons.map((person, index) => (
                             <img
                                 key={index}
                                 src={person}
                                 alt={`Partner ${index + 1}`}
-                                className={`${index === 0 ? '' : '-ml-4'} w-12 h-12 rounded-full shadow-sm object-cover`}
+                                className={`${index === 0 ? '' : '-ml-4'} w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-sm object-cover`}
                             />
                         ))}
                         <button
                             type='button'
                             aria-label='Add partner'
-                            className='w-12 h-12 -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
+                            className='w-10 h-10 sm:w-12 sm:h-12 -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
                         >
                             <GoPlus size={30} className='text-white' />
                         </button>
                     </div>
-                    <p className='text-wrap text-lg w-[40%]'>
+                    <p className='text-wrap text-base sm:text-lg w-auto lg:w-[40%]'>
                         100K Happy Customers
                     </p>
                 </div>
             </div>
-            <div className='flex w-[80%] gap-5 items-center'>
-                <div className='flex w-[60%] items-center gap-8'> 
-                    <div className='w-110 overflow-hidden relative h-120 rounded-xl  group'>
+            <div className='flex w-full lg:w-[80%] gap-8 lg:gap-5 items-center flex-col lg:flex-row'>
+                <div className='flex w-full lg:w-[60%] items-center gap-6 lg:gap-8 flex-col sm:flex-row'> 
+                    <div className='w-full sm:w-110 overflow-hidden relative h-72 sm:h-96 lg:h-120 rounded-xl group'>
                   
                         <img
                             className='relative z-10 w-full h-full  rounded-xl shadow'
@@ -91,20 +90,20 @@ const FirstSection = ():React.JSX.Element => {
                             alt='Experience highlight 3'
                         />
                     </div>
-                    <div className='w-80 h-78 overflow-hidden  rounded-xl'>
+                    <div className='w-full sm:w-80 h-64 sm:h-78 overflow-hidden rounded-xl'>
                         <img 
                             className='w-full h-full'
                             src='/image4.jpg' 
                             alt='Experience highlight 4'/>
                     </div>
                 </div>
-                <div className='flex ml-10 w-[40%] flex-col gap-6'>
-                    <p className='text-font text-3xl'>
+                <div className='flex ml-0 lg:ml-10 w-full lg:w-[40%] flex-col gap-6 items-center lg:items-start text-center lg:text-left'>
+                    <p className='text-font text-lg sm:text-xl lg:text-3xl'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat doloribus iure, autem sint quod!
                     </p>
                     <button 
                         onClick={()=>navigate('/destinations')}
-                        className='px-3 py-3 text-center  justify-center w-45 flex items-center hover:bg-gray-800 transition-all duration-150  cursor-pointer bg-black text-white rounded-full'>
+                        className='px-3 py-3 text-center justify-center w-full sm:w-64 lg:w-45 flex items-center hover:bg-gray-800 transition-all duration-150 cursor-pointer bg-black text-white rounded-full'>
                         EXPLORE MORE
                         <GoArrowRight 
                             size={20}
