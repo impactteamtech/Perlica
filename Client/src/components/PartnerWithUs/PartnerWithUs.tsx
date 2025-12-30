@@ -12,7 +12,7 @@ const PartnerWithUs: React.FC = () => {
     ]
     return (
         <>
-            <div className="flex w-full flex-col gap-3 px-4 sm:flex-row sm:items-center sm:gap-2 sm:px-8">
+            <div className="flex w-full  gap-3 px-4 flex-row items-center md:px-8">
                 <PingDot />
                 <h4 className="text-xl sm:text-2xl min-w-0 title-font font-medium">Partner With Us</h4>
                 <div className="w-full sm:flex-1 h-[1px] bg-black" />

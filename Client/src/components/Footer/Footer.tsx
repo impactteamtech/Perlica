@@ -54,11 +54,9 @@ const Footer = () => {
             <motion.div initial={{ rotate: 0 }} whileHover={{ rotate: 0, scale: 1.03 }} transition={{ type: 'spring', stiffness: 260 }} className="relative">
               <motion.img
                 alt="perlica-logo"
-                className="w-64 mb-6 drop-shadow-2xl"
+                className="w-64"
                 src="/Perlica_logo.png"
               />
-              {/* subtle logo glow */}
-              <motion.div animate={{ opacity: [0.15, 0.35, 0.15] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute inset-0 rounded-lg ring-1 ring-green-500/20" />
             </motion.div>
               <div className="flex flex-col gap-4 text-gray-100">
               <div className="flex items-center gap-3">
