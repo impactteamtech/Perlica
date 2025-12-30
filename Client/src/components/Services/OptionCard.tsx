@@ -25,6 +25,7 @@ const OptionCard = ({ option, index, title }: { option: Option, index: number, t
 
                 <div className="relative w-full rounded-2xl bg-white/50 backdrop-blur-xl border border-black/20 shadow-sm transition-all duration-300 hover:shadow-md overflow-hidden">
                     <button
+                        title="Toggle FAQ Answer"
                         type="button"
                         onClick={() => setOpenCard((prev) => !prev)}
                         aria-expanded={openCard}

@@ -148,32 +148,32 @@ const TravelInformation = (): JSX.Element => {
   const remaining = Math.max(0, options.length - initialVisible);
 
   return (
-  <section className="w-full flex flex-col gap-6 px-4 sm:px-6 lg:px-8 md:pb-10 md:pt-36">
+  <section className="w-full flex flex-col gap-6 px-4 sm:px-6 lg:px-8 pt-10 md:pt-36 pb-10">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-5xl md:text-6xl title-font font-mono color-primary mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl title-font font-mono color-primary mb-4 tracking-tight">
           TRAVEL INFORMATION
         </h1>
 
       </div>
-      <div className='w-full flex flex-col lg:flex-row gap-6 lg:gap-8'>
+      <div className='w-full flex flex-col gap-6 lg:gap-10 xl:flex-row xl:gap-12'>
         {/* left part . */}
-        <div className='w-full lg:w-1/2 relative'>
+        <div className='w-full xl:w-1/2 relative'>
           {/* top part */}
           <div className='w-full flex items-start gap-4 sm:gap-6 lg:gap-10'>
             <div className='hidden sm:flex flex-col items-center' aria-hidden="true">
               {/* Decorative timeline: ring with pulsing center and gradient line */}
               <div className='relative flex items-center justify-center'>
-                <span className='block h-10 w-10 rounded-full bg-gradient-to-br from-secondary/60 to-secondary/30 ring-2 ring-secondary/50 shadow-md' />
+                <span className='block h-10 w-10 rounded-full bg-secondary/30  ring-2 ring-secondary/20 shadow-md' />
                 <span className='absolute h-3 w-3 rounded-full bg-secondary animate-pulse' />
               </div>
-              <div className='mt-2 h-48 w-1 rounded-full bg-gradient-to-b from-secondary/40 via-secondary/30 to-transparent' />
+              <div className='mt-2 h-48 w-1 rounded-full bg-gradient-to-b from-secondary via-secondary to-transparent' />
             </div>
 
             <div className='flex-1'>
-              <div className="p-1 bg-gradient-to-br from-secondary/40 via-secondary/30 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl">
+              <div className="p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl overflow-hidden">
                 <img
-                  className='w-full h-auto object-cover block rounded-lg'
+                  className='w-full h-full object-cover block rounded-lg aspect-[16/9] sm:aspect-[4/3]'
                   src="/travel_info/visa_requirement.jpg"
                   alt="Visa requirements"
                 />
@@ -181,20 +181,20 @@ const TravelInformation = (): JSX.Element => {
             </div>
           </div>
           {/* bottom part */}
-          <div className='grid grid-cols-2 gap-3 mt-4 lg:flex lg:absolute lg:top-80'>
-            <div className="relative lg:bottom-10 w-full">
-              <div className="w-full h-48 sm:h-60 md:h-72 lg:w-80 lg:h-80 overflow-hidden p-1 bg-gradient-to-br from-green-600/40 via-green-600/20 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl">
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4'>
+            <div className="relative w-full">
+              <div className="w-full overflow-hidden p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl">
                 <img
-                  className='w-full h-full object-cover block rounded-lg'
+                  className='w-full h-full object-cover block rounded-lg aspect-[4/3]'
                   src="/travel_info/health_and_safety.jpg"
                   alt="Health and safety"
                 />
               </div>
             </div>
             <div className='w-full'>
-              <div className="w-full h-40 sm:h-48 md:h-56 lg:w-90 lg:h-70 overflow-hidden p-1 bg-gradient-to-br from-green-800/30 via-green-800/20 to-transparent shadow-inner transition-transform transform hover:scale-105 rounded-xl">
+              <div className="w-full overflow-hidden p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-inner transition-transform transform hover:scale-105 rounded-xl">
                 <img
-                  className='w-full h-full object-cover block rounded-lg'
+                  className='w-full h-full object-cover block rounded-lg aspect-[4/3]'
                   src="/travel_info/best_time.jpg"
                   alt="Best time to visit"
                 />
@@ -205,7 +205,7 @@ const TravelInformation = (): JSX.Element => {
 
 
         {/* right part . */}
-        <div className='w-full lg:w-1/2'>
+        <div className='w-full xl:w-1/2'>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 lg:mb-12">
             {travelInfo.map((info) => (
               <button
@@ -224,13 +224,13 @@ const TravelInformation = (): JSX.Element => {
                   src={info.icon}
                   alt={info.title}
                 />
-                <span className="font-semibold text-base sm:text-lg whitespace-nowrap">
+                <span className="font-semibold text-base sm:text-lg whitespace-normal sm:whitespace-nowrap">
                   {info.title}
                 </span>
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-6 lg:gap-8 max-w-7xl mx-auto w-full">
+          <div className="flex flex-col gap-6 lg:gap-8 w-full">
             <div className="lg:w-full">
               {/* Options list/grid */}
               <div className={isFAQ ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : 'grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 auto-rows-fr'}>

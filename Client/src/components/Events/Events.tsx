@@ -22,12 +22,12 @@ const Events = (): JSX.Element => {
       <h1 className="text-5xl md:text-6xl title-font text-center w-full font-mono color-primary mb-6  z-50">ADVENTURE AND NATURE ACTIVITIES</h1>
    
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-        <div className="flex justify-center flex-col items-center gap-6 mr-20 w-full md:w-[40%]">
+        <div className="flex justify-center flex-col items-center gap-6 md:mr-20 w-full md:w-[40%]">
           <img 
           className='w-80'
           src="/Perlica_logo.png" 
           alt="Perlica Logo"/>
-          <div className="flex items-center  gap-3 mb-2">
+          <div className="flex justify-center items-center  gap-3 mb-2">
             <button 
             title='previous event'
             aria-label='Previous event'

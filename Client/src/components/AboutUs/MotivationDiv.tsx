@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 const MotivationDiv = ():JSX.Element => {
   const navigate = useNavigate();
   return (
-    <div className="relative w-full md:w-[100%] rounded-2xl bg-secondary/15 p-5 sm:p-6 md:p-4 lg:p-6 flex flex-col min-h-[1rem]">
-      <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-[#00d404]">
+    <div className="relative w-full md:w-[100%] rounded-2xl bg-secondary/20 p-5 sm:p-6 md:p-4 lg:p-6 flex flex-col min-h-[1rem]">
+      <h1 className="relative z-10 text-4xl leading-tight title-font font-semibold tracking-wide text-secondary">
         EXPLORE
         <br />
         KENYA
@@ -13,12 +13,12 @@ const MotivationDiv = ():JSX.Element => {
 
       <div className="relative z-10 mt-4 flex flex-1 items-start">
         <div className="w-full sm:w-[65%] md:w-[50%] flex flex-col gap-5 pr-0 sm:pr-4">
-          <p className="text-md leading-relaxed text-gray-700 font-sans">
+          <p className="text-md leading-relaxed text-black font-sans">
             Discover breathtaking landscapes, vibrant cultures, and timeless safari adventures with Perlica.
           </p>
           <button 
             onClick={()=>navigate('/hotels')}
-            className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-[#0cce10] hover:bg-secondary/70 transition-colors overflow-hidden">
+            className="group cursor-pointer relative inline-flex items-center justify-center w-44 h-12 rounded-md font-semibold tracking-wide text-white bg-secondary hover:bg-secondary/70 transition-colors overflow-hidden">
             <div className="flex items-center gap-2">
               <span className="relative z-10">Book Now</span>
               <IoIosArrowRoundForward size={30}/>
@@ -28,7 +28,7 @@ const MotivationDiv = ():JSX.Element => {
         </div>
 
       </div>
-      <div className="absolute md:bottom-20 md:w-[100%] md:right-0 z-100 hidden md:block xl:w-[100%] pointer-events-none ">
+      <div className="absolute md:bottom-20 md:w-[100%] md:left-30 z-100 hidden md:block xl:w-[100%] pointer-events-none ">
         <img
           src="/kenya_airplane.png"
           alt="air-plane"

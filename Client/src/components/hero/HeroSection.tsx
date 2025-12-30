@@ -14,9 +14,9 @@ const HeroSection = (): JSX.Element => {
   return (
     <div className="min-h-screen overflow-hidden relative font-sans selection:bg-emerald-500 selection:text-white">
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/85 z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 pointer-events-none" />
       
-      <div className="absolute inset-0 z-10 opacity-10 pointer-events-none" style={{
+      <div className="absolute inset-0 z-10 opacity-5 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }} />
       <NavBar />
@@ -50,8 +50,8 @@ const HeroSection = (): JSX.Element => {
               {/* Premium Description Box */}
               <div className={`mt-8 ml-2 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="relative md:w-full lg:w-[70%]  xl:w-full group">
-                  <div className='relative backdrop-blur-xl bg-gray-200/20 border-l-4 border-[#04c41a] p-6 md:p-8  lg:max-w-xl shadow-2xl'>
-                    <p className='text-white/90 text-base md:text-md leading-relaxed'>
+                  <div className='relative backdrop-blur-xl bg-gray-200/20 border-l-4 border-[#04c41a] p-6 md:p-6  lg:max-w-xl shadow-2xl'>
+                    <p className='text-white text-base md:text-md leading-relaxed'>
                       Discover the magic of Africa. From the vast savannahs to vibrant cultures, embark on journeys that create lifelong memories.
                     </p>
                   </div>
@@ -145,7 +145,7 @@ const HeroSection = (): JSX.Element => {
         <source src="/heroSafari.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-10 pointer-events-none" />
+      {/* <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent z-10 pointer-events-none" /> */}
     </div>
   );
 };
