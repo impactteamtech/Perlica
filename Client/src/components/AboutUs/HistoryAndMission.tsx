@@ -7,7 +7,7 @@ import HotspotsMap from "./HotspotMap";
 const HistoryAndMission = (): JSX.Element => {
   return (
     <motion.div
-      className="flex flex-col gap-10 md:gap-7 py-10 px-4 md:px-15"
+      className="flex flex-col gap-10 md:gap-7 py- px-4 md:px-15"
     >
       {/* div 1 */}
       <motion.div

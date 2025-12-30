@@ -5,7 +5,7 @@ const ServiceCard = ({ name, img, index, description }: ServiceCardProps): JSX.E
   const formattedIndex = (index + 1).toString().padStart(2, '0');
 
   return (
-    <div className="group relative w-full md:w-88 h-60 overflow-hidden rounded-2xl bg-slate-900 shadow-lg cursor-pointer transition-shadow hover:shadow-2xl hover:shadow-secondary/10">
+    <div className="group relative w-full h-64 md:h-64 lg:h-60 overflow-hidden rounded-3xl bg-white/60 cursor-pointer transition-shadow hover:shadow-2xl hover:shadow-secondary/10">
       <div className="absolute inset-0 overflow-hidden">
         <img
           src={img}

@@ -1,15 +1,24 @@
 import type { JSX } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ServiceCard from "./ServiceCard";
 import { services } from "../../lib/staticData";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
-import ImageTrail from "./ImageTrail";
 import TravelInformation from "./TravelInformation";
 
 const Services = (): JSX.Element => {
-  const PAGE_SIZE = 4;
   const [startIndex, setStartIndex] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const onChange = () => setIsSmallScreen(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  const PAGE_SIZE = isSmallScreen ? 1 : 4;
 
   const visibleServices = Array.from(
     { length: Math.min(PAGE_SIZE, services.length) },
@@ -27,9 +36,10 @@ const Services = (): JSX.Element => {
     <motion.section
       className="px-4 sm:px-6 lg:px-15 py-10"
     >
+      <div className="mx-auto w-full max-w-7xl">
       {/* Hero Section */}
       <motion.div
-        className="relative overflow-hidden h-80 md:h-[500px]"
+        className="relative hidden  md:block overflow-hidden h-64 sm:h-80 md:h-[500px]"
    
       >
         {/* Decorative vertical lines */}
@@ -53,36 +63,25 @@ const Services = (): JSX.Element => {
           </span>
         </motion.h1>
 
-        <ImageTrail
-          items={[
-            "/services/hotel_reservation.jpg",
-            "/services/get_ticket.jpg",
-            "/services/group_travel.jpg",
-            "/services/safari_tour_package2.jpg",
-            "/services/safari_tour_package1.jpg",
-            "/services/conference.jpg",
-          ]}
-          variant={1}
-        />
       </motion.div>
 
 
       {/* Buttons */}
       <motion.div
-        className="flex w-full justify-end my-6 mt-10 lg:relative lg:bottom-10"
+        className="flex w-full justify-center sm:justify-end my-6 mt-6 sm:mt-10 lg:relative lg:bottom-10"
       >
         <div className="flex gap-4 items-center">
           <button
             onClick={handlePrev}
             title="previous"
-            className=" bg-black text-white  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
+            className="bg-black text-white cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-3 sm:p-4"
           >
             <IoMdArrowBack size={20} />
           </button>
           <button
             onClick={handleNext}
             title="next"
-            className=" bg-secondary text-white  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4"
+            className="bg-secondary text-white cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-3 sm:p-4"
           >
             <IoMdArrowForward size={20} />
           </button>
@@ -90,14 +89,21 @@ const Services = (): JSX.Element => {
       </motion.div>
 
       {/* Services Cards */}
-      <motion.div
-        className="w-full relative flex  gap-4"
-      >
-      
-        <div className="gap-4 w-full flex">
+        <div
+          className={
+            isSmallScreen
+              ? "flex w-full justify-center"
+              : "flex px-10 w-full flex-nowrap justify-center gap-4 overflow-x-auto overscroll-x-contain snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible"
+          }
+        >
           {visibleServices.map((service) => (
-            <motion.div
+            <div
               key={service._idx}
+              className={
+                isSmallScreen
+                  ? "w-full max-w-[420px]"
+                  : "flex-none w-[65%] md:w-[50%] lg:w-[30%]"
+              }
             >
               <ServiceCard
                 index={service._idx}
@@ -105,16 +111,16 @@ const Services = (): JSX.Element => {
                 description={service.description}
                 name={service.name}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
 
       {/* Travel Info */}
       <motion.div
       >
         <TravelInformation />
       </motion.div>
+      </div>
     </motion.section>
   );
 };

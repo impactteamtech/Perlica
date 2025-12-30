@@ -44,24 +44,25 @@ const Reviews = (): JSX.Element => {
   const handleNext = () => setCurrent((prev) => (prev + 1) % reviews.length);
 
   // Show up to N reviews at a time, responsive to viewport width.
-  // Don't read `window` during module init — derive from state and update on resize.
-  const [numberViews, setNumberViews] = useState<number>(() =>
-    typeof window !== 'undefined' ? (window.innerWidth > 780 ? 3 : 2) : 2
-  );
-
-  // Update numberViews on resize (keeps behavior responsive). Use rAF to avoid flood.
+  // base: 1, md+: 2, lg+: 3
+  const [numberViews, setNumberViews] = useState<number>(1);
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    let raf: number | null = null;
-    const onResize = () => {
-      const val = window.innerWidth > 780 ? 3 : 2;
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => setNumberViews(val));
+    if (typeof window === "undefined") return;
+    const mqLg = window.matchMedia("(min-width: 1024px)");
+    const mqMd = window.matchMedia("(min-width: 768px)");
+
+    const update = () => {
+      if (mqLg.matches) return setNumberViews(3);
+      if (mqMd.matches) return setNumberViews(2);
+      return setNumberViews(1);
     };
-    window.addEventListener('resize', onResize);
+
+    update();
+    mqLg.addEventListener("change", update);
+    mqMd.addEventListener("change", update);
     return () => {
-      window.removeEventListener('resize', onResize);
-      if (raf) cancelAnimationFrame(raf);
+      mqLg.removeEventListener("change", update);
+      mqMd.removeEventListener("change", update);
     };
   }, []);
 
@@ -108,31 +109,33 @@ const Reviews = (): JSX.Element => {
   return (
     <motion.section
       ref={ref}
-      className="flex flex-col gap-8 px-15 py-10 "
+      className="flex flex-col gap-6 sm:gap-8 px-4 sm:px-6 lg:px-15 py-10"
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-        <div className="w-full flex items-center justify-between">
-           <h1 className="text-6xl font-mono title-font color-primary">WHAT PEOPLE SAY</h1>
-          <div className="flex gap-4">
+        <div className="w-full flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono title-font color-primary text-center sm:text-left">
+            WHAT PEOPLE SAY
+           </h1>
+          <div className="flex gap-3 sm:gap-4 justify-center sm:justify-end">
             <button title="Previous Review" type="button" onClick={handlePrev}
-            className=" text-white bg-black  cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
+            className="text-white bg-black cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-3 sm:p-4">
                 <IoMdArrowBack size={20}/>
                
             </button>
-            <button title="Next Review" type="button" onClick={handleNext} className="text-white bg-secondary cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-4">
+            <button title="Next Review" type="button" onClick={handleNext} className="text-white bg-secondary cursor-pointer hover:scale-105 rounded-full duration-150 transition-transform p-3 sm:p-4">
                 <IoMdArrowForward size={20}/>
             </button>
           </div>
         </div>
-        <div className="flex gap-6 md:gap-8">
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8">
           <AnimatePresence mode="popLayout" initial={false}>
             {visibleReviews.map((r) => (
               <motion.div
                 key={r.email}
                 variants={itemVariants}
-                className="flex-1"
+                className="w-full md:flex-1 min-w-0"
                 layout
                 exit="exit"
               >
