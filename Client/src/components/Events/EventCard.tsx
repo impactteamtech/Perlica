@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 const EventCard = ({name, description, image}:{name:string, description:string, image:string}) => {
   return (
     <div 
-      className='group relative w-[400px] h-[500px] overflow-hidden rounded-2xl'
+      className='group relative w-[280px] h-[360px] sm:w-[400px] sm:h-[500px] overflow-hidden rounded-2xl'
     >
       <motion.img 
         className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'

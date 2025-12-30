@@ -21,13 +21,13 @@ const Events = (): JSX.Element => {
     <section className="min-h-screen flex flex-col gap-8 py-10 mb-3 relative overflow-hidden">
       <h1 className="text-5xl md:text-6xl title-font text-center w-full font-mono color-primary mb-6  z-50">ADVENTURE AND NATURE ACTIVITIES</h1>
    
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-        <div className="flex justify-center flex-col items-center gap-6 md:mr-20 w-full md:w-[40%]">
+      <div className="flex flex-col xl:flex-row items-center justify-center gap-8 relative z-10">
+        <div className="flex  xl:px-4 xl:block justify-center flex-col items-center gap-6 w-full  xl:justify-start xl:items-start">
           <img 
-          className='w-80'
+          className=' w-60'
           src="/Perlica_logo.png" 
           alt="Perlica Logo"/>
-          <div className="flex justify-center items-center  gap-3 mb-2">
+          <div className="flex items-center xl:ml-8  gap-3 mb-2">
             <button 
             title='previous event'
             aria-label='Previous event'
@@ -44,7 +44,7 @@ const Events = (): JSX.Element => {
             </button>
           </div>
         </div>
-        <div className="flex gap-6 w-full md:w-[60%] justify-center items-center">
+        <div className="flex gap-6  md:w-[60%] justify-center items-center">
           {visibleEvents.map((v, i) => (
             <button
               type="button"

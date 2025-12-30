@@ -32,8 +32,8 @@ const ContactUs = (): JSX.Element => {
         viewport={{ once: true }}
       >
         <PingDot />
-        <h4 className="text-2xl w-[10%] title-font font-medium ">CONTACT US</h4>
-        <div className="w-[90%] h-[1px] bg-black " />
+        <h4 className="text-lg md:text-2xl w-[25%] title-font font-medium ">CONTACT US</h4>
+        <div className="w-[75%] md:w-[90%] h-[1px] bg-black " />
       </motion.div>
 
       <div className="flex gap-3 flex-wrap lg:flex-nowrap justify-between px-6 lg:px-15 py-16 relative z-10">
@@ -105,7 +105,7 @@ const ContactUs = (): JSX.Element => {
               <div className="relative">
                 <FaUser
                   aria-hidden="true"
-                  className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-green-700 transition-colors duration-300"
+                  className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-secondary transition-colors duration-300"
                 />
                 <input
                   type="text"
@@ -115,7 +115,7 @@ const ContactUs = (): JSX.Element => {
                 />
               </div>
               <div className="h-0.5 w-full bg-black/50 overflow-hidden">
-                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-green-600 to-green-700 transition-transform duration-500 ease-out group-focus-within:scale-x-100" />
+                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-secondary/60 to-secondary transition-transform duration-300 ease-out group-focus-within:scale-x-100" />
               </div>
             </motion.div>
 
@@ -131,7 +131,7 @@ const ContactUs = (): JSX.Element => {
                 <div className="relative">
                   <MdEmail
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-green-700 transition-colors duration-300"
+                    className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-secondary transition-colors duration-300"
                   />
                   <input
                     type="email"
@@ -141,7 +141,7 @@ const ContactUs = (): JSX.Element => {
                   />
                 </div>
                 <div className="h-0.5 w-full bg-black/50 overflow-hidden">
-                  <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-green-600 to-green-700 transition-transform duration-500 ease-out group-focus-within:scale-x-100" />
+                  <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-secondary/60 to-secondary transition-transform duration-300 ease-out group-focus-within:scale-x-100" />
                 </div>
               </motion.div>
 
@@ -155,7 +155,7 @@ const ContactUs = (): JSX.Element => {
                 <div className="relative">
                   <FaPhoneAlt
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-green-700 transition-colors duration-300"
+                    className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-secondary transition-colors duration-300"
                   />
                   <input
                     type="text"
@@ -165,7 +165,7 @@ const ContactUs = (): JSX.Element => {
                   />
                 </div>
                 <div className="h-0.5 w-full bg-black/50 overflow-hidden">
-                  <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-green-600 to-green-700 transition-transform duration-500 ease-out group-focus-within:scale-x-100" />
+                  <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-secondary/60 to-secondary transition-transform duration-300 ease-out group-focus-within:scale-x-100" />
                 </div>
               </motion.div>
             </div>
@@ -184,7 +184,7 @@ const ContactUs = (): JSX.Element => {
                 className="w-full h-32 resize-none bg-transparent outline-none border-none focus:ring-0 text-gray-800 pb-3 text-lg placeholder-gray-500 transition-all duration-300"
               />
               <div className="h-0.5 w-full bg-black/50 overflow-hidden">
-                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-green-600 to-green-700 transition-transform duration-500 ease-out group-focus-within:scale-x-100" />
+                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-secondary/60 to-secondary transition-transform duration-300 ease-out group-focus-within:scale-x-100" />
               </div>
             </motion.div>
 
@@ -211,7 +211,7 @@ const ContactUs = (): JSX.Element => {
                 ))}
               </select>
               <div className="h-0.5 w-full bg-black/50 overflow-hidden">
-                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-green-600 to-green-700 transition-transform duration-500 ease-out group-focus-within:scale-x-100" />
+                <span className="block h-full w-full scale-x-0 origin-left bg-gradient-to-r from-secondary/60 to-secondary transition-transform duration-300 ease-out group-focus-within:scale-x-100" />
               </div>
             </motion.div>
 
