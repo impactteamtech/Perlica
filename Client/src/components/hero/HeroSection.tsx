@@ -61,14 +61,13 @@ const HeroSection = (): JSX.Element => {
               {/* Enhanced CTA Button */}
                 <button 
                   onClick={()=>navigate('/hotels')}
-                  className='flex mt-10 ml-2 group overflow-hidden cursor-pointer w-58 h-15 md:h-16 lg:h-18 transition-all duration-300  active:scale-95'>
-                  <div className='relative overflow-hidden'>
-                    <div className='relative bg-[#04c41a] h-full text-white px-6 py-3 lg:px-8  lg:py-4 xl:px-10 xl:py-5 font-bold text-xl'>
-                      <h1 className=''>Let's Go!</h1>
-                    </div>
+                  className='flex items-start mt-10 ml-2 group overflow-hidden cursor-pointer w-58 h-15 md:h-16 lg:h-18 transition-all duration-300  active:scale-95'>
+                  <div className='relative flex items-center px-3 h-full bg-[#04c41a]  text-white   font-bold text-xl'>
+                    Let's Go!
                   </div>
-                  <div className='xl:px-6 lg:py-4 lg:px-6 h-full flex xl:py-5 px-3 py-3  items-center justify-center bg-red-600 transition-colors'>
-                    <ArrowRight size={22} className='text-white  transition-transform duration-300' />
+                  
+                  <div className='h-full flex px-3 items-center justify-center bg-red-600 transition-colors'>
+                    <ArrowRight size={22} className='text-white' />
                   </div>
                 </button>
             </div>
