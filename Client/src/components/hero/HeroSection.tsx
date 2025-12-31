@@ -12,9 +12,8 @@ const HeroSection = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden relative font-sans selection:bg-emerald-500 selection:text-white">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/85 z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 pointer-events-none" />
+    <div className="h-screen min-h-screen overflow-hidden relative font-sans selection:bg-emerald-500 selection:text-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/65 z-10 pointer-events-none" />
       
       <div className="absolute inset-0 z-10 opacity-5 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -24,7 +23,7 @@ const HeroSection = (): JSX.Element => {
       <div className='w-full h-full absolute md:top-10 left-0 px-6 md:px-16 pt-[15vh] flex flex-col z-20 justify-between pb-10'>
         <div className='flex flex-col gap-6 lg:gap-2 xl:gap-1 w-full'>
           <div className={`flex items-center gap-3 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <div className="w-12 h-[2px] bg-gradient-to-r from-emerald-700 to-transparent" />
+            <div className="w-12 h-[2px] bg-gradient-to-r from-secondary to-transparent" />
             <h2 className='text-base lg:text-[10px] xl:text-lg font-bold text-[#04c41a] tracking-[0.3em] uppercase drop-shadow-lg'>
               Explore Africa With Perlica
             </h2>
@@ -50,8 +49,8 @@ const HeroSection = (): JSX.Element => {
               {/* Premium Description Box */}
               <div className={`mt-8 ml-2 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="relative md:w-full lg:w-[70%]  xl:w-full group">
-                  <div className='relative backdrop-blur-xl bg-gray-200/20 border-l-4 border-[#04c41a] p-6 md:p-6  lg:max-w-xl shadow-2xl'>
-                    <p className='text-white text-base md:text-md leading-relaxed'>
+                  <div className='relative border-l-4 border-[#04c41a] p-4 md:p-4  bg-black/40 lg:max-w-xl shadow-2xl'>
+                    <p className='text-white  text-base md:text-lg leading-relaxed'>
                       Discover the magic of Africa. From the vast savannahs to vibrant cultures, embark on journeys that create lifelong memories.
                     </p>
                   </div>
@@ -61,12 +60,12 @@ const HeroSection = (): JSX.Element => {
               {/* Enhanced CTA Button */}
                 <button 
                   onClick={()=>navigate('/hotels')}
-                  className='flex items-start mt-10 ml-2 group overflow-hidden cursor-pointer w-58 h-15 md:h-16 lg:h-18 transition-all duration-300  active:scale-95'>
+                  className='flex items-start mt-3 md:mt-10 ml-2 group overflow-hidden cursor-pointer w-58 h-15 md:h-16 lg:h-18 transition-all duration-300  active:scale-95'>
                   <div className='relative flex items-center px-3 h-full bg-[#04c41a]  text-white   font-bold text-xl'>
                     Let's Go!
                   </div>
                   
-                  <div className='h-full flex px-3 items-center justify-center bg-red-600 transition-colors'>
+                  <div className='h-full flex px-5 items-center justify-center bg-red-600 transition-colors'>
                     <ArrowRight size={22} className='text-white' />
                   </div>
                 </button>

@@ -10,9 +10,9 @@ const FirstSection = ():React.JSX.Element => {
         "/partner_with_us/person3.jpg",
     ]
   return (
-    <section className='min-h-screen px-4 sm:px-8 lg:px-15 pt-10 sm:pt-12 lg:pt-15 pb-10'>
+    <section className='px-6 lg:px-15 pt-10 bg- sm:pt-12  lg:pt-15 pb-10 lg:pb-15'>
         <div className='w-full relative flex flex-col lg:flex-row lg:justify-between gap-8 sm:gap-10 lg:gap-0'>
-            <div className='w-full sm:w-[22rem] lg:w-45 h-64 sm:h-80 lg:h-50 relative top-0 lg:top-10 mx-auto lg:mx-0'>
+            <div className='hidden lg:block  lg:w-45 h-64 sm:h-80 lg:h-50 relative top-0 lg:top-10 mx-auto lg:mx-0'>
                     <div
                         className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                         aria-hidden='true'
@@ -24,7 +24,7 @@ const FirstSection = ():React.JSX.Element => {
                     />
             </div>
             <div className='w-full lg:w-100'>
-                <h1 className='text-3xl sm:text-4xl lg:text-5xl title-font color-primary text-center lg:text-left'>Perlica Tours & Travel where professionalism meets adventure</h1>
+                <h1 className='text-4xl lg:text-5xl xl:text-5xl color-primary font-mono title-font leading-tight text-center lg:text-left'>Perlica Tours & Travel where professionalism meets adventure</h1>
             </div>
                 <div>
                     <div className='w-full sm:w-[26rem] lg:w-55 h-72 sm:h-[26rem] lg:h-65 relative bottom-0 lg:bottom-10 mx-auto lg:mx-0'> 
@@ -95,7 +95,7 @@ const FirstSection = ():React.JSX.Element => {
                     </div>
                 </div>
                 <div className='flex ml-0 lg:ml-3 w-full lg:w-[33%] flex-col lg:px-6 gap-6 items-center lg:items-start text-center lg:text-left'>
-                    <p className='text-font text-gray-600 text-lg sm:text-xl lg:text-3xl'>
+                    <p className='text-font '>
                      Discover the destinations that make Perlica Tours & Travel your gateway to unforgettable adventures. 
                     </p>
                     <button 

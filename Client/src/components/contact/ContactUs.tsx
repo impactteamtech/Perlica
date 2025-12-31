@@ -18,25 +18,25 @@ const ContactUs = (): JSX.Element => {
 
   return (
     <motion.section
-      className="relative  overflow-hidden"
+      className="relative px-6 lg:px-15 overflow-hidden"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.2 }}
     >
       <motion.div
-        className="flex items-center ml-10 gap-2"
+        className="flex items-center  gap-2"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
         viewport={{ once: true }}
       >
         <PingDot />
-        <h4 className="text-lg md:text-2xl w-[25%] title-font font-medium ">CONTACT US</h4>
-        <div className="w-[75%] md:w-[90%] h-[1px] bg-black " />
+        <h4 className="text-lg md:text-2xl w-[40%] md:w-[25%] lg:w-[10%] title-font font-medium ">CONTACT US</h4>
+        <div className="w-[60%] md:w-[75%] lg:w-[90%] h-[1px] bg-black " />
       </motion.div>
 
-      <div className="flex gap-3 flex-wrap lg:flex-nowrap justify-between px-6 lg:px-15 py-16 relative z-10">
+      <div className="flex gap-3 flex-wrap lg:flex-nowrap justify-between   py-16 relative z-10">
         {/* Left content */}
         <motion.div
           className="w-full lg:w-[48%] "
@@ -46,14 +46,14 @@ const ContactUs = (): JSX.Element => {
           viewport={{ once: true }}
         >
           <div className="space-y-4">
-            <h1 className="text-6xl lg:text-7xl font-mono color-primary title-font leading-[1.1]">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
               LET'S
               <br />
               GET IN TOUCH
               <br />
               <span className="font-light text-black">AND COLLABORATE</span>
             </h1>
-            <p className="text-2xl md:text-2xl lg:text-3xl font-light text-gray-800 leading-relaxed font-[Rubik]">
+            <p className="text-font">
               If you have any questions or inquiries, feel free to reach out to
               us!
             </p>

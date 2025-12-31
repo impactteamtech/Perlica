@@ -14,12 +14,12 @@ const PartnerWithUs: React.FC = () => {
         <>
             <div className="flex w-full  gap-3 px-4 flex-row items-center md:px-8">
                 <PingDot />
-                <h4 className="text-xl sm:text-2xl min-w-0 title-font font-medium">Partner With Us</h4>
-                <div className="w-full sm:flex-1 h-[1px] bg-black" />
+                <h4 className="text-xl  w-[50%] sm:w-[30%] md:w-[25%] lg:w-[10%] sm:text-2xl min-w-0 title-font font-medium">Partner With Us</h4>
+                <div className="w-[50%] sm:w-[70%] md:w-[75%]  lg:w-[90%] h-[1px] bg-black" />
             </div>
-            <div className='mx-auto flex flex-col gap-8 sm:gap-10 px-4 sm:px-6 lg:px-15 py-10 w-full '>
+            <div className='mx-auto flex flex-col gap-8 sm:gap-10 px-6 lg:px-15 py-10 w-full '>
                 <div>
-                    <h1 className='title-font color-primary text-3xl sm:text-4xl md:text-5xl font-mono'>WHY PARTNER WITH US?</h1>
+                    <h1 className='text-3xl lg:text-5xl  xl:text-6xl color-primary font-mono title-font leading-tight'>WHY PARTNER WITH US?</h1>
                 </div>
                 <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 justify-between p-2'>
                     {/* Left large feature image */}
@@ -102,7 +102,7 @@ const PartnerWithUs: React.FC = () => {
                             </div>
                         </div>
                         <div>
-                            <p className='font-[Rubik] font-light text-base sm:text-lg md:text-2xl leading-snug'>
+                            <p className='text-font'>
                                 From cutting-edge collaborations to innovative travel experiences, our partnerships
                                 unlock endless opportunities to explore, connect, and grow. Join us in building the next
                                 wave of adventure-driven impact.
