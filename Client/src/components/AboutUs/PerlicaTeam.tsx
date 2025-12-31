@@ -7,7 +7,7 @@ import PingDot from "./PingDot";
 const PerlicaTeam = (): JSX.Element => {
   return (
     <motion.div
-      className="w-full px-4 sm:px-6 lg:px-15 flex min-h-screen flex-col gap-16 lg:gap-30"
+      className="w-full px-4 sm:px-6 lg:px-16 flex min-h-screen flex-col gap-16 lg:gap-24 overflow-x-clip"
     >
       {/* First part */}
       <motion.div
@@ -17,12 +17,12 @@ const PerlicaTeam = (): JSX.Element => {
           className="relative w-full lg:w-[40%] flex justify-center lg:justify-start"
         >
           <img
-            className="w-48 xs:w-100 sm:40 md:w-80 lg:w-100 hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-48 sm:w-64 md:w-75 xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team1.jpg"
             alt="team-member-1"
           />
           <img
-            className="w-56 sm:w-72 lg:w-100 top-10 hover:scale-105 transition-transform duration-200 relative -ml-10 sm:-ml-14 lg:ml-0 lg:top-30 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-56 sm:w-72 md:w-75 xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team2.jpg"
             alt="team-member-2"
           />
