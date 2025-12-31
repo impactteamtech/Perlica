@@ -17,7 +17,7 @@ const PartnerWithUs: React.FC = () => {
                 <h4 className="text-xl sm:text-2xl min-w-0 title-font font-medium">Partner With Us</h4>
                 <div className="w-full sm:flex-1 h-[1px] bg-black" />
             </div>
-            <div className='mx-auto flex flex-col gap-8 sm:gap-10 px-4 sm:px-6 lg:px-15 py-10 w-full max-w-7xl'>
+            <div className='mx-auto flex flex-col gap-8 sm:gap-10 px-4 sm:px-6 lg:px-15 py-10 w-full '>
                 <div>
                     <h1 className='title-font color-primary text-3xl sm:text-4xl md:text-5xl font-mono'>WHY PARTNER WITH US?</h1>
                 </div>
