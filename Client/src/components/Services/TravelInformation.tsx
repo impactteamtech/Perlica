@@ -205,7 +205,7 @@ const TravelInformation = (): JSX.Element => {
 
 
         {/* right part . */}
-        <div className='w-full xl:w-1/2'>
+        <div className='w-full xl:w-1/2 '>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 lg:mb-12">
             {travelInfo.map((info) => (
               <button
