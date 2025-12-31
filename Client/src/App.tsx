@@ -50,6 +50,7 @@ function App() {
             <Route path="countries" element={<Country />} />
           </Route>
         </Route>
+        <Route path='*' element={<h1 className='text-5xl font-bold text-black w-full h-screnn flex items-center justify-center'>404 Not Found</h1>}/>
       </Routes>
     </Suspense>
   </div>
