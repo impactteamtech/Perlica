@@ -17,7 +17,7 @@ const ExistingCars = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-17 md:py-14">
         <div className="text-center flex flex-col gap-3 mb-12">
             <h1 className="text-5xl font-mono title-font color-primary sm:text-5xl md:text-6xl">
               Available Cars

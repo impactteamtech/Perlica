@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Loader } from 'lucide-react';
+
 import CityDetailsPanel from './CityDetailsPanel';
 import CountryHeader from './CountryHeader';
 import CountryFiltersPanel from './CountryFiltersPanel';
@@ -7,6 +7,7 @@ import CountryResults from './CountryResults';
 import { CITY_IMAGE_FALLBACK, cityKey } from './constants';
 import type { CityDestination, CitySortBy, ThemeFilter } from '../../../lib/types';
 import { useCountryData } from './useCountryData';
+import Loader  from '../../ui/Loader';
 
 const DestinationExplorer = () => {
   const { destinations, availableCountries, loading, error, cityImages, cityImageStatus, cityThemes, cityDetails, ensureCityMeta } = useCountryData();
@@ -110,13 +111,8 @@ const DestinationExplorer = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Loader className="w-16 h-16 animate-spin text-secondary mx-auto mb-4" />
-          <p className="text-3xl font-bold text-primary">Discovering destinations...</p>
-          <p className="text-xs text-gray-400 mt-1">This may take a minute...</p>
-        </div>
-      </div>
+      <Loader  />
+
     );
   }
 

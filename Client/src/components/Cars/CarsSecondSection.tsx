@@ -1,6 +1,6 @@
 const CarsSecondSection = () => {
   return (
-    <section className="px-15 py-24 mx-auto ">
+    <section className="px-6 lg:px-15 py-24 mx-auto ">
       <div className="flex flex-col gap-24">
         
         <div className="grid items-center grid-cols-1 gap-12 md:grid-cols-2">

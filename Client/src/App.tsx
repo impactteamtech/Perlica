@@ -16,6 +16,8 @@ import './App.css';
 import Layout from './components/Layout/Layout';
 import Home from './components/Layout/Home';
 import { Suspense, lazy } from 'react';
+import Loader  from './components/ui/Loader';
+import NotFound from './components/ui/NotFound';
 const Packages = lazy(() => import('./components/Packages/Packages'));
 
 const CarsLayout = lazy(() => import('./components/Cars/CarsLayout'));
@@ -31,7 +33,7 @@ function App() {
   return (
   <>
   <div className="background-color">
-    <Suspense fallback={<div className='w-full h-screen flex items-center justify-center text-3xl font-semibold text-black'>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>}/>
@@ -52,7 +54,7 @@ function App() {
           
         </Route>
       
-        <Route path='*' element={<h1 className='text-5xl font-bold text-black w-full h-screnn flex items-center justify-center'>404 Not Found</h1>}/>
+        <Route path='*' element={<NotFound />}/>
       </Routes>
     </Suspense>
   </div>
