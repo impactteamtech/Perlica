@@ -70,7 +70,7 @@ const CityDetailsPanel = ({ destination, details, imageUrl, fallbackImageUrl, on
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[60] flex items-end justify-center p-2 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label={`${destination.cityName} details`}
@@ -79,15 +79,17 @@ const CityDetailsPanel = ({ destination, details, imageUrl, fallbackImageUrl, on
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" />
 
       <div
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200"
+        className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-4xl h-[92dvh] sm:h-auto sm:max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200"
         onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
-        <div className="relative shrink-0">
-          <div className="relative h-80 group bg-gray-100">
+        <div className="relative">
+          <div className="relative h-56 sm:h-72 md:h-80 group bg-gray-100">
             <img
               src={selectedImage || fallbackImageUrl}
               alt={`${destination.cityName} photo`}
-              className="w-full h-full object- transition-transform duration-700 group-hover:scale-105"
+              loading="eager"
+              decoding="async"
+              className="w-full h-full object-cover"
               onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                 e.currentTarget.src = fallbackImageUrl;
               }}
@@ -98,16 +100,16 @@ const CityDetailsPanel = ({ destination, details, imageUrl, fallbackImageUrl, on
               aria-label="Close city details"
               title="Close"
               onClick={onClose}
-              className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all hover:rotate-90"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white p-2 rounded-full transition-all hover:rotate-90"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            <div className="absolute bottom-6 left-6 right-6 text-white">
-              <h2 className="text-4xl font-bold mb-2">{destination.cityName}</h2>
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 leading-tight">{destination.cityName}</h2>
               <div className="flex items-center gap-2 text-gray-200">
-                <MapPin className="w-5 h-5 text-[#04c41a]" />
-                <span className="text-lg">{destination.countryName}</span>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#04c41a]" />
+                <span className="text-sm sm:text-base md:text-lg">{destination.countryName}</span>
               </div>
             </div>
           </div>
@@ -115,17 +117,17 @@ const CityDetailsPanel = ({ destination, details, imageUrl, fallbackImageUrl, on
      
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 space-y-8">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
           <div>
-            <h3 className="text-xl font-bold text-gray-800 mb-3">About this destination</h3>
-            <p className="text-gray-600 leading-relaxed text-lg">{destination.description}</p>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">About this destination</h3>
+            <p className="text-gray-600 leading-relaxed text-base sm:text-lg">{destination.description}</p>
             {details?.snippet && <p className="text-gray-500 mt-3">{details.snippet}</p>}
           </div>
 
           {details && (
             <div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Highlights</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">Highlights</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="p-3 rounded-xl bg-gray-50 border border-gray-100">
                   <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">Top hotel</p>
                   <p className="text-gray-800 font-semibold mt-1">{details.hotelName ?? '—'}</p>

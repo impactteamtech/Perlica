@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 
-const ImageGallery = () => {
-  const imagePaths = [
-    'bg-1.jpg',
-    'bg-2.jpg',
-    'bg-3.jpg'
-  ];
+const imagePaths = [
+  'bg-1.jpg',
+  'bg-2.jpg',
+  'bg-3.jpg'
+];
 
+const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = React.useState<string>(imagePaths[0]);
   const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
 
@@ -15,11 +15,15 @@ const ImageGallery = () => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      next();
+      setSelectedImage((prevSelected) => {
+        const idx = imagePaths.indexOf(prevSelected);
+        const nextIdx = (idx + 1) % imagePaths.length;
+        return imagePaths[nextIdx];
+      });
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, selectedImage]);
+  }, [isAutoPlaying]);
 
   const prev = () => {
     const idx = imagePaths.indexOf(selectedImage);
@@ -43,13 +47,13 @@ const ImageGallery = () => {
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      <div className="w-full rounded-2xl h-full relative overflow-hidden rounded-">
+      <div className="w-full h-full relative overflow-hidden">
         {/* Main Image with smooth transition */}
         <div className="relative w-full h-full">
           <img 
             src={`/bg-images-destination/${selectedImage}`} 
             alt="Destination" 
-            className="w-full brightness-50 h-full object- transition-all duration-500 ease-in-out transform group-hover:scale-105" 
+            className="w-full h-full brightness-50 object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105" 
           />
           
         </div>
@@ -59,7 +63,7 @@ const ImageGallery = () => {
           type="button"
           aria-label="Previous image"
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:border-white text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-black/80 opacity-0 group-hover:opacity-100 shadow-2xl"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:border-white text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-black/80 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 shadow-2xl"
         >
           <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -70,7 +74,7 @@ const ImageGallery = () => {
           type="button"
           aria-label="Next image"
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:border-white text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-black/80 opacity-0 group-hover:opacity-100 shadow-2xl"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 hover:border-white text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-black/80 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 shadow-2xl"
         >
           <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 18l6-6-6-6"/>
@@ -99,29 +103,6 @@ const ImageGallery = () => {
           })}
         </div>
 
-        {/* Slide Counter */}
-        <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm border border-white/20">
-          {imagePaths.indexOf(selectedImage) + 1} / {imagePaths.length}
-        </div>
-
-        {/* Auto-play Indicator */}
-        <button
-          type="button"
-          aria-label={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
-          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-sm text-white p-2 rounded-full border border-white/20 hover:bg-black/80 transition-all duration-300"
-        >
-          {isAutoPlaying ? (
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          )}
-        </button>
       </div>
     </div>
   );

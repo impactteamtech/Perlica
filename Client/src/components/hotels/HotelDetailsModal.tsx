@@ -110,20 +110,20 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
   }, [images, hotel.heroImage]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-4xl h-[92dvh] sm:h-auto sm:max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
 
         <div className="relative shrink-0">
-          <div className="relative h-72 group bg-gray-100">
+          <div className="relative h-56 sm:h-72 group bg-gray-100">
             <img
               src={selectedImage || fallbackImage}
               alt={hotel.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700"
               onError={(e) => {
                 e.currentTarget.src = fallbackImage;
               }}
@@ -141,19 +141,19 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
               </svg>
             </button>
 
-            <div className="absolute bottom-6 left-6 right-6 text-white">
-              <h2 className="text-4xl font-bold mb-2 ">{hotel.name}</h2>
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white">
+              <h2 className="text-2xl sm:text-4xl font-bold mb-2">{hotel.name}</h2>
               <div className="flex items-center gap-2 text-gray-200">
                 <svg className="w-5 h-5 text-[#04c41a]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
-                <span className="text-lg">{hotel.address}, {hotel.city}</span>
+                <span className="text-sm sm:text-lg">{hotel.address}, {hotel.city}</span>
               </div>
             </div>
           </div>
 
           {images.length > 1 && (
-            <div className="bg-white px-6 py-4 border-b border-gray-100">
+            <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100">
               <div className="flex gap-3 overflow-x-auto">
                 {images.map((src, idx) => {
                   const isActive = src === selectedImage;
@@ -162,14 +162,14 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
                       key={src}
                       type="button"
                       onClick={() => setSelectedImage(src)}
-                      className={`shrink-0 rounded-lg overflow-hidden border transition-colors ${isActive ? 'border-[#04c41a]' : 'border-gray-200 hover:border-gray-300'}`}
+                      className={`shrink-0 cursor-pointer rounded-lg overflow-hidden border transition-colors ${isActive ? 'border-[#04c41a] border-3' : 'border-gray-200 hover:border-gray-300'}`}
                       aria-label={`Show photo ${idx + 1}`}
                       title={`Photo ${idx + 1}`}
                     >
                       <img
                         src={src}
                         alt={`Thumbnail ${idx + 1}`}
-                        className="h-16 w-24 object-cover"
+                        className="h-14 sm:h-16 w-20 sm:w-24 object-cover"
                         onError={(e) => {
                           e.currentTarget.src = fallbackImage;
                         }}
@@ -183,11 +183,11 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
 
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 space-y-8">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8">
           
           <div>
             <h3 className="text-xl font-bold text-gray-800 mb-3">About this stay</h3>
-            <p className="text-gray-600 leading-relaxed text-lg">
+            <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
               {stripHtml(hotel.description || "A wonderful place to stay.")}
             </p>
           </div>
@@ -214,8 +214,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
           </div>
         </div>
 
-        <div className="border-t border-gray-100 p-6 bg-white/95 backdrop-blur z-10">
-          <div className="flex justify-between items-center">
+        <div className="border-t border-gray-100 p-4 sm:p-6 bg-white/95 backdrop-blur z-10">
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
             <div>
               <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">Total Price</p>
               <div className="flex items-baseline gap-1">
@@ -226,7 +226,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
               </div>
             </div>
             
-            <button className="bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
+            <button className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
               Book Now
             </button>
           </div>

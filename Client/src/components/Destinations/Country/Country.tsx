@@ -9,14 +9,21 @@ import type { CityDestination, CitySortBy, ThemeFilter } from '../../../lib/type
 import { useCountryData } from './useCountryData';
 
 const DestinationExplorer = () => {
-  const { destinations, loading, error, cityImages, cityThemes, cityDetails, ensureCityMeta } = useCountryData();
+  const { destinations, availableCountries, loading, error, cityImages, cityImageStatus, cityThemes, cityDetails, ensureCityMeta } = useCountryData();
 
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
   const [selectedTheme, setSelectedTheme] = useState<ThemeFilter>('all');
   const [sortBy, setSortBy] = useState<CitySortBy>('name');
-  const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [showFilters, setShowFilters] = useState<boolean>(true);
   const [selectedCityKey, setSelectedCityKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selectedCountry === 'all') return;
+    if (!availableCountries.some((c) => c.name === selectedCountry)) {
+      setSelectedCountry('all');
+    }
+  }, [availableCountries, selectedCountry]);
 
   const baseFilteredDestinations = useMemo(() => {
     return destinations.filter((dest) => {
@@ -28,6 +35,14 @@ const DestinationExplorer = () => {
       return matchesSearch && matchesCountry;
     });
   }, [destinations, searchTerm, selectedCountry]);
+
+  useEffect(() => {
+    const MAX_IMAGE_PREFETCH = 48;
+    const scope = baseFilteredDestinations.slice(0, MAX_IMAGE_PREFETCH);
+    for (const d of scope) {
+      ensureCityMeta(d.countryCode, d.cityName);
+    }
+  }, [baseFilteredDestinations, ensureCityMeta]);
 
   useEffect(() => {
     if (selectedTheme === 'all') return;
@@ -53,6 +68,24 @@ const DestinationExplorer = () => {
       if (sortBy === 'name') return a.cityName.localeCompare(b.cityName);
       return 0;
     });
+
+  const destinationsWithImages = useMemo(() => {
+    return filteredDestinations.filter((d) => {
+      const key = cityKey(d.countryCode, d.cityName);
+      return cityImageStatus[key] === 'ok' && Boolean(cityImages[key]);
+    });
+  }, [filteredDestinations, cityImageStatus, cityImages]);
+
+  const imageLoading = useMemo(() => {
+    if (baseFilteredDestinations.length === 0) return false;
+    const MAX_IMAGE_PREFETCH = 48;
+    const scope = baseFilteredDestinations.slice(0, MAX_IMAGE_PREFETCH);
+    return scope.some((d) => {
+      const key = cityKey(d.countryCode, d.cityName);
+      const status = cityImageStatus[key];
+      return status === 'loading' || status === undefined;
+    });
+  }, [baseFilteredDestinations, cityImageStatus]);
 
   useEffect(() => {
     if (!selectedCityKey) return;
@@ -110,6 +143,7 @@ const DestinationExplorer = () => {
         )}
         <CountryFiltersPanel
           showFilters={showFilters}
+          countries={availableCountries}
           selectedCountry={selectedCountry}
           onChangeCountry={setSelectedCountry}
           selectedTheme={selectedTheme}
@@ -124,12 +158,13 @@ const DestinationExplorer = () => {
           }}
         />
 
-       <div className='px-10 py-10'>
+       <div className='px-6 py-7 md:px-10 md:py-10'>
          <CountryResults
-          destinations={filteredDestinations}
+            destinations={destinationsWithImages}
           themeLoading={selectedTheme !== 'all' && themeScopeUnknownCount > 0}
+            imageLoading={imageLoading}
           error={error}
-          getImageUrl={(d) => cityImages[cityKey(d.countryCode, d.cityName)] || d.image}
+            getImageUrl={(d) => cityImages[cityKey(d.countryCode, d.cityName)] || d.image}
           ensureCityMeta={ensureCityMeta}
           onSelectCity={(d: CityDestination) => {
             const key = cityKey(d.countryCode, d.cityName);

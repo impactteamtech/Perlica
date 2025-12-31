@@ -1,6 +1,6 @@
 const Title = () => {
   return (
-    <h1 className='transform text-white text-6xl text-wrap font-extrabold tracking-wide drop-shadow-lg'>
+    <h1 className='text-white text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide drop-shadow-lg leading-tight'>
       EXPLORE THE EXISTING <br/>
       <span className="text-secondary">
         DESTINATIONS

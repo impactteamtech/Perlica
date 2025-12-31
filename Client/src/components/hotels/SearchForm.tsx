@@ -50,8 +50,8 @@ const SearchForm: React.FC<SearchFormProps> = ({
   selectedCountry,
   onSearch
 }) => (
-  <div className="w-full px-4 py-8">
-    <div className="p-6">
+  <div className="w-full px-4 py-5 sm:py-8">
+    <div className="p-4 sm:p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="lg:col-span-2">
           <label className="block text-sm font-medium text-white mb-2">
@@ -61,7 +61,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
           <select
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            className="w-full  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="">Select a city</option>
             {destinations[selectedCountry].map(dest => (

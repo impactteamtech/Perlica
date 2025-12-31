@@ -29,7 +29,7 @@ const CountryHeader = ({
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-slate-900" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-20">
+      <div className="relative z-10 max-w-8xl mx-auto px-6 py-20 md:py-20">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
             <div className="flex items-center bg-secondary/50 w-45 px-2 py-1 rounded-full gap-2 mb-4">
@@ -37,7 +37,8 @@ const CountryHeader = ({
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
-              FILTERED <span style={{ color: greenBrand }}>CITIES</span>
+              THE BEAUTIFUL <span style={{ color: greenBrand }}>CITIES</span> <br />
+              WAITING FOR YOU
             </h1>
             
             <p className="text-gray-300 text-lg md:text-xl mt-4 max-w-xl font-medium">

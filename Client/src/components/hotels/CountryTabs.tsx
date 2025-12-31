@@ -21,8 +21,8 @@ const CountryTabs: React.FC<CountryTabsProps> = ({
   setDestination,
   setHotels
 }) => (
-  <div className="w-full px-4 mt-6">
-    <div className="flex gap-2 bg-white rounded-lg p-2 shadow-md">
+  <div className="w-full px-4 mt-4 sm:mt-6">
+    <div className="flex flex-col sm:flex-row gap-2 bg-white rounded-lg p-2 shadow-md">
       {(Object.keys(countryNames) as Country[]).map(code => (
         <button
           key={code}

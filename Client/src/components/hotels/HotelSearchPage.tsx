@@ -126,7 +126,7 @@ const HotelSearchPage: React.FC = () => {
   return (
     <div className="min-h-screen  flex flex-col font-sans">
       
-      <div className="relative h-[100vh] w-full flex items-center justify-center flex-col overflow-hidden">
+      <div className="relative min-h-[100svh] w-full flex items-center justify-center flex-col overflow-hidden py-20 lg:py-10">
         <div className="absolute inset-0  z-0">
           <img 
             src="/hotels-main-image.jpg" 
@@ -136,28 +136,26 @@ const HotelSearchPage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#efebe5]" />
         </div>
 
-        <div className="z-10 w-full max-w-5xl px-4 flex flex-col items-center text-center space-y-8 mt-[-50px]">
+        <div className="z-10 w-full max-w-5xl px-4 flex flex-col items-center text-center space-y-6 sm:space-y-8">
           
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-2"
+            className="space"
           >
-            <h1 className="text-4xl md:text-6xl text-white font-extrabold tracking-tight drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl text-white font-extrabold tracking-tight drop-shadow-lg">
               Find the Most Beautiful <br/> 
               <span className="text-[#04c41a]">Hotels in Africa</span>
             </h1>
-            <p className="text-gray-200 text-lg md:text-xl font-light max-w-2xl mx-auto">
-              Experience luxury and comfort in the heart of the continent.
-            </p>
+         
           </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="w-full  backdrop-blur-md border-gray-50/30 border  rounded-3xl shadow-2xl"
+            className="w-full backdrop-blur-md border-gray-50/30 border rounded-3xl shadow-2xl"
           >
               <CountryTabs
                 selectedCountry={selectedCountry}
@@ -185,17 +183,17 @@ const HotelSearchPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 relative z-20 pb-20">
+      <div className="flex-1 w-full  px-4 sm:px-6 lg:px-8 mt-0 relative z-20 pb-20">
         {hotels.length > 0 && (
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center justify-between mb-8 mt-20"
+            className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 mt-10 sm:mt-14 lg:mt-20"
           >
             <h2 className="text-4xl color-primary font-bold text-gray-900">
               STAYS
             </h2>
-            <span className="bg-orange-100 text-orange-800 text-sm font-medium px-4 py-1 rounded-full">
+            <span className="self-start sm:self-auto bg-orange-100 text-orange-800 text-sm font-medium px-4 py-1 rounded-full">
               {filteredHotels.length} results found
             </span>
           </motion.div>

@@ -17,22 +17,22 @@ const stripHtml = (html: string) => {
 };
 
 const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
-  <div className="bg-white   rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-    <div className="md:flex h-70">
-      <div className="">
+  <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="flex flex-col lg:h-66 md:flex-row">
+      <div className="w-full md:w-1/3">
         <img
           src={hotel.heroImage || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400'}
           alt={hotel.name}
-          className="w-100 h-full object-cover"
+          className="w-full h-56 sm:h-64 md:h-full object-cover"
           onError={(e) => {
             e.currentTarget.src = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400';
           }}
         />
       </div>
 
-      <div className="md:w-2/3 p-6">
-        <div className="flex justify-between items-start">
-          <div className="flex-1">
+      <div className="w-full md:w-2/3 p-4 sm:p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start">
+          <div className="flex-1 min-w-0">
             <h3 className="text-xl font-bold text-gray-800">
               {hotel.name || 'Hotel Name Not Available'}
             </h3>
@@ -75,7 +75,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
             </p>
           </div>
 
-          <div className="text-right ml-4 flex-shrink-0">
+          <div className="text-left sm:text-right sm:ml-4 flex-shrink-0">
             {hotel.minPrice !== null && !isNaN(hotel.minPrice) ? (
               <>
                 <div className="text-sm text-gray-500">From</div>
@@ -92,10 +92,10 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
           </div>
         </div>
 
-        <div className="mt-4 flex gap-3">
+        <div className="mt-4 flex flex-col sm:flex-row gap-3">
           <button
             onClick={() => onSelectHotel(hotel)}
-            className="bg-[#04c41a] hover:bg-[#039e14] text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+            className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#039e14] text-white font-semibold py-2 px-6 rounded-lg transition-colors"
           >
             View Details & Book
           </button>
@@ -104,7 +104,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
               href={`https://maps.google.com/?q=${hotel.latitude},${hotel.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-lg transition-colors"
+              className="w-full sm:w-auto text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-lg transition-colors"
             >
               View on Map
             </a>
