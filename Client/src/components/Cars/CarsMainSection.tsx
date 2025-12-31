@@ -16,8 +16,7 @@ const CarsMainSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
       </div>
 
-      {/* 2. Main Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="container mx-auto px-4 pt-10 pb-5 lg:pb-10 lg:pt-20 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left Column: Text & Value Proposition */}
@@ -27,7 +26,7 @@ const CarsMainSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full lg:w-1/2 text-white space-y-8 pt-20 lg:pt-0"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-400/30 text-green-300 text-sm font-medium backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/30 border border-secondary/70 text-white text-sm font-medium backdrop-blur-sm">
               <Star className="w-3.5 h-3.5 fill-current" />
               #1 Rated Chauffeur Service
             </div>
@@ -52,9 +51,7 @@ const CarsMainSection = () => {
           </motion.div>
 
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end pb-20 lg:pb-0">
-            <div className="w-full  scale-90 lg:scale-100 origin-top-right">
                 <CarsForm />
-            </div>
           </div>
 
         </div>
