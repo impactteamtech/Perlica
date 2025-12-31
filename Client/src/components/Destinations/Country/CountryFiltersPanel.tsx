@@ -1,9 +1,9 @@
-import type { CitySortBy, ThemeFilter } from '../../../lib/types';
-import { COUNTRIES } from './constants';
+import type { CitySortBy, CountryConfig, ThemeFilter } from '../../../lib/types';
 import { RotateCcw, Map, Palmtree, ArrowDownAz } from 'lucide-react';
 
 type CountryFiltersPanelProps = {
   showFilters: boolean;
+  countries: CountryConfig[];
   selectedCountry: string;
   onChangeCountry: (value: string) => void;
   selectedTheme: ThemeFilter;
@@ -15,6 +15,7 @@ type CountryFiltersPanelProps = {
 
 const CountryFiltersPanel = ({
   showFilters,
+  countries,
   selectedCountry,
   onChangeCountry,
   selectedTheme,
@@ -23,9 +24,6 @@ const CountryFiltersPanel = ({
   onChangeSortBy,
   onClearFilters
 }: CountryFiltersPanelProps) => {
-  
-  const greenBrand = "#0cce10";
-
   return (
     <div 
       className={`
@@ -43,16 +41,14 @@ const CountryFiltersPanel = ({
               <Map className="w-5 h-5" />
             </div>
             <select
-              style={{ 
-                boxShadow: 'none'
-              }}
               id="country-filter"
+              aria-label="Country filter"
               value={selectedCountry}
               onChange={(e) => onChangeCountry(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer outline-none hover:bg-slate-50 transition-colors"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer shadow-none outline-none focus:outline-none focus:ring-0 hover:bg-slate-50 transition-colors"
             >
               <option value="all">All Countries</option>
-              {COUNTRIES.map((country) => (
+              {countries.map((country) => (
                 <option key={country.code} value={country.name}>{country.name}</option>
               ))}
             </select>
@@ -64,14 +60,11 @@ const CountryFiltersPanel = ({
               <Palmtree className="w-5 h-5" />
             </div>
             <select
-              style={{ 
-                boxShadow: 'none',
-                outline:'none'
-              }}
               id="theme-filter"
+              aria-label="Theme filter"
               value={selectedTheme}
               onChange={(e) => onChangeTheme(e.target.value as ThemeFilter)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer outline-none hover:bg-slate-50 transition-colors"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer shadow-none outline-none focus:outline-none focus:ring-0 hover:bg-slate-50 transition-colors"
             >
               <option value="all">All Themes</option>
               <option value="beach">Beach</option>
@@ -87,14 +80,11 @@ const CountryFiltersPanel = ({
               <ArrowDownAz className="w-5 h-5" />
             </div>
             <select
-              style={{ 
-                boxShadow: 'none',
-                outline:'none'
-              }}
               id="sort-filter"
+              aria-label="Sort cities"
               value={sortBy}
               onChange={(e) => onChangeSortBy(e.target.value as CitySortBy)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer outline-none hover:bg-slate-50 transition-colors"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-transparent text-slate-700 font-semibold appearance-none cursor-pointer shadow-none outline-none focus:outline-none focus:ring-0 hover:bg-slate-50 transition-colors"
             >
               <option value="name">City Name (A-Z)</option>
             </select>
@@ -104,8 +94,7 @@ const CountryFiltersPanel = ({
           <div className="p-1">
             <button
               onClick={onClearFilters}
-              style={{ backgroundColor: greenBrand }}
-              className="w-full h-full px-6 py-3 text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
+              className="w-full h-full px-6 py-3 bg-[#0cce10] text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
             >
               <RotateCcw className="w-4 h-4" />
               Reset

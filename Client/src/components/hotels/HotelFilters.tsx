@@ -44,7 +44,7 @@ const HotelFilters: React.FC<Props> = ({
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-5 mb-8">
       {/* Top Header Row */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-50">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 pb-4 border-b border-gray-50">
         <div className="flex items-center gap-2">
           <div className="p-2 bg-[#04c41a]/10 rounded-lg">
             <SlidersHorizontal className="w-5 h-5 text-[#04c41a]" />
@@ -52,7 +52,7 @@ const HotelFilters: React.FC<Props> = ({
           <h2 className="font-bold text-gray-800 text-lg">Filter Results</h2>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <label className="flex items-center gap-2 cursor-pointer group">
             <div className="relative flex items-center">
               <input
@@ -68,7 +68,7 @@ const HotelFilters: React.FC<Props> = ({
               Available only
             </span>
           </label>
-          <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-500 uppercase tracking-wider">
+          <span className="self-start sm:self-auto px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-500 uppercase tracking-wider">
             {Math.min(visibleCount, totalCount)} / {totalCount} Hotels
           </span>
         </div>

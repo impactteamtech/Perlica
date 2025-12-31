@@ -1,8 +1,10 @@
 import  { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom"; // Assuming you use Router, otherwise use <a>
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+    const navigate = useNavigate();
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Destinations', path: '/destinations' },
@@ -84,7 +86,9 @@ const NavBar = () => {
             }`}
         >
 
-            <div className="flex items-center gap-2 cursor-pointer z-50">
+            <div
+             onClick={()=>navigate('/')}
+             className="flex items-center gap-2 cursor-pointer z-50">
                 <img 
                     src="/Perlica_logo.png" 
                     alt="Perlica Logo" 
