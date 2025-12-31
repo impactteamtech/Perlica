@@ -31,7 +31,7 @@ function App() {
   return (
   <>
   <div className="background-color">
-    <Suspense fallback={null}>
+    <Suspense fallback={<div className='w-full h-screen flex items-center justify-center text-3xl font-semibold text-black'>Loading...</div>}>
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>}/>
@@ -49,7 +49,9 @@ function App() {
             <Route index element={<Destinations />} />
             <Route path="countries" element={<Country />} />
           </Route>
+          
         </Route>
+      
         <Route path='*' element={<h1 className='text-5xl font-bold text-black w-full h-screnn flex items-center justify-center'>404 Not Found</h1>}/>
       </Routes>
     </Suspense>
