@@ -148,10 +148,10 @@ const TravelInformation = (): JSX.Element => {
   const remaining = Math.max(0, options.length - initialVisible);
 
   return (
-  <section className="w-full flex flex-col gap-6 px-4 sm:px-6 lg:px-8 pt-10 md:pt-36 pb-10">
+  <section className="w-full  flex flex-col gap-6 pt-10  pb-10">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl title-font font-mono color-primary mb-4 tracking-tight">
+      <div className="text-center mb-3 md:mb-8">
+        <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
           TRAVEL INFORMATION
         </h1>
 
@@ -171,7 +171,7 @@ const TravelInformation = (): JSX.Element => {
             </div>
 
             <div className='flex-1'>
-              <div className="p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl overflow-hidden">
+              <div className="p-1 bg-white/60 shadow-lg transition-transform transform hover:scale-105 rounded-xl overflow-hidden">
                 <img
                   className='w-full h-full object-cover block rounded-lg aspect-[16/9] sm:aspect-[4/3]'
                   src="/travel_info/visa_requirement.jpg"
@@ -182,17 +182,17 @@ const TravelInformation = (): JSX.Element => {
           </div>
           {/* bottom part */}
           <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4'>
-            <div className="relative w-full">
-              <div className="w-full overflow-hidden p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-lg transition-transform transform hover:scale-105 rounded-xl">
+            <div className="relative hidden md:block w-full">
+              <div className="w-full overflow-hidden p-1 bg-white/60 shadow-lg transition-transform transform hover:scale-105 rounded-xl">
                 <img
-                  className='w-full h-full object-cover block rounded-lg aspect-[4/3]'
+                  className='w-full  h-full object-cover block rounded-lg aspect-[4/3]'
                   src="/travel_info/health_and_safety.jpg"
                   alt="Health and safety"
                 />
               </div>
             </div>
-            <div className='w-full'>
-              <div className="w-full overflow-hidden p-1 bg-gradient-to-br from-secondary/80 via-secondary/70 to-transparent shadow-inner transition-transform transform hover:scale-105 rounded-xl">
+            <div className='w-full hidden md:block'>
+              <div className="w-full overflow-hidden p-1 bg-white/60 shadow-lg transition-transform transform hover:scale-105 rounded-xl">
                 <img
                   className='w-full h-full object-cover block rounded-lg aspect-[4/3]'
                   src="/travel_info/best_time.jpg"

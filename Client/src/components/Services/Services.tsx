@@ -36,8 +36,8 @@ const Services = (): JSX.Element => {
     <motion.section
       className="px-4 sm:px-6 lg:px-15 py-10"
     >
-      <div className="mx-auto w-full max-w-7xl">
       {/* Hero Section */}
+      <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight md:hidden text-center w-full">SERVICES</h1>
       <motion.div
         className="relative hidden  md:block overflow-hidden h-64 sm:h-80 md:h-[500px]"
    
@@ -93,7 +93,7 @@ const Services = (): JSX.Element => {
           className={
             isSmallScreen
               ? "flex w-full justify-center"
-              : "flex px-10 w-full flex-nowrap justify-center gap-4 overflow-x-auto overscroll-x-contain snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible"
+              : "flex md:px-30 xl:px-25 w-full flex-nowrap justify-center gap-4 overflow-x-auto overscroll-x-contain snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible"
           }
         >
           {visibleServices.map((service) => (
@@ -117,10 +117,11 @@ const Services = (): JSX.Element => {
 
       {/* Travel Info */}
       <motion.div
+       className="w-full"
       >
         <TravelInformation />
       </motion.div>
-      </div>
+    
     </motion.section>
   );
 };

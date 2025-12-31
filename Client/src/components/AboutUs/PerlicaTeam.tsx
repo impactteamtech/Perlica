@@ -7,22 +7,22 @@ import PingDot from "./PingDot";
 const PerlicaTeam = (): JSX.Element => {
   return (
     <motion.div
-      className="w-full px-4 sm:px-6 lg:px-16 flex min-h-screen flex-col gap-16 lg:gap-24 overflow-x-clip"
+      className="w-full px-4 sm:px-6 lg:px-16 flex flex-col gap-16 lg:gap-24 overflow-x-clip"
     >
       {/* First part */}
       <motion.div
-        className="flex flex-col py-8 md:py-10 lg:flex-row gap-12 lg:gap-10 items-center"
+        className="flex flex-col  py-8 md:py-10 lg:flex-row gap-12 lg:gap-10 items-center"
       >
         <motion.div
-          className="relative w-full lg:w-[40%] flex justify-center lg:justify-start"
+          className="relative w-full  lg:w-[40%] flex justify-center lg:justify-start"
         >
           <img
-            className="w-48 sm:w-64 md:w-75 xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-44 sm:w-64 xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team1.jpg"
             alt="team-member-1"
           />
           <img
-            className="w-56 sm:w-72 md:w-75 xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-50 sm:w-72  xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team2.jpg"
             alt="team-member-2"
           />
@@ -40,7 +40,7 @@ const PerlicaTeam = (): JSX.Element => {
             </h3>
           </div>
           <div className="w-full flex flex-col gap-2 items-center justify-center">
-            <p className="text-gray-900/80 leading-relaxed lg:leading-loose text-center text-font text-base sm:text-lg md:text-xl w-full lg:w-[80%]">
+            <p className="text-font text-center w-full lg:w-[80%]">
               Our Expert Team has combined deep local knowledge with global
               travel insight to create safaris and tours you'll never forget.
               All you have to do is explore whether it's your first safari or

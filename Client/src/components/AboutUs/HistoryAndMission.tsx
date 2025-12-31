@@ -7,7 +7,7 @@ import HotspotsMap from "./HotspotMap";
 const HistoryAndMission = (): JSX.Element => {
   return (
     <motion.div
-      className="flex flex-col gap-10 md:gap-7 py- px-4 md:px-15"
+      className="flex flex-col gap-10 md:gap-7 py- px-6 lg:px-15"
     >
       {/* div 1 */}
       <motion.div
@@ -16,11 +16,11 @@ const HistoryAndMission = (): JSX.Element => {
         <motion.div
           className="w-full lg:w-1/2 flex flex-col gap-4"
         >
-          <h1 className="color-primary title-font font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="text-4xl text-center lg:text-left lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
             WE'RE DEDICATED TO MAKE EVERY JOURNEY EXCEPTIONAL
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-font text-black/70">
-            Established in <span className="font-medium title-font">2007</span>, We deliver high-quality travel services through a
+          <p className="text-base text-center lg:text-left text-font">
+            Established in <span className="font-medium text-secondary title-font">2007</span>, We deliver high-quality travel services through a
             strong, enthusiastic, and professional multinational team.
             With extensive expertise in regional and international travel, tourism, and hospitality.
             Our mission is to provide exceptional travel experiences that exceed our clients' expectations.
