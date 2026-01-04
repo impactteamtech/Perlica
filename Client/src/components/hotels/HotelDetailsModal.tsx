@@ -225,8 +225,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
                 <span className="text-gray-400 font-medium">/ night</span>
               </div>
             </div>
-            
-            <button className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
+            {/* adding cursor pointer to book now button (yp) */}
+            <button className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#03a315] cursor-pointer text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
               Book Now
             </button>
           </div>
