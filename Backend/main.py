@@ -5,6 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import os 
 from dotenv import load_dotenv
 from router.convert_route import router
+
+# Import your translate router
+from router.translate import router as translate_router
+
 #loading our environment variables from our .env file so python can see them
 load_dotenv()
 #getting our port and host from our .env file
@@ -15,6 +19,8 @@ frontend_url = os.getenv("FRONTEND_URL")
 app = FastAPI() #initializing our fastApi app
 #our cors middleware url options
 cors_option = [backend_url, frontend_url]
+
+
 #include our route in our app
 app.include_router(router, prefix='/converter', tags=['converter'])
 app.add_middleware(
@@ -24,6 +30,9 @@ app.add_middleware(
         allow_methods=["*"],     
         allow_headers=["*"],     
     )
+
+# Include router in FastAPI app
+app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
 #our router route
 @app.get("/")
 async def read_root():
