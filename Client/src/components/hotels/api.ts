@@ -58,6 +58,52 @@ const extractHotelDetailImageUrls = (payload: unknown): string[] => {
   return toUniqueImageUrls(candidates);
 };
 
+const extractHotelWebsiteUrl = (payload: unknown): string | null => {
+  const root = (payload && typeof payload === 'object' && 'data' in (payload as Record<string, unknown>))
+    ? (payload as Record<string, unknown>).data
+    : payload;
+
+  if (!root || typeof root !== 'object') return null;
+  const obj = root as Record<string, unknown>;
+
+  const candidateKeys = [
+    'websiteUrl',
+    'website',
+    'homepage',
+    'homePage',
+    'url',
+    'hotelWebsite',
+    'officialWebsite',
+    'official_website',
+    'link'
+  ];
+
+  for (const key of candidateKeys) {
+    const val = obj[key];
+    if (typeof val === 'string' && val.trim().length > 0) return val.trim();
+  }
+
+  const contacts = obj['contacts'];
+  if (contacts && typeof contacts === 'object') {
+    const c = contacts as Record<string, unknown>;
+    for (const key of candidateKeys) {
+      const val = c[key];
+      if (typeof val === 'string' && val.trim().length > 0) return val.trim();
+    }
+  }
+
+  const contact = obj['contact'];
+  if (contact && typeof contact === 'object') {
+    const c = contact as Record<string, unknown>;
+    for (const key of candidateKeys) {
+      const val = c[key];
+      if (typeof val === 'string' && val.trim().length > 0) return val.trim();
+    }
+  }
+
+  return null;
+};
+
 export const fetchHotelDetailImages = async (hotelId: string): Promise<string[]> => {
   if (!hotelId) return [];
   const resp = await fetch(
@@ -73,6 +119,23 @@ export const fetchHotelDetailImages = async (hotelId: string): Promise<string[]>
   if (!resp.ok) return [];
   const json = (await resp.json()) as unknown;
   return extractHotelDetailImageUrls(json);
+};
+
+export const fetchHotelWebsiteUrl = async (hotelId: string): Promise<string | null> => {
+  if (!hotelId) return null;
+  const resp = await fetch(
+    `https://api.liteapi.travel/v3.0/data/hotel?hotelId=${encodeURIComponent(hotelId)}`,
+    {
+      headers: {
+        'X-API-Key': API_KEY,
+        accept: 'application/json'
+      }
+    }
+  );
+
+  if (!resp.ok) return null;
+  const json = (await resp.json()) as unknown;
+  return extractHotelWebsiteUrl(json);
 };
 
 type LiteApiFacility = {

@@ -14,12 +14,13 @@ backend_url = os.getenv("BACKEND_URL")
 frontend_url = os.getenv("FRONTEND_URL")
 app = FastAPI() #initializing our fastApi app
 #our cors middleware url options
-cors_option = [backend_url, frontend_url]
+cors_option = [v for v in [backend_url, frontend_url] if v]
 #include our route in our app
 app.include_router(router, prefix='/converter', tags=['converter'])
 app.add_middleware(
         CORSMiddleware,
         allow_origins=cors_option,
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?$",
         allow_credentials=True, 
         allow_methods=["*"],     
         allow_headers=["*"],     

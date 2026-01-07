@@ -8,6 +8,7 @@ import SearchForm from './SearchForm';
 import HotelCard from './HotelCard';
 import HotelDetailsModal from './HotelDetailsModal';
 import HotelFilters, { type HotelSortBy } from './HotelFilters';
+import HotelBookingLeadFormModal from './HotelBookingLeadFormModal';
 
 const HotelSearchPage: React.FC = () => {
   // State
@@ -21,6 +22,9 @@ const HotelSearchPage: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country>('KE');
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [bookingFormOpen, setBookingFormOpen] = useState(false);
+  const [bookingUrl, setBookingUrl] = useState<string | null>(null);
+  const [bookingHotelName, setBookingHotelName] = useState<string>('');
 
   // Filters + paging
   const [minPrice, setMinPrice] = useState<string>('');
@@ -308,7 +312,27 @@ const HotelSearchPage: React.FC = () => {
 
       <AnimatePresence>
         {selectedHotel && (
-          <HotelDetailsModal hotel={selectedHotel} onClose={() => setSelectedHotel(null)} />
+          <HotelDetailsModal
+            hotel={selectedHotel}
+            onClose={() => setSelectedHotel(null)}
+            onBookNow={(url) => {
+              setSelectedHotel(null);
+              setBookingUrl(url);
+              setBookingHotelName(selectedHotel.name);
+              setBookingFormOpen(true);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {bookingFormOpen && (
+          <HotelBookingLeadFormModal
+            open={bookingFormOpen}
+            bookingUrl={bookingUrl}
+            hotelName={bookingHotelName}
+            onClose={() => setBookingFormOpen(false)}
+          />
         )}
       </AnimatePresence>
     </div>

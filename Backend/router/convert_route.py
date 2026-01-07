@@ -1,7 +1,12 @@
 #using apiRouter for better route management
 
 from fastapi import APIRouter
+from fastapi import HTTPException
 from fastapi.params import Query
+from urllib.parse import parse_qs, unquote, urlparse
+import ipaddress
+import socket
+import requests
 #importing our currency function we created in utils
 from utils.currency import currency_converter
 #initializing our router 
