@@ -31,7 +31,7 @@ app.add_middleware(
         allow_headers=["*"],     
     )
 
-# Include router in FastAPI app
+# Include router in FastAPI app for translation
 app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
 #our router route
 @app.get("/")
