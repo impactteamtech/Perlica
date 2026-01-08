@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FaInstagram, FaFacebook, FaYoutube, FaTiktok,FaPhone, FaTwitter } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaYoutube, FaTiktok, FaPhone, FaTwitter } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import GoTopAndShare from './GoTopAndShare'
 import { MdEmail } from "react-icons/md";
@@ -8,18 +8,17 @@ const Footer = () => {
   const socialIcons = [
     { name: 'Instagram', icon: <FaInstagram />, link: '', color: 'hover:text-pink-600' },
     { name: 'Facebook', icon: <FaFacebook />, link: '', color: 'hover:text-sky-400' },
-    { name: 'Youtube', icon: <FaYoutube />, link: '', color: 'hover:text-red-600' },
     { name: 'Tiktok', icon: <FaTiktok />, link: '', color: 'hover:text-black' },
-    { name: 'Twitter', icon: <FaTwitter />, link: '', color: 'hover:text-sky-300' },
   ]
 
-  const quickLinks = [
-    'Home',
-    'Destination',
-    'Services',
-    'About Us',
-    'Partner With Us',
-    'Contact',
+  const quickLinks: { name: string; to: string; state?: { scrollTo: string } }[] = [
+    { name: 'Home', to: '/' },
+    { name: 'Destination', to: '/destinations' },
+    { name: 'Hotels', to: '/hotels' },
+    { name: 'Cars', to: '/cars' },
+    { name: 'About Us', to: '/', state: { scrollTo: 'about' } },
+    { name: 'Partner With Us', to: '/', state: { scrollTo: 'partner' } },
+    { name: 'Contact', to: '/', state: { scrollTo: 'contact' } },
   ]
 
   return (
@@ -45,7 +44,7 @@ const Footer = () => {
         {/* Footer Main Content */}
         <div className="w-full max-w-7xl flex flex-col lg:flex-row justify-between  gap-12 px-6 lg:px-8">
           {/* Logo Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -58,34 +57,34 @@ const Footer = () => {
                 src="/Perlica_logo.png"
               />
             </motion.div>
-              <div className="flex flex-col gap-4 text-gray-100">
+            <div className="flex flex-col gap-4 text-gray-100">
               <div className="flex items-center gap-3">
-                <MdEmail size={30}/>
-                <span className='text-xl'>perlicatoursandtravel.com</span>
+                <MdEmail size={30} />
+                <span className='text-md xl:text-lg'>admin@perlicatoursandtravel.com</span>
               </div>
               <div className="flex  items-center gap-3">
-                <FaPhone size={30}/>
-                <span className='text-xl'>+254 712 345 678</span>
+                <FaPhone size={30} />
+                <span className='text-md xl:text-lg'>+254 712 345 678</span>
               </div>
             </div>
           </motion.div>
 
           {/* Social Media */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col gap-5 items-center"
           >
-          <div>
-            <img
-              className='w-90 hover:translate-x-3 transition-transform ease-linear duration-200'
-              src="/tour-car.png" alt="" 
-            />
-           </div>
-           <div className='flex-col flex items-center '>
-             <h3 className="text-4xl title-font font-bold text-red-600 mb-6">
-              Follow Our Journey
+            <div>
+              <img
+                className='w-90 hover:translate-x-3 transition-transform ease-linear duration-200'
+                src="/tour-car.png" alt=""
+              />
+            </div>
+            <div className='flex-col flex items-center '>
+              <h3 className="text-4xl title-font font-bold text-red-600 mb-6">
+                Follow Our Journey
               </h3>
               <div className="flex flex-wrap justify-center gap-6">
                 {socialIcons.map((iconDetail, index) => (
@@ -106,12 +105,12 @@ const Footer = () => {
                   </motion.a>
                 ))}
               </div>
-           </div>
-          
+            </div>
+
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -121,31 +120,32 @@ const Footer = () => {
               Quick Links
             </h3>
             <div className="flex flex-col gap-5">
-                {quickLinks.map((linkName, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.08 * index }}
+              {quickLinks.map((link, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.08 * index }}
+                >
+                  <Link
+                    className="text-gray-100 hover:text-white text-lg font-medium transition-all duration-300 flex items-center gap-2 group"
+                    to={link.to}
+                    state={link.state}
                   >
-                    <Link
-                      className="text-gray-100 hover:text-white text-lg font-medium transition-all duration-300 flex items-center gap-2 group"
-                      to=""
-                    >
-                      <span className="w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="relative overflow-hidden">
-                        <span className="inline-block transform transition-transform duration-300 hover:text-green-400">{linkName}</span>
-                        <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-green-400 to-black group-hover:w-full transition-all duration-300" />
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                    <span className="w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="relative overflow-hidden">
+                      <span className="inline-block transform transition-transform duration-300 hover:text-green-400">{link.name}</span>
+                      <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-green-400 to-black group-hover:w-full transition-all duration-300" />
+                    </span>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
 
         {/* Enhanced Divider */}
-        <motion.div 
+        <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: '80%' }}
           transition={{ duration: 1, delay: 0.6 }}
@@ -164,7 +164,7 @@ const Footer = () => {
             <span className="text-lg text-gray-300">All rights reserved</span>
           </h1>
         </motion.div>
-      
+
       </div>
     </footer>
   )

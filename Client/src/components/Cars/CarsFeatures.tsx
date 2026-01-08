@@ -44,7 +44,7 @@ const CarsFeatures = () => {
     <section className="py-20 px-6 max-w-7xl mx-auto">
       {/* Header with Decorative Element */}
       <div className="mb-20 text-center">
-        <h2 className="text-4xl md:text-6xl title-font text-black">
+        <h2 className="text-4xl lg:text-5xl 2xl:text-6xl title-font text-black">
           WHY CHOOSE OUR <span className="color-primary relative">
             SERVICES
             <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none">

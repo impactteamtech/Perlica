@@ -4,7 +4,7 @@ const PopularDestinations = () => {
 
   return (
     <section className="w-full flex flex-col gap-6 px-6 md:px-10 py-6">
-      <h2 className="text-4xl text-center lg:text-left lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight ">Popular Destinations</h2>
+      <h2 className="text-4xl text-center lg:text-left lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight ">Popular Destinations</h2>
       <div className="grid grid-cols-2 md:h-150 md:grid-cols-4 md:grid-rows-2 gap-4">
         
         {famousDestinations.map((destination, index) => {

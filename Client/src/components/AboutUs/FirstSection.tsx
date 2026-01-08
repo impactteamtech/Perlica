@@ -24,7 +24,10 @@ const FirstSection = ():React.JSX.Element => {
                     />
             </div>
             <div className='w-full lg:w-100'>
-                <h1 className='text-4xl lg:text-5xl xl:text-5xl color-primary font-mono title-font leading-tight text-center lg:text-left'>Perlica Tours & Travel where professionalism meets adventure</h1>
+                <h1 
+                    className='text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl color-primary font-mono title-font leading-tight text-center'>
+                        Professional Adventures Tailored for You
+                    </h1>
             </div>
                 <div>
                     <div className='w-full sm:w-[26rem] lg:w-55 h-72 sm:h-[26rem] lg:h-65 relative bottom-0 lg:bottom-10 mx-auto lg:mx-0'> 
@@ -42,10 +45,8 @@ const FirstSection = ():React.JSX.Element => {
         </div>
 
         <div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-30 mt-10 lg:mt-0'>
-            <div className='flex-col gap-4 flex w-full lg:w-[20%] lg:mt-18 items-center lg:items-start text-center lg:text-left'>
-                <div>
-                    <h2  className='text-5xl sm:text-6xl lg:text-7xl font-bold'>4.9/5</h2>
-                </div>
+            <div className='flex-col   flex w-full lg:w-[20%] lg:mt-30 items-center lg:items-start text-center lg:text-left'>
+               
                 <div className='flex gap-2 items-center'>
                     {Array.from({length:5}).map((_, index) => (
                         <IoStarSharp 
@@ -54,28 +55,10 @@ const FirstSection = ():React.JSX.Element => {
                         />
                     ))}
                 </div>
-                <div className='flex flex-col sm:flex-row gap-2 items-center'>
-                    <div className='flex flex-row mt-4 items-center justify-center lg:justify-start'>
-                        {persons.map((person, index) => (
-                            <img
-                                key={index}
-                                src={person}
-                                alt={`Partner ${index + 1}`}
-                                className={`${index === 0 ? '' : '-ml-4'} w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-sm object-cover`}
-                            />
-                        ))}
-                        <button
-                            type='button'
-                            aria-label='Add partner'
-                            className='w-10 h-10 md:w-12 md:h-12  -ml-4 rounded-full bg-[#0cce10] text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
-                        >
-                            <GoPlus size={30} className='text-white' />
-                        </button>
-                    </div>
-                    <p className='text-wrap text-base sm:text-md w-[50%] lg:w-[10%]'>
-                        100K Happy Customers
-                    </p>
+                 <div>
+                    <h2  className='text-5xl sm:text-6xl lg:text-7xl font-bold'>4.9/5</h2>
                 </div>
+                
             </div>
             <div className='flex w-full lg:w-[80%] gap-8 lg:gap-5 items-center flex-col lg:flex-row'>
                 <div className='flex w-full lg:w-[60%] items-center gap-6 lg:gap-8 flex-col sm:flex-row'> 

@@ -28,6 +28,14 @@ GOOGLE_SHEET_WEBAPP_URL = os.getenv(
 )
 
 
+class ContactRequest(BaseModel):
+    fullName: str
+    email: EmailStr
+    phoneNumber: Optional[str] = None
+    subject: str
+    message: str
+
+
 @router.post("/send-booking-email")
 def send_booking_email(booking: BookingRequest):
     if not BREVO_API_KEY:
@@ -213,3 +221,151 @@ def send_booking_email(booking: BookingRequest):
         raise HTTPException(status_code=status_code, detail=detail_message)
     except requests.exceptions.RequestException as exc:
         raise HTTPException(status_code=502, detail="Unable to reach email service") from exc
+
+
+@router.post("/send-contact-email")
+def send_contact_email(contact: ContactRequest):
+    """Handle contact form submissions.
+
+    Sends a notification email to the internal team and a thank-you email
+    to the user who submitted the form.
+    """
+
+    if not BREVO_API_KEY:
+        raise HTTPException(status_code=500, detail="Brevo API key not configured")
+
+    if not SENDER_EMAIL or not NOTIFICATION_EMAIL:
+        raise HTTPException(status_code=500, detail="Email sender/recipient not configured")
+
+    url = "https://api.brevo.com/v3/smtp/email"
+
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json",
+    }
+
+    # 1) Internal notification email
+    internal_html = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>New Contact Message</title>
+        </head>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f9fafb; color: #111827;">
+            <div style="max-width: 640px; margin: 0 auto; padding: 24px; background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 16px; font-size: 22px;">New Contact Form Submission</h2>
+                <p style="margin: 0 0 16px; color: #4b5563;">You have received a new message from the website contact form.</p>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
+                    <tr>
+                        <td style="padding: 8px 0; font-size: 12px; text-transform: uppercase; color: #6b7280; width: 140px;">Name</td>
+                        <td style="padding: 8px 0; color: #111827; font-weight: 600;">{contact.fullName}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; font-size: 12px; text-transform: uppercase; color: #6b7280;">Email</td>
+                        <td style="padding: 8px 0; color: #111827;">{contact.email}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; font-size: 12px; text-transform: uppercase; color: #6b7280;">Phone</td>
+                        <td style="padding: 8px 0; color: #111827;">{contact.phoneNumber or '-'} </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; font-size: 12px; text-transform: uppercase; color: #6b7280;">Subject</td>
+                        <td style="padding: 8px 0; color: #111827;">{contact.subject}</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+                    <div style="font-size: 12px; text-transform: uppercase; color: #6b7280; margin-bottom: 4px;">Message</div>
+                    <p style="margin: 0; white-space: pre-line; color: #111827;">{contact.message}</p>
+                </div>
+            </div>
+        </body>
+        </html>
+    """
+
+    internal_text = (
+        "New contact form message.\n"
+        f"Name: {contact.fullName}\n"
+        f"Email: {contact.email}\n"
+        f"Phone: {contact.phoneNumber or '-'}\n"
+        f"Subject: {contact.subject}\n\n"
+        f"Message:\n{contact.message}\n"
+    )
+
+    internal_payload = {
+        "sender": {"name": SENDER_NAME, "email": SENDER_EMAIL},
+        "to": [{"email": NOTIFICATION_EMAIL, "name": NOTIFICATION_NAME}],
+        "replyTo": {"email": contact.email, "name": contact.fullName},
+        "subject": f"New contact message: {contact.subject}",
+        "htmlContent": internal_html,
+        "textContent": internal_text,
+    }
+
+    try:
+        internal_response = requests.post(url, json=internal_payload, headers=headers, timeout=15)
+        internal_response.raise_for_status()
+    except requests.exceptions.HTTPError as exc:
+        status_code = exc.response.status_code if exc.response is not None else 502
+        detail_message = "Email service rejected the contact request."
+        if exc.response is not None:
+            try:
+                body = exc.response.json()
+                detail_message = body.get("message") or body.get("detail") or detail_message
+            except ValueError:
+                detail_message = exc.response.text or detail_message
+        raise HTTPException(status_code=status_code, detail=detail_message)
+    except requests.exceptions.RequestException as exc:
+        raise HTTPException(status_code=502, detail="Unable to reach email service") from exc
+
+    # 2) Thank-you email to the user (best-effort; failure does not block the request)
+    thank_you_html = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Thank You for Contacting Perlica Travel</title>
+        </head>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f9fafb; color: #111827;">
+            <div style="max-width: 640px; margin: 0 auto; padding: 24px; background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 16px; font-size: 22px;">Thank You for Reaching Out</h2>
+                <p style="margin: 0 0 12px; color: #4b5563;">Hi {contact.fullName},</p>
+                <p style="margin: 0 0 12px; color: #4b5563;">
+                    Thank you for contacting Perlica Travel. We have received your message about
+                    <strong> {contact.subject} </strong> and our team will review it shortly.
+                </p>
+                <p style="margin: 0 0 12px; color: #4b5563;">
+                    A member of our team will get back to you using the contact details you provided.
+                </p>
+                <p style="margin: 0; color: #4b5563;">Best regards,<br />Perlica Travel Team</p>
+            </div>
+        </body>
+        </html>
+    """
+
+    thank_you_text = (
+        "Thank you for contacting Perlica Travel. "
+        "We have received your message and will get back to you shortly."
+    )
+
+    thank_you_payload = {
+        "sender": {"name": SENDER_NAME, "email": SENDER_EMAIL},
+        "to": [{"email": contact.email, "name": contact.fullName}],
+        "replyTo": {"email": NOTIFICATION_EMAIL, "name": NOTIFICATION_NAME},
+        "subject": "We have received your message",
+        "htmlContent": thank_you_html,
+        "textContent": thank_you_text,
+    }
+
+    try:
+        thank_you_response = requests.post(url, json=thank_you_payload, headers=headers, timeout=15)
+        thank_you_response.raise_for_status()
+    except requests.exceptions.RequestException:
+        # Log failure server-side in real deployment; for now we just ignore it
+        print("Failed to send thank-you contact email to user")
+
+    return {"message": "Contact message sent successfully"}

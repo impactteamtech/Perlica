@@ -115,7 +115,7 @@ const Reviews = (): JSX.Element => {
       variants={containerVariants}
     >
         <div className="w-full flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-           <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight text-center sm:text-left">
+           <h1 className="text-4xl lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight text-center sm:text-left">
             WHAT PEOPLE SAY
            </h1>
           <div className="flex gap-3 sm:gap-4 justify-center sm:justify-end">

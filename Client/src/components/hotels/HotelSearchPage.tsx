@@ -130,7 +130,7 @@ const HotelSearchPage: React.FC = () => {
   return (
     <div className="min-h-screen  flex flex-col font-sans">
       
-      <div className="relative min-h-[100svh] w-full flex items-center justify-center flex-col overflow-hidden py-20 lg:py-10">
+      <div className="relative min-h-[100svh] w-full flex items-center justify-center flex-col overflow-hidden py-20 lg:py-15 2xl:py-10">
         <div className="absolute inset-0  z-0">
           <img 
             src="/hotels-main-image.jpg" 
@@ -148,7 +148,7 @@ const HotelSearchPage: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="space"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl text-white font-extrabold tracking-tight drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl 2xl:text-6xl text-white font-extrabold tracking-tight drop-shadow-lg">
               Find the Most Beautiful <br/> 
               <span className="text-[#04c41a]">Hotels in Africa</span>
             </h1>
