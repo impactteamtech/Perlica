@@ -117,7 +117,6 @@ const unwrapGoogleRedirect = (inputUrl: string): string | null => {
   const decoded = decodeMaybeTwice(candidate).trim();
   if (!decoded) return null;
 
-  // Recursively unwrap nested Google wrappers
   if (/^https?:\/\/[^/]*google\./i.test(decoded)) {
     return unwrapGoogleRedirect(decoded);
   }

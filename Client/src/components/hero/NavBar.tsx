@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom"; // Assuming you use Router, otherwise use <a>
+import { NavLink } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import world_translate from "/world_icon.png";
@@ -45,7 +45,6 @@ const NavBar = () => {
     };
 
 
-    // Add these variables at the top of your component scope (outside the function)
     let originalTexts: string[] = [];
     let textNodes: Text[] = [];
     let swahiliTranslations: string[] = []; // Cache for Swahili translations
@@ -111,14 +110,11 @@ const NavBar = () => {
         try {
             console.log(`Current mode: ${isSwahiliMode ? 'Swahili' : 'English'}`);
 
-            // Collect texts if needed (only on first translation)
             if (textNodes.length === 0) {
                 collectTextNodes();
             }
 
-            // Toggle between English and Swahili
             if (isSwahiliMode) {
-                // Switch back to English
                 revertToEnglish();
                 isSwahiliMode = false;
                 updateButtonText(); // Update button text
@@ -285,7 +281,6 @@ const NavBar = () => {
                     />
                 </div>
 
-                {/* --- Desktop Nav --- */}
                 <div className="hidden md:flex items-center gap-8">
                     {navLinks.map((link, i) => {
                         const baseClasses = `group relative lg:text-md xl:text-lg font-medium tracking-wide transition-colors duration-300 ${isScrolled ? "text-black hover:text-secondary" : "text-white/90 hover:text-white"
