@@ -26,11 +26,14 @@ app.include_router(router, prefix='/converter', tags=['converter'])
 #FIXED CORS CONFIG (Render-safe)
 app.add_middleware(
         CORSMiddleware,
-        allow_origins=cors_option,
+        allow_origins=["https://www.perlicatoursandtravel.com"],
         allow_credentials=True, 
         allow_methods=["*"],     
         allow_headers=["*"],     
     )
+
+print("CORS OPTIONS:", cors_option)
+
 
 # Include router in FastAPI app for translation
 app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
