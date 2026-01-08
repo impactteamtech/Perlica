@@ -18,6 +18,7 @@ import './index.css'
 import './styles/basic.css'
 import App from './App.tsx'
 import { BrowserRouter } from "react-router-dom";
+import { Toaster } from 'react-hot-toast'
 
 // importing customs on main entry of the app (yp)
 createRoot(document.getElementById('root')!).render(
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <App />
+      <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
     </BrowserRouter>
   </StrictMode>,
 )

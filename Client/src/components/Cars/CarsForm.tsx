@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin,ArrowRight, User, Mail, Phone } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import GooglePlacesInput from './GooglePlacesInput';
 
 interface FormData {
@@ -14,19 +14,20 @@ interface FormData {
 }
 
 const CarsForm = () => {
-    const navigate = useNavigate();
-  
+    const backendBaseUrl = import.meta.env.VITE_BACKEND_URL ?? 'http://127.0.0.1:8000';
 
-    const [formData, setFormData] = useState<FormData>({
-        pickupDate: '',
+    const [formData, setFormData] = useState<FormData>(() => ({
+        pickupDate: new Date().toISOString().split('T')[0],
         pickupTime: '',
         toDestination: '',
         email: '',
         phoneNumber: '',
         fullName: ''
-    });
+    }));
 
     const [errors, setErrors] = useState<Partial<FormData>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -72,22 +73,54 @@ const CarsForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
         if (!validateForm()) {
             return;
         }
 
-        const queryParams = new URLSearchParams({
-            pickupDate: formData.pickupDate,
-            pickupTime: formData.pickupTime,
-            toDestination: formData.toDestination,
-            email: formData.email,
-            phoneNumber: formData.phoneNumber,
-            fullName: formData.fullName
-        }).toString();
-        navigate(`/cars/existingcars?${queryParams}`);
+        setSubmitError(null);
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch(`${backendBaseUrl}/send-booking-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                let message = 'We could not submit your booking. Please try again.';
+                try {
+                    const errorBody = await response.json();
+                    if (typeof errorBody?.detail === 'string') {
+                        message = errorBody.detail;
+                    } else if (Array.isArray(errorBody?.detail)) {
+                        message = errorBody.detail.map((entry: unknown) => {
+                            if (typeof entry === 'string') return entry;
+                            if (entry && typeof entry === 'object' && 'msg' in entry) {
+                                return (entry as { msg: string }).msg;
+                            }
+                            return '';
+                        }).filter(Boolean).join(', ');
+                    }
+                } catch (parseError) {
+                    console.error('Failed to parse booking error response', parseError);
+                }
+                throw new Error(message);
+            }
+            toast.success('Thanks for your request! Our team will get back to you shortly.');
+
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Unexpected error submitting your booking.';
+            toast.error(message);
+            setSubmitError(message);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -100,12 +133,6 @@ const CarsForm = () => {
             {/* Main Card Container */}
             <div className="bg-black/20 rounded-xl shadow-2xl overflow-hidden border border-gray-100">
                 
-                {/* Header Section - Minimal & Clean */}
-                <div className="bg-primary px-8 py-6 text-white">
-                    <div>
-                        <h2 className="text-3xl w-full text-center font-bold">Book Your Ride</h2>
-                    </div>
-                </div>
 
                 {/* Form Section */}
                 <div className="p-8">
@@ -116,7 +143,7 @@ const CarsForm = () => {
                             <h3 className="text-sm font-bold text-gray-50 uppercase tracking-wider">Your Information</h3>
                             
                             {/* Full Name */}
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                                 <label htmlFor="car-fullName" className="text-sm font-semibold text-gray-50 flex items-center gap-2">
                                     <User className="w-4 h-4 text-green-600" />
                                     Full Name
@@ -183,7 +210,7 @@ const CarsForm = () => {
                         </div>
 
                         {/* Trip Details Section */}
-                        <div className="rounded-2xl p-6 space-y-5">
+                        <div className="rounded-2xl p-6 space-y-2">
                             <h3 className="text-sm font-bold text-gray-50 uppercase tracking-wider">Trip Details</h3>
                             
                             {/* Date and Time Row */}
@@ -250,11 +277,30 @@ const CarsForm = () => {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             type="submit"
-                            className="w-full bg-secondary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all hover:shadow-lg active:shadow-md"
+                            disabled={isSubmitting}
+                            className="w-full bg-secondary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all hover:shadow-lg active:shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            Book Your Ride
-                            <ArrowRight className="w-5 h-5" />
+                            {isSubmitting ? (
+                                <>
+                                    <span
+                                        className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+                                        aria-hidden="true"
+                                    />
+                                    Sending...
+                                </>
+                            ) : (
+                                <>
+                                    Book Your Ride
+                                    <ArrowRight className="w-5 h-5" />
+                                </>
+                            )}
                         </motion.button>
+
+                        {submitError && (
+                            <p className="text-sm text-red-400 text-center" role="alert">
+                                {submitError}
+                            </p>
+                        )}
 
                     </form>
                 </div>

@@ -93,9 +93,10 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
         </div>
 
         <div className="mt-4 flex flex-col sm:flex-row gap-3">
+          {/* adding cursor pointer to button element (yp) */}
           <button
             onClick={() => onSelectHotel(hotel)}
-            className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#039e14] text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+            className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#039e14] cursor-pointer text-white font-semibold py-2 px-6 rounded-lg transition-colors"
           >
             View Details & Book
           </button>

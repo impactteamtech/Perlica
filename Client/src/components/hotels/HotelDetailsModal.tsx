@@ -251,7 +251,6 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [fetchedWebsiteUrl, setFetchedWebsiteUrl] = useState<string | null>(null);
   const [resolvedBookingUrl, setResolvedBookingUrl] = useState<string | null>(null);
-  const [isResolvingBookingUrl, setIsResolvingBookingUrl] = useState<boolean>(false);
   
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -263,7 +262,6 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
     setDetailImages([]);
     setFetchedWebsiteUrl(null);
     setResolvedBookingUrl(null);
-    setIsResolvingBookingUrl(false);
 
     fetchHotelDetailImages(hotel.id)
       .then((imgs) => {
@@ -343,7 +341,6 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
       const preferred = normalizeExternalUrl(websiteUrl) || normalizeExternalUrl(fetchedWebsiteUrl);
       if (preferred && !isGoogleHost(preferred)) {
         setResolvedBookingUrl(preferred);
-        setIsResolvingBookingUrl(false);
         return;
       }
 
@@ -351,7 +348,6 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
       const local = normalizeExternalUrl(unwrapped || '');
       if (local && !isGoogleHost(local)) {
         setResolvedBookingUrl(local);
-        setIsResolvingBookingUrl(false);
         return;
       }
 
@@ -359,11 +355,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
       // Only do this for Google-derived URLs.
       if (!bookingUrl || !isGoogleHost(bookingUrl)) {
         setResolvedBookingUrl(null);
-        setIsResolvingBookingUrl(false);
         return;
       }
-
-      setIsResolvingBookingUrl(true);
       const resolved = await withTimeout(resolveFinalUrlViaBackend(bookingUrl), 8000, '');
       if (cancelled) return;
 
@@ -375,14 +368,11 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
       } else {
         setResolvedBookingUrl(null);
       }
-
-      setIsResolvingBookingUrl(false);
     };
 
     run().catch(() => {
       if (cancelled) return;
       setResolvedBookingUrl(null);
-      setIsResolvingBookingUrl(false);
     });
 
     return () => {
@@ -510,10 +500,10 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
             <button
               type="button"
               onClick={() => {
-                if (!resolvedBookingUrl || isResolvingBookingUrl) return;
-                onBookNow(resolvedBookingUrl);
+                const urlToUse = resolvedBookingUrl || bookingUrl;
+                onBookNow(urlToUse);
               }}
-              disabled={!resolvedBookingUrl || isResolvingBookingUrl}
+              disabled={false}
               className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               Book Now

@@ -118,7 +118,8 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <button
         onClick={onSearch}
         disabled={loading}
-        className="w-full mt-6 bg-[#04c41a] hover:bg-[#04c41a]/80 text-white font-semibold py-4 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        // adding cursor pointer to search button (yp)
+        className="w-full mt-6 bg-[#04c41a] hover:bg-[#04c41a]/80 text-white cursor-pointer font-semibold py-4 px-6 rounded-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {loading ? (
           <>

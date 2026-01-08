@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, Star } from 'lucide-react';
+import {Star } from 'lucide-react';
 import CarsForm from './CarsForm';
 
 const CarsMainSection = () => {
@@ -41,13 +40,6 @@ const CarsMainSection = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Link to="/cars/existingcars" className="group px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-slate-900 transition-all duration-300 flex items-center gap-2">
-                View Our Fleet
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-    
-            </div>
           </motion.div>
 
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end pb-20 lg:pb-0">

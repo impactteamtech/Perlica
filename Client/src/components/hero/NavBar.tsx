@@ -2,6 +2,7 @@ import  { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom"; // Assuming you use Router, otherwise use <a>
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import world_translate from "/world_icon.png";
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -36,6 +37,185 @@ const NavBar = () => {
             document.body.style.overflow = 'unset';
         }
     }, [isMenuOpen]);
+
+
+
+
+
+
+            // translate starts
+
+        // Add these variables at the top of your component scope (outside the function)
+        let originalTexts: string[] = [];
+        let textNodes: Text[] = [];
+        let swahiliTranslations: string[] = []; // Cache for Swahili translations
+        let isSwahiliMode = false; // Track current language state
+
+        function collectTextNodes() {
+            originalTexts = [];
+            textNodes = [];
+
+            const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode(node) {
+                        if (
+                            node.nodeValue &&
+                            node.nodeValue.trim().length > 1 &&
+                            node.parentElement &&
+                            !["SCRIPT", "STYLE"].includes(node.parentElement.tagName)
+                        ) {
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                        return NodeFilter.FILTER_REJECT;
+                    },
+                }
+            );
+
+            let node: Text | null;
+            while ((node = walker.nextNode() as Text | null)) {
+                textNodes.push(node);
+                originalTexts.push(node.nodeValue ?? "");
+            }
+
+            console.log("Collected text nodes:", textNodes.length);
+        }
+
+        // Helper function to apply translations
+        function applyTranslations(translations: string[]) {
+            requestAnimationFrame(() => {
+                translations.forEach((t: string, i: number) => {
+                    const node = textNodes[i];
+                    if (node) {
+                        node.nodeValue = t || originalTexts[i] || "";
+                    }
+                });
+                console.log("Translations applied!");
+            });
+        }
+
+        // Helper function to revert to English
+        function revertToEnglish() {
+            requestAnimationFrame(() => {
+                textNodes.forEach((node, i) => {
+                    if (node && originalTexts[i]) {
+                        node.nodeValue = originalTexts[i];
+                    }
+                });
+            });
+            console.log("Reverted to original English text");
+        }
+
+        async function translatePage() {
+            try {
+                console.log(`Current mode: ${isSwahiliMode ? 'Swahili' : 'English'}`);
+                
+                // Collect texts if needed (only on first translation)
+                if (textNodes.length === 0) {
+                    collectTextNodes();
+                }
+                
+                // Toggle between English and Swahili
+                if (isSwahiliMode) {
+                    // Switch back to English
+                    revertToEnglish();
+                    isSwahiliMode = false;
+                    updateButtonText(); // Update button text
+                    return;
+                }
+                
+                // We're switching to Swahili
+                console.log(`Translating ${originalTexts.length} text nodes to Swahili`);
+                
+                // Check if we have cached Swahili translations
+                if (swahiliTranslations.length === 0) {
+                    // No cache - fetch from API
+                    console.log("No cache found, calling API...");
+                    console.log("Sending to backend:", originalTexts.slice(0, 3));
+                    
+                    const res = await fetch("http://127.0.0.1:8000/translate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ 
+                            texts: originalTexts, 
+                            target: "sw" 
+                        }),
+                    });
+
+                    const data = await res.json();
+                    console.log("Backend response received");
+
+                    // Handle response
+                    let translations: string[] = [];
+                    
+                    if (data.translations && Array.isArray(data.translations)) {
+                        translations = data.translations;
+                        // Cache the translations for future use
+                        swahiliTranslations = [...translations];
+                        console.log("Translations cached for future use");
+                    } else if (data.error) {
+                        console.error("Translation error:", data.error);
+                        return;
+                    }
+                    
+                    console.log(`Received ${translations.length} translations`);
+                    
+                    // Apply the translations
+                    if (translations.length > 0) {
+                        applyTranslations(translations);
+                        isSwahiliMode = true;
+                        updateButtonText(); // Update button text
+                    } else {
+                        console.error("No translations received");
+                    }
+                } else {
+                    // Use cached translations
+                    console.log(`Using cached translations (${swahiliTranslations.length} items)`);
+                    applyTranslations(swahiliTranslations);
+                    isSwahiliMode = true;
+                    updateButtonText(); // Update button text
+                }
+            } catch (error) {
+                console.error("Translation failed:", error);
+            }
+        }
+
+        // Function to update button text
+        function updateButtonText() {
+            const button = document.getElementById('translate-sw-button');
+            if (button) {
+                const icon = button.querySelector('img');
+                const textSpan = button.querySelector('span');
+                
+                if (textSpan) {
+                    textSpan.textContent = isSwahiliMode ? 'English' : 'Swahili';
+                } else {
+                    // Create span if it doesn't exist
+                    const span = document.createElement('span');
+                    span.textContent = isSwahiliMode ? 'English' : 'Swahili';
+                    
+                    // Remove existing text nodes and add the span
+                    Array.from(button.childNodes).forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            button.removeChild(node);
+                        }
+                    });
+                    
+                    if (icon) {
+                        button.appendChild(icon);
+                    }
+                    button.appendChild(span);
+                }
+            }
+        }
+            // translate ends
+
+
+
+
+
+
 
     const mobileMenuOverlay = (
         <div
@@ -110,7 +290,19 @@ const NavBar = () => {
                             ${isScrolled ? "bg-secondary" : "bg-white"}`} 
                         />
                     </NavLink>
+                    
                 ))}
+
+                 {/* Translate Btn */}
+                    <button 
+                        className="translateBtn flex items-center justify-center font-inherit cursor-pointer" 
+                        id="translate-sw-button" 
+                        onClick={() => translatePage()}
+                    >
+                        <img src={world_translate} className="w-5 mr-1" alt="" />
+                        <span>Swahili</span>
+                    </button>
+                 
             </div>
 
     
@@ -127,7 +319,20 @@ const NavBar = () => {
                         </svg>
                     )}
                 </button>
+
+                            {/* Translate Btn */}
+                    <button 
+                        className="translateBtn flex items-center justify-center font-inherit cursor-pointer" 
+                        id="translate-sw-button" 
+                        onClick={() => translatePage()}
+                    >
+                        <img src={world_translate} className="w-5 mr-1" alt="" />
+                        <span>Swahili</span>
+                    </button>
+
+               
             </div>
+
         </nav>
         {isClient ? createPortal(mobileMenuOverlay, document.body) : null}
         </>

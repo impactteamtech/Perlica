@@ -7,8 +7,8 @@ import CountryTabs from './CountryTabs';
 import SearchForm from './SearchForm';
 import HotelCard from './HotelCard';
 import HotelDetailsModal from './HotelDetailsModal';
-import HotelFilters, { type HotelSortBy } from './HotelFilters';
 import HotelBookingLeadFormModal from './HotelBookingLeadFormModal';
+import HotelFilters, { type HotelSortBy } from './HotelFilters';
 
 const HotelSearchPage: React.FC = () => {
   // State
