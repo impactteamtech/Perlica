@@ -1,0 +1,24 @@
+import React, {lazy } from 'react';
+import HeroSection from '../hero/HeroSection';
+
+const AboutUs = lazy(() => import('../AboutUs/AboutUs'));
+const Services = lazy(() => import('../Services/Services'));
+const Events = lazy(() => import('../Events/Events'));
+const Reviews = lazy(() => import('../Reviews/Reviews'));
+const PartnerWithUs = lazy(() => import('../PartnerWithUs/PartnerWithUs'));
+const ContactUs = lazy(() => import('../contact/ContactUs'));
+const Home: React.FC = () => {
+    return (
+        <>
+            <HeroSection />
+            <AboutUs />
+            <Services />
+            <Events />
+            <Reviews />
+            <PartnerWithUs />
+            <ContactUs />
+        </>
+    );
+};
+
+export default Home;

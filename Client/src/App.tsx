@@ -1,0 +1,63 @@
+/* ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+   ┃                      DEV CARD (yp)                 ┃
+   ┣━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Initials ┃ Use // [yp] to tag any inline changes   ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Stack    ┃ TS → JS → Tailwind → React              ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Cadence  ┃ Weekly tasks · Weekly review pre-merge  ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Cleanup  ┃ Remove ALL comments at completion       ┃
+   ┣━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+   ┃ Commits  ┃ feat(scope): message  [yp]              ┃
+   ┗━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ */
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Layout from './components/Layout/Layout';
+import Home from './components/Layout/Home';
+import { Suspense, lazy } from 'react';
+import Loader  from './components/ui/Loader';
+import NotFound from './components/ui/NotFound';
+const Packages = lazy(() => import('./components/Packages/Packages'));
+
+const CarsLayout = lazy(() => import('./components/Cars/CarsLayout'));
+const Cars = lazy(() => import('./components/Cars/Cars'));
+
+const HotelSearchPage = lazy(() => import('./components/hotels/HotelSearchPage'));
+
+const DestinationsLayout = lazy(() => import('./components/Destinations/DestinationsLayout'));
+const Destinations = lazy(() => import('./components/Destinations/Destinations'));
+const Country = lazy(() => import('./components/Destinations/Country/Country'));
+function App() {
+  return (
+  <>
+  <div className="background-color">
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Home/>}/>
+
+          <Route path="packages" element={<Packages />} />
+
+          <Route path='cars' element={<CarsLayout />}>
+            <Route index element={<Cars />} />
+            {/* <Route path="existingCars" element={<ExistingCars />} /> */}
+          </Route>
+
+          <Route path="hotels" element={<HotelSearchPage />} />
+
+          <Route path="destinations" element={<DestinationsLayout />}>
+            <Route index element={<Destinations />} />
+            <Route path="countries" element={<Country />} />
+          </Route>
+          
+        </Route>
+      
+        <Route path='*' element={<NotFound />}/>
+      </Routes>
+    </Suspense>
+  </div>
+</>
+)
+}
+export default App
