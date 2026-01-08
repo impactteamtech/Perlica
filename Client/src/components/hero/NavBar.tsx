@@ -39,12 +39,6 @@ const NavBar = () => {
     }, [isMenuOpen]);
 
 
-
-
-
-
-            // translate starts
-
         // Add these variables at the top of your component scope (outside the function)
         let originalTexts: string[] = [];
         let textNodes: Text[] = [];
@@ -134,7 +128,7 @@ const NavBar = () => {
                     console.log("No cache found, calling API...");
                     console.log("Sending to backend:", originalTexts.slice(0, 3));
                     
-                    const res = await fetch("http://127.0.0.1:8000/translate", {
+                    const res = await fetch("https://perlica-backend.onrender.com/translate", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ 
@@ -210,12 +204,6 @@ const NavBar = () => {
             }
         }
             // translate ends
-
-
-
-
-
-
 
     const mobileMenuOverlay = (
         <div
@@ -329,8 +317,6 @@ const NavBar = () => {
                         <img src={world_translate} className="w-5 mr-1" alt="" />
                         <span>Swahili</span>
                     </button>
-
-               
             </div>
 
         </nav>
