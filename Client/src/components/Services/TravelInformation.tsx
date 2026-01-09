@@ -151,7 +151,7 @@ const TravelInformation = (): JSX.Element => {
   <section className="w-full  flex flex-col gap-6 pt-10  pb-10">
       {/* Header */}
       <div className="text-center mb-3 md:mb-8">
-        <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
+        <h1 className="text-4xl lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight">
           TRAVEL INFORMATION
         </h1>
 

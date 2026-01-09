@@ -113,7 +113,7 @@ const FeaturedDestinations = (): JSX.Element => {
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 md:py-10">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl text-center lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
+        <h2 className="text-4xl text-center lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight">
           FEATURED DESTINATIONS
         </h2>
         <p className="text-font text-center mt-5 mb-4">

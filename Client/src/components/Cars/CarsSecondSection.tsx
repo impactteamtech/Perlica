@@ -13,7 +13,7 @@ const CarsSecondSection = () => {
           </div>
 
           <div className="flex flex-col gap-6">
-            <h2 className="text-4xl md:text-6xl title-font mb-5 text-black">
+            <h2 className="text-4xl lg:text-5xl 2xl:text-6xl title-font mb-5 text-black">
               WE PROVIDE <span className="color-primary relative">
               QUALITY CARS
             <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none">
@@ -31,7 +31,7 @@ const CarsSecondSection = () => {
 
         <div className="grid items-center grid-cols-1 gap-12 md:grid-cols-2">
           <div className="flex flex-col gap-6 order-2 md:order-1">
-                <h2 className="text-4xl md:text-6xl title-font mb-5 text-black">
+                <h2 className="text-4xl lg:text-5xl 2xl:text-6xl title-font mb-5 text-black">
           WIDE OF RANGE<span className="color-primary relative">
             VEHICULES
             <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 100 8" preserveAspectRatio="none">

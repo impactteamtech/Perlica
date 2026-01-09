@@ -15,7 +15,7 @@ const SupDetailsSection = ():JSX.Element => {
             className="flex flex-col w-full lg:w-[50%] gap-6 lg:gap-8"
           >
             <div className="space-y-4">
-              <h1 className="text-4xl text-center lg:text-left lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
+              <h1 className="text-4xl text-center lg:text-left lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight">
                 ARE YOU READY TO SEE THE MOST BEAUTIFUL THINGS?
               </h1>
             </div>

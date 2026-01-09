@@ -32,6 +32,7 @@ export interface Hotel {
   address: string;
   city: string;
   country: string;
+  websiteUrl?: string;
   heroImage: string;
   images: string[];
   description: string;
