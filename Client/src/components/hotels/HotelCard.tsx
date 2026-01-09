@@ -4,6 +4,7 @@ import { MapPin } from 'lucide-react';
 import type { Hotel } from './types';
 import StarRating from './StarRating';
 import HotelFacilities from './HotelFacilities';
+import CurrencyConverter from './CurrencyConverter';
 
 interface HotelCardProps {
   hotel: Hotel;
@@ -83,11 +84,22 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelectHotel }) => (
                   ${hotel.minPrice.toFixed(2)}
                 </div>
                 <p className="text-sm text-gray-600">per night</p>
+                 {/* ADD CURRENCY CONVERTER HERE */}
+                <div className="mt-2 pt-2 border-t border-gray-100">
+                  <CurrencyConverter 
+                    originalPriceUSD={hotel.minPrice}
+                    onConvertedPrice={(convertedPrice, currency) => {
+                      // Optional callback if you want to track conversions
+                      console.log(`Converted ${hotel.minPrice} USD to ${convertedPrice} ${currency}`);
+                    }}
+                  />
+                </div>
               </>
             ) : (
               <div className="text-gray-500">
                 Check availability
               </div>
+              
             )}
           </div>
         </div>

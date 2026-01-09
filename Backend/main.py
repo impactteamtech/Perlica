@@ -5,9 +5,14 @@ import os
 from dotenv import load_dotenv
 from router.convert_route import router
 from router.email_route import router as email_router
+import uvicorn
+
 
  # Import your translate router
 from router.translate import router as translate_router
+
+# import currency converter
+from router.currency_route import router as currency_router
 
 #loading our environment variables from our .env file so python can see them
 load_dotenv()
@@ -21,7 +26,7 @@ app.include_router(email_router)
 #our cors middleware url options
 cors_option = [v for v in [backend_url, frontend_url] if v]
 #include our route in our app
-app.include_router(router, prefix='/converter', tags=['converter'])
+# app.include_router(router, prefix='/converter', tags=['converter'])
 
 #FIXED CORS CONFIG (Render-safe)
 app.add_middleware(
@@ -33,14 +38,20 @@ app.add_middleware(
         allow_headers=["*"],     
     )
 
-# Include router in FastAPI app for translation
+# # Include router in FastAPI app for translation
 app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
+
+# # currency converter
+app.include_router(currency_router, prefix='/currency', tags=['currency'])
+
 #our router route
 @app.get("/")
 async def read_root():
     return {"message": "SERVER is up and running"}  #our root route
 
 #our main function to run our fastApi app
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host=str(host), port=int(port), reload=True)
+if __name__ == "__main__":
+    # print(f"Starting server on http://{host}:{port}")
+    # print(f"Currency converter available at: http://{host}:{port}/currency/convert")
+    uvicorn.run("main:app", host=host, port=int(port), reload=True)
 
