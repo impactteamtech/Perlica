@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FaInstagram, FaFacebook, FaYoutube, FaTiktok, FaPhone, FaTwitter } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaTiktok, FaPhone } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import GoTopAndShare from './GoTopAndShare'
 import { MdEmail } from "react-icons/md";

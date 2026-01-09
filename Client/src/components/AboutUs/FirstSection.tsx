@@ -1,14 +1,9 @@
 import React from 'react'
-import { GoArrowRight, GoPlus } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 import { IoStarSharp } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 const FirstSection = ():React.JSX.Element => {
     const navigate = useNavigate();
-    const persons:string[] = [
-        "/partner_with_us/person1.jpg",
-        "/partner_with_us/person2.jpg",
-        "/partner_with_us/person3.jpg",
-    ]
   return (
     <section className='px-6 lg:px-15 pt-10 bg- sm:pt-12  lg:pt-15 pb-10 lg:pb-15'>
         <div className='w-full relative flex flex-col lg:flex-row lg:justify-between gap-8 sm:gap-10 lg:gap-0'>
