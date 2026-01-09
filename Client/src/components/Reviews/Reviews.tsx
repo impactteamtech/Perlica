@@ -43,8 +43,6 @@ const Reviews = (): JSX.Element => {
   const handlePrev = () => setCurrent((prev) => (prev - 1 + reviews.length) % reviews.length);
   const handleNext = () => setCurrent((prev) => (prev + 1) % reviews.length);
 
-  // Show up to N reviews at a time, responsive to viewport width.
-  // base: 1, md+: 2, lg+: 3
   const [numberViews, setNumberViews] = useState<number>(1);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -83,7 +81,6 @@ const Reviews = (): JSX.Element => {
     exit: { opacity: 0, y: -16, scale: 0.995, transition: { duration: 0.25 } },
   };
 
-  // start animation when section enters the viewport
   useEffect(() => {
     const node = ref.current;
     if (!node) return;

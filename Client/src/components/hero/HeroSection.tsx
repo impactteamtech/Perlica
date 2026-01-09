@@ -44,7 +44,6 @@ const HeroSection = (): JSX.Element => {
                 </h3>
               </div>
 
-              {/* Premium Description Box */}
               <div className={`mt-8 ml-2 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="relative md:w-full lg:w-[70%]  xl:w-full group">
                   <div className='relative border-l-4 border-[#04c41a] p-4 md:p-4  bg-black/40 lg:max-w-xl shadow-2xl'>
@@ -55,7 +54,6 @@ const HeroSection = (): JSX.Element => {
                 </div>
               </div>
 
-              {/* Enhanced CTA Button */}
                 <button 
                   onClick={()=>navigate('/hotels')}
                   className='flex items-start mt-3 md:mt-8  ml-2 group overflow-hidden cursor-pointer w-58 h-15 md:h-16  2xl:h-18 transition-all duration-300  active:scale-95'>
