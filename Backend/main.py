@@ -31,8 +31,7 @@ cors_option = [v for v in [backend_url, frontend_url] if v]
 #FIXED CORS CONFIG (Render-safe)
 app.add_middleware(
         CORSMiddleware,
-        allow_origins=cors_option,
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+        allow_origins=['https://www.perlicatoursandtravel.com', 'https://perlica-backend.onrender.com'],
         allow_credentials=True, 
         allow_methods=["*"],     
         allow_headers=["*"],     
