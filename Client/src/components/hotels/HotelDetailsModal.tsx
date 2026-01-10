@@ -503,11 +503,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
                 const urlToUse = resolvedBookingUrl || bookingUrl;
                 if (!urlToUse) return;
 
-                try {
-                  window.open(urlToUse, '_blank', 'noopener,noreferrer');
-                } catch {
-                  window.location.href = urlToUse;
-                }
+                onBookNow(urlToUse);
               }}
               disabled={false}
               className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
