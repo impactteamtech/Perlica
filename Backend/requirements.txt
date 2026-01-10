@@ -2,3 +2,5 @@ fastapi
 uvicorn
 requests
 python-dotenv
+# Needed for pydantic.EmailStr (used in email_route)
+email-validator
