@@ -3,13 +3,10 @@ import PingDot from '../AboutUs/PingDot';
 import { GoArrowUpRight } from "react-icons/go";
 import { GoPlus } from "react-icons/go";
 import { IoArrowForwardSharp } from "react-icons/io5";
+import PartnerWithUsDetails from './PartnerWithUsDetails';
 
 const PartnerWithUs: React.FC = () => {
-    const persons = [
-        "/partner_with_us/person1.jpg",
-        "/partner_with_us/person2.jpg",
-        "/partner_with_us/person3.jpg",
-    ]
+    const [showDetails, setShowDetails] = React.useState(false);
     return (
         <>
             <div
@@ -35,23 +32,7 @@ const PartnerWithUs: React.FC = () => {
                         <div className='absolute z-10 left-4 sm:left-5 bottom-4 sm:bottom-6 flex flex-col max-w-[85%] sm:max-w-[75%]'>
                             <h1 className='text-white text-2xl sm:text-4xl md:text-5xl font-bold leading-tight drop-shadow-sm'>Join Our Network</h1>
                             <p className='text-white/90 text-base sm:text-lg md:text-2xl mt-2 leading-snug drop-shadow-sm'>Collaborate with us to unlock new opportunities.</p>
-                            <div className='flex flex-row mt-4 items-center'>
-                                {persons.map((person, index) => (
-                                    <img
-                                        key={index}
-                                        src={person}
-                                        alt={`Partner ${index + 1}`}
-                                        className={`${index === 0 ? '' : '-ml-4'} w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white shadow-sm object-cover`}
-                                    />
-                                ))}
-                                <button
-                                    type='button'
-                                    aria-label='Add partner'
-                                    className='w-10 h-10 sm:w-12 sm:h-12 -ml-4 rounded-full border-2 border-white bg-secondary text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-sm'
-                                >
-                                    <GoPlus className='text-white' />
-                                </button>
-                            </div>
+
                         </div>
                         <button
                             type='button'
@@ -106,19 +87,23 @@ const PartnerWithUs: React.FC = () => {
                         </div>
                         <div>
                             <p className='text-font'>
-                                Whether it’s creating innovative travel experiences or handling import and export tenders, our partnerships open doors to endless possibilities. 
+                                Whether it’s creating innovative travel experiences or handling import and export tenders, our partnerships open doors to endless possibilities.
                                 Explore, connect, and grow with us as we shape the future of adventure and global commerce.
                             </p>
                             <button
                                 type='button'
                                 className='text-black text-base sm:text-xl md:text-2xl underline mt-3 hover:scale-105 active:scale-95 cursor-pointer transition-transform flex items-center'
                                 aria-label='Read more about partnerships'
+                                onClick={() => setShowDetails(true)}
                             >
                                 Read More <IoArrowForwardSharp className='inline-block ml-2' />
                             </button>
                         </div>
                     </div>
                 </div>
+                {showDetails && (
+                    <PartnerWithUsDetails onClose={() => setShowDetails(false)} />
+                )}
             </div>
         </>
     );
