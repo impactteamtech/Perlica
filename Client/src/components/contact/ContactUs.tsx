@@ -179,7 +179,7 @@ const ContactUs = (): JSX.Element => {
               </div>
               <div className="flex items-center gap-4 text-gray-600">
                 <div className="w-2 h-2 bg-black rounded-full"></div>
-                <p className="text-lg font-[Rubik]">Professional team ready to help</p>
+                <p className="text-lg font-[Rubik]">A dedicated team you can rely on</p>
               </div>
             </div>
             <div className="flex justify-between w-full">
@@ -376,7 +376,7 @@ const ContactUs = (): JSX.Element => {
         viewport={{ once: true }}
       >
         <p className="text-2xl font-light text-gray-600 font-[Rubik] max-w-4xl mx-auto px-6 leading-relaxed">
-          Ready to explore? Contact us today, your next adventure begins here.
+          Your next adventure with Perlica starts now! Contact us today and get ready to explore.
         </p>
       </motion.div>
     </motion.section>

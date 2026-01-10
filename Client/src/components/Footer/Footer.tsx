@@ -63,8 +63,8 @@ const Footer = () => {
                 <span className='text-md xl:text-lg'>admin@perlicatoursandtravel.com</span>
               </div>
               <div className="flex  items-center gap-3">
-                <FaPhone size={30} />
-                <span className='text-md xl:text-lg'>+254 712 345 678</span>
+                <FaPhone size={30}/>
+                <span className='text-xl'>0715001992</span>
               </div>
             </div>
           </motion.div>
@@ -160,7 +160,7 @@ const Footer = () => {
           className="w-full flex items-center text-center justify-center"
         >
           <h1 className="text-gray-100 w-full text-lg mb-2 flex items-center justify-center gap-3">
-            <span>© {new Date().getFullYear()} Perlica Travel & Tours</span>
+            <span>© {new Date().getFullYear()} Perlica Tours & Travel</span>
             <span className="text-lg text-gray-300">All rights reserved</span>
           </h1>
         </motion.div>

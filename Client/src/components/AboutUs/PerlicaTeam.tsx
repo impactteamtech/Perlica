@@ -41,11 +41,8 @@ const PerlicaTeam = (): JSX.Element => {
           </div>
           <div className="w-full flex flex-col gap-2 items-center justify-center">
             <p className="text-font text-center w-full lg:w-[80%]">
-              Our Expert Team has combined deep local knowledge with global
-              travel insight to create safaris and tours you'll never forget.
-              All you have to do is explore whether it's your first safari or
-              your fiftieth, we'll show you the hidden gems others miss, all at
-              the the best value possible.
+              Our expert team combines local knowledge with global experience to provide safe, reliable, and comfortable transportation.
+              Whether it’s your first ride with us or your fiftieth, we ensure a smooth journey, exceptional service, and peace of mind every time.
               <br />
             </p>
           </div>

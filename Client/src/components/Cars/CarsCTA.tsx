@@ -1,21 +1,19 @@
 
 const CarsCTA = () => {
-  const number: string = "fake-phone-number"; // Replace with actual phone number
+  const number: string = ": 071-500-1992"; 
   
   return (
     <section className='px-4 md:px-8 bg-secondary/25 lg:px-15 py-16 '>
       <div className='max-w-4xl mx-auto text-center'>
         
         <h1 className='text-5xl text-black title-font mb-6'>
-          Ready to Drive Your Dream Car? 
+          Step In. Sit Back. Travel Effortlessly. 
           <span className='color-primary block mt-2'>Contact Us Today!</span>
         </h1>
         
         {/* Description */}
         <p className='text-lg md:text-2xl text-black text-font mb-10 max-w-3xl mx-auto'>
-          Whether you're looking for a sleek sedan, a rugged SUV, or a sporty coupe, our diverse 
-          inventory has something for every driver. Don't miss out on the opportunity to own a 
-          high-quality vehicle at an unbeatable price.
+          From airport pickups to exploring Kenya, our fleet of sedans, SUVs, and comfortable vehicles ensures reliable, efficient, and stress-free travel for every journey.
         </p>
         
         {/* Buttons Container */}

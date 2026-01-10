@@ -19,7 +19,7 @@ const Events = (): JSX.Element => {
 
   return (
     <section className="flex flex-col gap-8 py-10 mb-3 relative overflow-hidden">
-      <h1 className="text-4xl lg:text-5xl 2xl:text-6xl text-center color-primary font-mono title-font leading-tightmb-6  z-50">ADVENTURE AND NATURE ACTIVITIES</h1>
+      <h1 className="text-4xl lg:text-5xl xl:text-6xl text-center color-primary font-mono title-font leading-tightmb-6  z-50">Nature & Adventure Spots</h1>
    
       <div className="flex flex-col xl:flex-row items-center justify-center gap-8 relative z-10">
       <div className="flex  xl:px-4 xl:block justify-center flex-col items-center gap-6 w-full  xl:justify-start xl:items-start 2xl:items-center 2xl:justify-center 2xl:flex">

@@ -13,15 +13,15 @@ const FirstSection = (): React.JSX.Element => {
                         aria-hidden='true'
                     />
                     <img
-                        src='/image1.jpg'
+                        src='/giraffe.jpeg'
                         alt=''
                         className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                     />
-                </div>
-                <div className='w-full lg:w-100'>
-                    <h1
-                        className='text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl color-primary font-mono title-font leading-tight text-center'>
-                        Professional Adventures Tailored for You
+            </div>
+            <div className='w-full lg:h-100 overflow-x-auto'>
+                <h1 
+                    className='text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl color-primary font-mono title-font leading-tight text-center'>
+                        Where Professionalism Meets Comfort and Reliability
                     </h1>
                 </div>
                 <div>
@@ -30,8 +30,8 @@ const FirstSection = (): React.JSX.Element => {
                             className='absolute inset-0 rounded-xl bg-[#0cce10]/20 -rotate-3 -translate-x-2 -translate-y-4'
                             aria-hidden='true'
                         />
-                        <img
-                            src='/image2.jpg'
+                        <img 
+                            src='/antelope.jpeg' 
                             alt='Experience highlight 2'
                             className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                         />

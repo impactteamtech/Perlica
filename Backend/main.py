@@ -31,18 +31,20 @@ cors_option = [v for v in [backend_url, frontend_url] if v]
 #FIXED CORS CONFIG (Render-safe)
 app.add_middleware(
         CORSMiddleware,
-        allow_origins=cors_option,
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+        allow_origins=['https://www.perlicatoursandtravel.com', 'https://perlica-backend.onrender.com'],
         allow_credentials=True, 
         allow_methods=["*"],     
         allow_headers=["*"],     
     )
 
-# # Include router in FastAPI app for translation
+# # Include router in FastAPI app for translation --Miracle
 app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
 
-# # currency converter
+# # currency converter --yp
 app.include_router(currency_router, prefix='/currency', tags=['currency'])
+
+#email router ---yassine
+app.include_router(email_router, prefix='/email', tags=['email'])
 
 #our router route
 @app.get("/")

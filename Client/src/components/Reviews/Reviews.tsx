@@ -8,35 +8,26 @@ import { IoMdArrowForward, IoMdArrowBack } from "react-icons/io";
 const Reviews = (): JSX.Element => {
     const reviews: Review[] = [
         {
-            name:"Yassine Ben Kacem",
-            email:"yassine@gmail.com",
-            text:"Amazing experience! The safari was well-organized.",
+            name:"Lucy N.",
+            email:"",
+            text:"I had a smooth, comfortable stay in Nakuru/Naivasha. Everything was well organized and stress-free, allowing me to truly relax. The team was professional and attentive, making it a peaceful and enjoyable getaway. Highly recommended.",
             rate:4
         },
         {
-            name:"Rae Mungai",
-            email:"rae@gmail.com",
-            text:"The safari was a once-in-a-lifetime experience! Highly recommend.",
+            name:"Victor B.",
+            email:"",
+            text:"I had to book a last-minute ticket home and felt overwhelmed, but Perlica Tours and Travel was a lifesaver. The team was patient, responsive, and quickly found me an affordable flight. Their professionalism removed all the stress. I’m very grateful and will definitely use their services again.",
             rate:5
         },
         {
-            name:"Yuri Munyua",
-            email:"yuri@gmail.com",
-            text:"Great value for the price. The accommodations were comfortable and the food was delicious.",
+            name:"Jennifer H.",
+            email:"",
+            text:"I had a great experience with Perlica Tours and Travel. They seamlessly arranged my flights from Canada to Dar es Salaam, Zanzibar, and back. The process was smooth, well-organized, and stress-free. Their professionalism and clear communication made everything easy. Highly recommended!",
             rate:4
         },
-        {
-            name:"Reda",
-            email:"reda@gmail.com",
-            text:"The safari exceeded my expectations. The wildlife sightings were incredible and the guides were fantastic.",
-            rate:3
-        },
-        {
-            name:"Mohamed",
-            email:"mohamed@gmail.com",
-            text:"thank you for your services, i will be glade to visit kneya again",
-            rate:4
-        }
+        
+     
+       
     ];
   const [current, setCurrent] = useState(0);
 
