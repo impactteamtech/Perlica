@@ -3,28 +3,23 @@ import type { Guide,KenyaImageDetails,Event,FamousDest, Car, City } from './type
 export const tourGuides: Guide[] = [
   {
     id:1,
-    name:'Yassine Ben Kacem',
+    name:'Rispa',
     role:'Tour guide',
-    image:'/tour_guides/yassine.jpg'
+    image:'/tour_guides/tour_guide1.jpeg'
   },
   {
     id:2,
-    name:"Yuri Munyua",
+    name:"",
     role:"Safari guide",
-    image:"/tour_guides/yuri.jpg"
+    image:"/tour_guides/tour_guide3.png"
   },
   {
     id:3,
-    name:"Rae Mungai",
+    name:"",
     role:"Travel consultant",
-    image:"/tour_guides/rea.jpg"
+    image:"/tour_guides/"
   },
-  {
-    id:4,
-    name:"Reda",
-    role:"Wildlife expert",
-    image:"/tour_guides/guide1.jpg"
-  },
+  
 ];
 
 // services data :
@@ -50,9 +45,9 @@ export const services:{
       description:"We organize conferences for groups of all sizes in Nairobi and beyond."
     },
     {
-      name:"Customized tour packages",
+      name:"Perlica Tours & Logistics",
       img:"/services/customized_tour.jpg",
-      description:"Tailor-made itineraries based on traveler interests"
+      description:"We provide professional travel and transfer services, along with reliable logistics for moving goods, importing, and exporting."
     },
     {
       name:"Transportation & Transfers",
@@ -65,16 +60,6 @@ export const services:{
       img:"/services/hotel_reservation.jpg",
       description:"Partnered with top airlines and hotels"
     },
-    {
-      name:"Safaris and tour packages",
-      img:"/services/safari_tour_package1.jpg",
-      description:"Our Tours Department offers unique, tailor-made adventure and luxury safaris."
-    },
-    {
-      name:"Specialized Experiences",
-      img:"/services/specialized_experiences.jpg",
-      description:"Honeymoon packages, Adventure tours, Cultural and eco-tours"
-    }
   ];
 
 // kenya places images data :
@@ -122,44 +107,44 @@ export const events: Event[] = [
   {
     id:1,
     name:"Tribal and Ethnic Tours",
-    description:"Experience Kenya’s rich cultural heritage through immersive tribal and ethnic tours that connect you with diverse communities such as the Maasai, Samburu, Swahili, and Kikuyu.",
-    mainImage:"/events/maasai_tours.png",
+    description:"Experience Kenya’s cultural heritage with immersive tours connecting you to Maasai, Samburu, Swahili, and Kikuyu communities.",
+    mainImage:"public/events/maasi_tours.png",
   },
   {
     id:2,
     name:"Haller Park Mombasa",
-    description:"Discover Haller Park a peaceful wildlife and nature sanctuary featuring giraffes, hippos, birds, and scenic walking trails on Kenya's coast.",
-    mainImage:"/events/haller_park.png",
+    description:"Discover Haller Park, a peaceful wildlife sanctuary on Kenya’s coast with giraffes, hippos, birds, and scenic trails.",
+    mainImage:"public/events/haller_park.png",
   },
   {
     id:3,
     name:"Nairobi Railway Museum",
-    description:"Nairobi Railway Museum showcases Kenya’s railway history with vintage locomotives, historic carriages, and exhibits highlighting the country’s colonial and transport heritage.",
-    mainImage:"/events/nairobi_railway.png",
+    description:"Nairobi Railway Museum showcases Kenya’s railway history with vintage locomotives, historic carriages, and heritage exhibits.",
+    mainImage:"public/events/nairobi_railway.png",
   },
     {
     id:4,
     name:"TGRV Circuit Naivasha",
-    description:"TGRV Circuit in Naivasha is a popular motorsport and events venue, known for thrilling racing experiences, scenic Rift Valley views, and adrenaline-filled activities in Kenya.",
-    mainImage:"/events/go_karts.jpg",
+    description:"TGRV Circuit in Naivasha offers thrilling motorsport events, scenic Rift Valley views, and adrenaline-packed activities.",
+    mainImage:"public/events/go_karts.jpg",
   },
    {
     id:5,
     name:"Safari Tours",
-    description:"Experience unforgettable safari tours with expert guides, wildlife encounters, and breathtaking landscapes. Book your adventure today.",
-    mainImage:"/events/safari.png",
+    description:"Experience unforgettable safari tours with expert guides, wildlife encounters, and breathtaking landscapes.",
+    mainImage:"public/events/safari.png",
   },
     {
     id:6,
     name:"Coffee Tours",
     description:"Join guided coffee tours to learn how coffee is grown, harvested, and brewed while tasting fresh, authentic blends.",
-    mainImage:"/events/coffee_tours.png",
+    mainImage:"public/events/coffee_tours.png",
   },
    {
     id:7,
     name:"Maasai Market",
     description:"Visit the Maasai Market for authentic handmade crafts, colorful jewelry, artwork, and souvenirs from local artisans.",
-    mainImage:"/events/maasai-market.png",
+    mainImage:"public/events/maasai-market.jpg",
   },
    {
     id:8,
@@ -170,7 +155,7 @@ export const events: Event[] = [
     {
     id:9,
     name:"Nairobi National Museum",
-    description:"",
+    description:"The Nairobi National Museum showcases Kenya’s rich cultural, historical, and natural heritage through engaging exhibits and artifacts.",
     mainImage:"/events/nairobi_national_museum.png",
   },
 ];
