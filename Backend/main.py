@@ -38,11 +38,14 @@ app.add_middleware(
         allow_headers=["*"],     
     )
 
-# # Include router in FastAPI app for translation
+# # Include router in FastAPI app for translation --Miracle
 app.include_router(translate_router, prefix="", tags=["translate"])  # endpoint = /translate
 
-# # currency converter
+# # currency converter --yp
 app.include_router(currency_router, prefix='/currency', tags=['currency'])
+
+#email router ---yassine
+app.include_router(email_router, prefix='/email', tags=['email'])
 
 #our router route
 @app.get("/")
