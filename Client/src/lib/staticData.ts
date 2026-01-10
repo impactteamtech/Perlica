@@ -66,7 +66,7 @@ export const services:{
 export  const kenyaImages: KenyaImageDetails[] = [
   {
     placeName:"Nairobi National Park",
-    path:"/kenya_places/nairobi_national_parc.jpg",
+    path:"/kenya_places/nairobi_national_park.jpg",
     location:"Nairobi, Kenya",
   },
   {

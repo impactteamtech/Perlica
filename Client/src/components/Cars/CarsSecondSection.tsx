@@ -7,7 +7,7 @@ const CarsSecondSection = () => {
           <div className="relative overflow-hidden h-[400px] md:h-[500px] rounded-2xl shadow-xl group">
             <img
               className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-              src="./carsSection/car_1.jpg"
+              src="./carsSection/tour_guide4.jpeg"
               alt="Quality Car"
             />
           </div>

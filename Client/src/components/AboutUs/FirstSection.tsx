@@ -18,10 +18,10 @@ const FirstSection = ():React.JSX.Element => {
                         className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                     />
             </div>
-            <div className='w-full lg:w-100'>
+            <div className='w-full lg:h-100 overflow-x-auto'>
                 <h1 
                     className='text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl color-primary font-mono title-font leading-tight text-center'>
-                        Professional Adventures Tailored for You
+                        Where Professionalism Meets Comfort and Reliability
                     </h1>
             </div>
                 <div>
