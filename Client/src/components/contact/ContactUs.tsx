@@ -25,7 +25,7 @@ const ContactUs = (): JSX.Element => {
     "Other",
   ];
 
-  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL ?? "http://127.0.0.1:8000";
+  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || "https://perlica-backend.onrender.com";
 
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
