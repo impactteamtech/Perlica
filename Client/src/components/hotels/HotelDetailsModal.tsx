@@ -19,7 +19,7 @@ const DEFAULT_FACILITIES = [
 // 2. Helper to select icons based on facility keywords
 const getFacilityIcon = (name: string) => {
   const lowerName = name.toLowerCase();
-  
+
   // Simple SVG Icon components
   if (lowerName.includes('wifi') || lowerName.includes('internet')) {
     return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>;
@@ -36,7 +36,7 @@ const getFacilityIcon = (name: string) => {
   if (lowerName.includes('service') || lowerName.includes('keeping')) {
     return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
   }
-  
+
   // Default generic icon (Star)
   return <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>;
 };
@@ -251,7 +251,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [fetchedWebsiteUrl, setFetchedWebsiteUrl] = useState<string | null>(null);
   const [resolvedBookingUrl, setResolvedBookingUrl] = useState<string | null>(null);
-  
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'unset'; };
@@ -382,8 +382,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
@@ -455,7 +455,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8">
-          
+
           <div>
             <h3 className="text-xl font-bold text-gray-800 mb-3">About this stay</h3>
             <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
@@ -468,8 +468,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
             {facilitiesToRender.length > 0 ? (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {facilitiesToRender.map((facility, idx) => (
-                  <div 
-                    key={`${facility}-${idx}`} 
+                  <div
+                    key={`${facility}-${idx}`}
                     className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 hover:border-[#04c41a]/30 transition-colors"
                   >
                     <div className="text-[#04c41a]">
@@ -501,7 +501,13 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
               type="button"
               onClick={() => {
                 const urlToUse = resolvedBookingUrl || bookingUrl;
-                onBookNow(urlToUse);
+                if (!urlToUse) return;
+
+                try {
+                  window.open(urlToUse, '_blank', 'noopener,noreferrer');
+                } catch {
+                  window.location.href = urlToUse;
+                }
               }}
               disabled={false}
               className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"

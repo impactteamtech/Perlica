@@ -9,15 +9,9 @@ export const tourGuides: Guide[] = [
   },
   {
     id:2,
-    name:"",
+    name:"Tour Guide",
     role:"Safari guide",
     image:"/tour_guides/tour_guide3.png"
-  },
-  {
-    id:3,
-    name:"",
-    role:"Travel consultant",
-    image:"/tour_guides/"
   },
   
 ];
@@ -28,14 +22,10 @@ export const services:{
     description:string,
     img:string,
   }[] = [
-    {
-      name:"Flight & Hotel bookings",
-      img:"/services/get_ticket.jpg",
-      description:"Domestic and international ticketing" 
-    },
+
     {
       name:"Corporate & Group Travel",
-      img:"/services/group_travel.jpg",
+      img:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768072437/group_travel_bx7axz.jpg",
       description:"We negotiate special rates and volume \
       discounts for large groups travelling together with preferred airlines."
     },
@@ -46,7 +36,7 @@ export const services:{
     },
     {
       name:"Perlica Tours & Logistics",
-      img:"/services/customized_tour.jpg",
+      img:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768072969/customized_tour_d4457w.jpg",
       description:"We provide professional travel and transfer services, along with reliable logistics for moving goods, importing, and exporting."
     },
     {
@@ -66,12 +56,12 @@ export const services:{
 export  const kenyaImages: KenyaImageDetails[] = [
   {
     placeName:"Nairobi National Park",
-    path:"/kenya_places/nairobi_national_park.jpg",
+    path:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768070892/murad-swaleh-7tDidSXbgD8-unsplash_oqv9co.jpg",
     location:"Nairobi, Kenya",
   },
   {
     placeName:"Giraffe Centre",
-    path:"/kenya_places/giraffe_centre.jpg",
+    path:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768071279/valerie-zAbfsKyOCVU-unsplash_gfevik.jpg",
     location:"Duma Rd, Nairobi, Kenya",
   },
   {
@@ -164,7 +154,7 @@ export const famousDestinations:FamousDest[] = [
     {
       name:"Nairobi",
       countryFlag:"/popular_destinations/kenya.png",
-      image:"/popular_destinations/nairobi.jpg",
+      image:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768073854/nairobi_zjsopn.jpg",
     },
     {
       name:"Mombasa",
@@ -174,7 +164,7 @@ export const famousDestinations:FamousDest[] = [
     {
       name:"Kampala",
       countryFlag:"/popular_destinations/uganda.png",
-      image:"/popular_destinations/kampala.jpg",
+      image:"https://res.cloudinary.com/drztwlqqx/image/upload/v1768074054/kampala_ggvxsq.jpg",
     },
     {
       name:"Dar es Salam",
@@ -192,7 +182,7 @@ export  const destinations: {
       cities: [
         {
           name: "Nairobi",
-          image: "/popular_destinations/countries/kenya/nairobi.jpg",
+          image: "/popular_destinations/countries/kenya/nairobi.webp",
           description: "The bustling capital city of Kenya, known for its vibrant culture and wildlife."
         },
         {
@@ -228,12 +218,12 @@ export  const destinations: {
         {
           name: "Bwindi Impenetrable National Park",
           description: "Famous for mountain gorilla trekking, one of the most unique experiences in Africa.",
-          image: "/popular_destinations/countries/uganda/bwindi_impenetrable_national_park.jpg"
+          image: "/popular_destinations/countries/uganda/bwindi_impenetrable_national_park.webp"
         },
         {
           name: "Murchison Falls National Park",
           description: "Where the Nile River explodes through a narrow gorge — breathtaking waterfall.",
-          image: "/popular_destinations/countries/uganda/murchison_falls_national_park.jpg"
+          image: "https://res.cloudinary.com/drztwlqqx/image/upload/v1768074245/murchison_falls_national_park_lh1f3i.jpg"
         },
         {
           name: "Kampala",
@@ -243,7 +233,7 @@ export  const destinations: {
         {
           name: "Queen Elizabeth National Park",
           description: "Diverse wildlife including tree-climbing lions and beautiful landscapes.",
-          image: "/popular_destinations/countries/uganda/queen_elizabeth_national_park.jpg"
+          image: "https://res.cloudinary.com/drztwlqqx/image/upload/v1768074247/queen_elizabeth_national_park_ifisil.jpg"
         },
         {
           name: "Lake Bunyonyi",
@@ -263,7 +253,7 @@ export  const destinations: {
         {
           name: "Zanzibar Island (Stone Town)",
           description: "A UNESCO site with Arab-Swahili architecture, spice markets, and rich culture.",
-          image: "/popular_destinations/countries/tanzania/zanzibar_island_stone_town.jpg",
+          image: "/popular_destinations/countries/tanzania/zanzibar_island_stone_town.webp",
         },
         {
           name: "Nungwi Beach",
@@ -278,75 +268,4 @@ export  const destinations: {
       ]
     }
   ];
-
-export const perlcaCars: Car[] = [
-  {
-    name:"Mercedes G-Wagon",
-    image:"https://rendezvous-dubai.com/wp-content/uploads/2023/04/G-class-Rendez-vous-dubai-1.jpg",
-    features:[
-      "Leather seats",
-      "Climate control",
-      "WiFi available",
-      "Bottled water",
-      "Phone chargers",
-      "Privacy glass"
-    ],
-    numberOfBags:3,
-    numberOfPassengers:3,
-    price:100,
-    type: "Luxury SUV (Mercedes G-Wagon)",
-    location: "Jomo Kenyatta International (NBO)",
-    available: true
-  },
-  {
-    name:"Range Rover Vogue",
-    image:"https://static.oneclickdrive.com/car-for-rent/mobile/Land-Rover_Range-Rover-Vogue_2024_32170_32170_26192132044-1_small.jpg",
-    features:[
-      "Premium leather seats",
-      "4WD capability",
-      "Wifi available",
-      "Panoramic roof",
-      "Phone chargers",
-      "Extra space"
-    ],
-    numberOfBags:4,
-    numberOfPassengers:4,
-    price:150,
-    type: "Luxury SUV (Mercedes G-Wagon)",
-    location: "Moi International Airport (MBA)",
-    available: true
-  },
-  {
-    name:"Toyota Corolla",
-    image:"https://journalauto.com/wp-content/uploads/2023/04/Toy.jpg",
-    features:["Air conditioning",
-    "Compact and fuel efficient",
-    "Easy to maneuver in city traffic",
-    "Bluetooth connectivity",
-    "AM/FM radio with USB port",
-    "Spacious trunk for luggage"
-    ],
-    numberOfBags:2,
-    numberOfPassengers:3,
-    price:50,
-    type: "Economy Sedan (Toyota Corolla)",
-    location: "Eldoret International Airport (EDL)",
-    available: true
-  },
-  {
-    name:"Toyota Voxy",
-    image:"https://i.ytimg.com/vi/skKUfVUqWGE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD31MsvlfTpruBZP0BMcr_DFIjS6g",
-    features:[
-      "Spacious interior with seating for up to 7 passengers",
-      "Sliding doors for easy access",
-      "Air conditioning for all rows",
-      "Rearview camera for easier parking"],
-    numberOfBags:5,
-    numberOfPassengers:7,
-    price:80,
-    type: "7-Seater Van (Toyota Hiace)",
-    location: "Jomo Kenyatta International (NBO)",
-    available: true
-  }
-];
 

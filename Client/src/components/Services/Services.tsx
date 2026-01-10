@@ -36,13 +36,11 @@ const Services = (): JSX.Element => {
     <motion.section
       className="px-4 sm:px-6 lg:px-15 py-10"
     >
-      {/* Hero Section */}
       <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight md:hidden text-center w-full">SERVICES</h1>
       <motion.div
         className="relative hidden  md:block overflow-hidden h-64 sm:h-80 md:h-[500px]"
    
       >
-        {/* Decorative vertical lines */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute  left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
             <div className="h-25 w-[3px] rounded-full bg-gradient-to-b from-transparent via-green-600/40 to-transparent shadow-[0_0_16px_rgba(22,163,74,0.25)]" />
