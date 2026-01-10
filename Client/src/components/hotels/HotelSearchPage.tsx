@@ -133,11 +133,11 @@ const HotelSearchPage: React.FC = () => {
       <div className="relative min-h-[100svh] w-full flex items-center justify-center flex-col overflow-hidden py-20 lg:py-15 2xl:py-10">
         <div className="absolute inset-0  z-0">
           <img 
-            src="/hotels-main-image.jpg" 
+            src="https://res.cloudinary.com/drztwlqqx/image/upload/v1768073662/hotels-main-image_ae9kgn.jpg" 
             alt="Luxury Hotel"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full  object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#efebe5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-[#efebe5]" />
         </div>
 
         <div className="z-10 w-full max-w-5xl px-4 flex flex-col items-center text-center space-y-6 sm:space-y-8">

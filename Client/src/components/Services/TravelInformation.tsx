@@ -186,7 +186,7 @@ const TravelInformation = (): JSX.Element => {
               <div className="w-full overflow-hidden p-1 bg-white/60 shadow-lg transition-transform transform hover:scale-105 rounded-xl">
                 <img
                   className='w-full  h-full object-cover block rounded-lg aspect-[4/3]'
-                  src="/travel_info/health_and_safety.jpg"
+                  src="https://res.cloudinary.com/drztwlqqx/image/upload/v1768073037/health_and_safety_fvf1gh.jpg"
                   alt="Health and safety"
                 />
               </div>

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
 const imagePaths = [
-  'bg-1.jpg',
-  'bg-2.jpg',
-  'bg-3.jpg'
+  'https://res.cloudinary.com/drztwlqqx/image/upload/v1768073135/bg-3_yy2kah.jpg',
+  'https://res.cloudinary.com/drztwlqqx/image/upload/v1768073134/bg-1_ukrhlj.jpg',
+  'https://res.cloudinary.com/drztwlqqx/image/upload/v1768073133/bg-2_ifbhxh.jpg'
 ];
 
 const ImageGallery = () => {
@@ -51,7 +51,7 @@ const ImageGallery = () => {
         {/* Main Image with smooth transition */}
         <div className="relative w-full h-full">
           <img 
-            src={`/bg-images-destination/${selectedImage}`} 
+            src={`${selectedImage}`} 
             alt="Destination" 
             className="w-full h-full brightness-50 object-cover transition-all duration-500 ease-in-out transform group-hover:scale-105" 
           />
