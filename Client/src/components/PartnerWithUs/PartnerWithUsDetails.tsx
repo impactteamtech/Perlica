@@ -15,14 +15,15 @@ const PartnerWithUsDetails: React.FC<PartnerWithUsDetailsProps> = ({ onClose }) 
             aria-label="More information about partnering with Perlica"
             onClick={onClose}
         >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" />
+            {/* Fullscreen overlay without heavy backdrop blur to reduce lag */}
+            <div className="absolute inset-0 bg-black/70 transition-opacity" />
 
             <div
                 className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200"
                 onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
             >
                 {/* Header */}
-                <div className="relative border-b border-gray-100 px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4 bg-white/95 backdrop-blur">
+                <div className="relative border-b border-gray-100 px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4 bg-white">
                     <div className="flex items-center gap-3">
                         <PingDot />
                         <div>
