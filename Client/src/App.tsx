@@ -22,7 +22,6 @@ const Packages = lazy(() => import('./components/Packages/Packages'));
 
 const CarsLayout = lazy(() => import('./components/Cars/CarsLayout'));
 const Cars = lazy(() => import('./components/Cars/Cars'));
-const ExistingCars = lazy(() => import('./components/Cars/ExistingCars'));
 
 const HotelSearchPage = lazy(() => import('./components/hotels/HotelSearchPage'));
 
@@ -42,7 +41,7 @@ function App() {
 
           <Route path='cars' element={<CarsLayout />}>
             <Route index element={<Cars />} />
-            <Route path="existingCars" element={<ExistingCars />} />
+            {/* <Route path="existingCars" element={<ExistingCars />} /> */}
           </Route>
 
           <Route path="hotels" element={<HotelSearchPage />} />

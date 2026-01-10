@@ -16,7 +16,7 @@ const HistoryAndMission = (): JSX.Element => {
         <motion.div
           className="w-full lg:w-1/2 flex flex-col gap-4"
         >
-          <h1 className="text-4xl text-center lg:text-left lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight">
+          <h1 className="text-4xl text-center lg:text-left lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight">
             WE'RE DEDICATED TO MAKE EVERY JOURNEY EXCEPTIONAL
           </h1>
           <p className="text-base text-center lg:text-left text-font">

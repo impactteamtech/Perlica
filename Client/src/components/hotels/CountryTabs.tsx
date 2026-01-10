@@ -31,7 +31,6 @@ const CountryTabs: React.FC<CountryTabsProps> = ({
             setDestination('');
             setHotels([]);
           }}
-          // adding cursor pointer to country tabs (yp)
           className={`flex-1 py-3 px-4 rounded-lg font-medium cursor-pointer transition-all ${
             selectedCountry === code
               ? 'bg-[#04c41a] text-white shadow-md'

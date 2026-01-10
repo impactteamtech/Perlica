@@ -43,8 +43,6 @@ const Reviews = (): JSX.Element => {
   const handlePrev = () => setCurrent((prev) => (prev - 1 + reviews.length) % reviews.length);
   const handleNext = () => setCurrent((prev) => (prev + 1) % reviews.length);
 
-  // Show up to N reviews at a time, responsive to viewport width.
-  // base: 1, md+: 2, lg+: 3
   const [numberViews, setNumberViews] = useState<number>(1);
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -83,7 +81,6 @@ const Reviews = (): JSX.Element => {
     exit: { opacity: 0, y: -16, scale: 0.995, transition: { duration: 0.25 } },
   };
 
-  // start animation when section enters the viewport
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
@@ -115,7 +112,7 @@ const Reviews = (): JSX.Element => {
       variants={containerVariants}
     >
         <div className="w-full flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-           <h1 className="text-4xl lg:text-5xl xl:text-6xl color-primary font-mono title-font leading-tight text-center sm:text-left">
+           <h1 className="text-4xl lg:text-5xl 2xl:text-6xl color-primary font-mono title-font leading-tight text-center sm:text-left">
             WHAT PEOPLE SAY
            </h1>
           <div className="flex gap-3 sm:gap-4 justify-center sm:justify-end">

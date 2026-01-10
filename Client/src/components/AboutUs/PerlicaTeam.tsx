@@ -17,12 +17,12 @@ const PerlicaTeam = (): JSX.Element => {
           className="relative w-full  lg:w-[40%] flex justify-center lg:justify-start"
         >
           <img
-            className="w-44 sm:w-64 xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-44 sm:w-64 lg:w-75 2xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team1.jpg"
             alt="team-member-1"
           />
           <img
-            className="w-50 sm:w-72  xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
+            className="w-50 sm:w-72 lg:w-75 2xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
             src="/tour_guides/perlica_team2.jpg"
             alt="team-member-2"
           />
@@ -32,7 +32,7 @@ const PerlicaTeam = (): JSX.Element => {
           className="flex w-full lg:w-[60%] flex-col gap-6 lg:gap-10 items-center justify-center"
         >
           <div className="flex flex-col gap-3 items-center justify-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center color-primary title-font font-mono">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl   2xl:text-6xl text-center color-primary title-font font-mono">
               MEET OUR EXPERT TOUR GUIDES
             </h2>
             <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/80 title-font font-mono text-center">

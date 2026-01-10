@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { Hotel } from './types';
-import { fetchHotelDetailImages } from './api';
+import { fetchHotelDetailImages, fetchHotelWebsiteUrl } from './api';
 
 interface HotelDetailsModalProps {
   hotel: Hotel;
   onClose: () => void;
+  onBookNow: (bookingUrl: string) => void;
 }
 
 const DEFAULT_FACILITIES = [
@@ -46,9 +47,210 @@ const stripHtml = (html: string) => {
   return tmp.textContent || tmp.innerText || '';
 };
 
-const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose }) => {
+const normalizeExternalUrl = (value: unknown): string | null => {
+  if (typeof value !== 'string') return null;
+
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  try {
+    const parsed = new URL(trimmed);
+
+    if (
+      parsed.hostname.toLowerCase().includes('google.') &&
+      parsed.pathname === '/url'
+    ) {
+      const realUrl =
+        parsed.searchParams.get('q') ||
+        parsed.searchParams.get('url');
+
+      if (!realUrl) return null;
+
+      const clean = new URL(realUrl);
+
+      if (clean.hostname.toLowerCase().includes('google.')) {
+        return null;
+      }
+
+      return clean.href;
+    }
+
+    if (parsed.hostname.toLowerCase().includes('google.')) {
+      return null;
+    }
+
+    return parsed.href;
+  } catch {
+    // Handle URLs without protocol by prefixing https:// (supports paths and query strings).
+    // Only attempt this for strings that look like a host/path and not something like "javascript:".
+    if (!/^[a-z][a-z0-9+.-]*:/i.test(trimmed) && /\./.test(trimmed) && !/\s/.test(trimmed)) {
+      try {
+        const parsed = new URL(`https://${trimmed}`);
+
+        if (parsed.hostname.toLowerCase().includes('google.') && parsed.pathname === '/url') {
+          const realUrl = parsed.searchParams.get('q') || parsed.searchParams.get('url');
+          if (!realUrl) return null;
+          const clean = new URL(realUrl);
+          if (clean.hostname.toLowerCase().includes('google.')) return null;
+          return clean.href;
+        }
+
+        if (parsed.hostname.toLowerCase().includes('google.')) return null;
+
+        return parsed.href;
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  return null;
+};
+
+const unwrapGoogleRedirect = (inputUrl: string): string | null => {
+  const coerceToUrl = (raw: string): URL | null => {
+    const trimmed = raw.trim();
+    if (!trimmed) return null;
+
+    // Relative Google redirect shapes like "/url?q=..."
+    if (trimmed.startsWith('/url?') || trimmed.startsWith('/url&')) {
+      try {
+        return new URL(`https://www.google.com${trimmed}`);
+      } catch {
+        return null;
+      }
+    }
+
+    // Protocol-less shapes like "google.com/url?q=..."
+    if (!/^[a-z][a-z0-9+.-]*:/i.test(trimmed) && /^([\w-]+\.)+\w+/i.test(trimmed)) {
+      try {
+        return new URL(`https://${trimmed}`);
+      } catch {
+        // ignore
+      }
+    }
+
+    try {
+      return new URL(trimmed);
+    } catch {
+      // Sometimes the whole string is percent-encoded
+      try {
+        return new URL(decodeURIComponent(trimmed));
+      } catch {
+        return null;
+      }
+    }
+  };
+
+  const decodeMaybeTwice = (s: string): string => {
+    let out = s;
+    for (let i = 0; i < 2; i++) {
+      try {
+        const decoded = decodeURIComponent(out);
+        if (decoded === out) break;
+        out = decoded;
+      } catch {
+        break;
+      }
+    }
+    return out;
+  };
+
+  const parsed = coerceToUrl(inputUrl);
+  if (!parsed) return null;
+
+  const host = parsed.hostname.toLowerCase();
+  const path = parsed.pathname.toLowerCase();
+  if (!host.includes('google.') || !path.startsWith('/url')) return null;
+
+  const candidate = parsed.searchParams.get('q') || parsed.searchParams.get('url');
+  if (!candidate) return null;
+
+  const decoded = decodeMaybeTwice(candidate).trim();
+  if (!decoded) return null;
+
+  // Recursively unwrap nested Google wrappers
+  if (/^https?:\/\/[^/]*google\./i.test(decoded)) {
+    return unwrapGoogleRedirect(decoded);
+  }
+
+  if (!/^https?:\/\//i.test(decoded)) return null;
+  try {
+    return new URL(decoded).href;
+  } catch {
+    return null;
+  }
+};
+
+const getBackendBaseUrl = (): string => {
+  const env = (import.meta as { env?: Record<string, unknown> }).env;
+  const fromEnv = env && typeof env.VITE_BACKEND_URL === 'string' ? env.VITE_BACKEND_URL : '';
+  const cleaned = typeof fromEnv === 'string' ? fromEnv.trim().replace(/\/$/, '') : '';
+  if (cleaned) return cleaned;
+
+  // Dev-friendly default if user didn't configure env.
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://127.0.0.1:8000';
+    }
+  }
+
+  return '';
+};
+
+const resolveFinalUrlViaBackend = async (rawUrl: string): Promise<string> => {
+  const base = getBackendBaseUrl();
+  if (!base) return rawUrl;
+
+  try {
+    const endpoint = `${base}/converter/resolve-url?url=${encodeURIComponent(rawUrl)}`;
+    const resp = await fetch(endpoint);
+    if (!resp.ok) return rawUrl;
+    const json = (await resp.json()) as { url?: unknown };
+    const resolved = typeof json.url === 'string' ? json.url.trim() : '';
+    return resolved || rawUrl;
+  } catch {
+    return rawUrl;
+  }
+};
+
+const isGoogleHost = (value: string): boolean => {
+  try {
+    const u = new URL(value);
+    return u.hostname.toLowerCase().includes('google.');
+  } catch {
+    return false;
+  }
+};
+
+const withTimeout = <T,>(p: Promise<T>, ms: number, fallback: T): Promise<T> => {
+  let done = false;
+  return new Promise((resolve) => {
+    const t = window.setTimeout(() => {
+      if (done) return;
+      done = true;
+      resolve(fallback);
+    }, ms);
+    p.then((v) => {
+      if (done) return;
+      done = true;
+      window.clearTimeout(t);
+      resolve(v);
+    }).catch(() => {
+      if (done) return;
+      done = true;
+      window.clearTimeout(t);
+      resolve(fallback);
+    });
+  });
+};
+
+const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, onBookNow }) => {
   const [detailImages, setDetailImages] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
+  const [fetchedWebsiteUrl, setFetchedWebsiteUrl] = useState<string | null>(null);
+  const [resolvedBookingUrl, setResolvedBookingUrl] = useState<string | null>(null);
   
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -58,6 +260,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
   useEffect(() => {
     let cancelled = false;
     setDetailImages([]);
+    setFetchedWebsiteUrl(null);
+    setResolvedBookingUrl(null);
 
     fetchHotelDetailImages(hotel.id)
       .then((imgs) => {
@@ -67,6 +271,16 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
       .catch(() => {
         if (cancelled) return;
         setDetailImages([]);
+      });
+
+    fetchHotelWebsiteUrl(hotel.id)
+      .then((url) => {
+        if (cancelled) return;
+        setFetchedWebsiteUrl(url);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setFetchedWebsiteUrl(null);
       });
 
     return () => {
@@ -108,6 +322,63 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
     const first = images[0] || hotel.heroImage || fallbackImage;
     setSelectedImage(first);
   }, [images, hotel.heroImage]);
+
+  const websiteUrl = hotel.websiteUrl;
+
+  const bookingUrl = useMemo(() => {
+    const direct = normalizeExternalUrl(websiteUrl) || normalizeExternalUrl(fetchedWebsiteUrl);
+    if (direct) return direct;
+
+    const q = `${hotel.name} ${hotel.city} official website`;
+    return `https://www.google.com/search?btnI=I&q=${encodeURIComponent(q)}`;
+  }, [fetchedWebsiteUrl, hotel.city, hotel.name, websiteUrl]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const run = async () => {
+      // 1) Prefer official URL if present.
+      const preferred = normalizeExternalUrl(websiteUrl) || normalizeExternalUrl(fetchedWebsiteUrl);
+      if (preferred && !isGoogleHost(preferred)) {
+        setResolvedBookingUrl(preferred);
+        return;
+      }
+
+      const unwrapped = unwrapGoogleRedirect(bookingUrl);
+      const local = normalizeExternalUrl(unwrapped || '');
+      if (local && !isGoogleHost(local)) {
+        setResolvedBookingUrl(local);
+        return;
+      }
+
+      // 3) Otherwise, resolve via backend (may follow redirects).
+      // Only do this for Google-derived URLs.
+      if (!bookingUrl || !isGoogleHost(bookingUrl)) {
+        setResolvedBookingUrl(null);
+        return;
+      }
+      const resolved = await withTimeout(resolveFinalUrlViaBackend(bookingUrl), 8000, '');
+      if (cancelled) return;
+
+      const finalCandidate = unwrapGoogleRedirect(resolved) || resolved;
+      const finalUrl = normalizeExternalUrl(finalCandidate);
+
+      if (finalUrl && !isGoogleHost(finalUrl)) {
+        setResolvedBookingUrl(finalUrl);
+      } else {
+        setResolvedBookingUrl(null);
+      }
+    };
+
+    run().catch(() => {
+      if (cancelled) return;
+      setResolvedBookingUrl(null);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bookingUrl, fetchedWebsiteUrl, websiteUrl]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
@@ -225,8 +496,16 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
                 <span className="text-gray-400 font-medium">/ night</span>
               </div>
             </div>
-            {/* adding cursor pointer to book now button (yp) */}
-            <button className="w-full sm:w-auto bg-[#04c41a] hover:bg-[#03a315] cursor-pointer text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95">
+
+            <button
+              type="button"
+              onClick={() => {
+                const urlToUse = resolvedBookingUrl || bookingUrl;
+                onBookNow(urlToUse);
+              }}
+              disabled={false}
+              className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
               Book Now
             </button>
           </div>
