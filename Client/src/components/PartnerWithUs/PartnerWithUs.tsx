@@ -106,9 +106,8 @@ const PartnerWithUs: React.FC = () => {
                         </div>
                         <div>
                             <p className='text-font'>
-                                From cutting-edge collaborations to innovative travel experiences, our partnerships
-                                unlock endless opportunities to explore, connect, and grow. Join us in building the next
-                                wave of adventure-driven impact.
+                                Whether it’s creating innovative travel experiences or handling import and export tenders, our partnerships open doors to endless possibilities. 
+                                Explore, connect, and grow with us as we shape the future of adventure and global commerce.
                             </p>
                             <button
                                 type='button'

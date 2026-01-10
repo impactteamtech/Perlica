@@ -36,7 +36,7 @@ const CarsMainSection = () => {
                 Transfers
               </h1>
               <p className="text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
-                Experience seamless travel with our professional chauffeur service in Nairobi & Mombasa. Punctual, comfortable, and discreet.
+                Experience seamless travel with our professional chauffeur service in Nairobi. Punctual, comfortable, and discreet.
               </p>
             </div>
 

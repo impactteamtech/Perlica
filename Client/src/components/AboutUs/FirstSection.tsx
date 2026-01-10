@@ -13,7 +13,7 @@ const FirstSection = ():React.JSX.Element => {
                         aria-hidden='true'
                     />
                     <img
-                        src='/image1.jpg'
+                        src='/giraffe.jpeg'
                         alt=''
                         className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                     />
@@ -31,7 +31,7 @@ const FirstSection = ():React.JSX.Element => {
                             aria-hidden='true'
                         />
                         <img 
-                            src='/image2.jpg' 
+                            src='/antelope.jpeg' 
                             alt='Experience highlight 2'
                             className='relative z-10 w-full h-full rounded-xl object-cover object-center shadow'
                         />

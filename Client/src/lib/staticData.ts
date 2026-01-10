@@ -25,12 +25,6 @@ export const tourGuides: Guide[] = [
     role:"Wildlife expert",
     image:"/tour_guides/guide1.jpg"
   },
-  // {
-  // id:5,
-  // name:"Ahmed",
-  // role:"Guide",
-  // image:"/tour_guides/guide2.jpg"
-  // }
 ];
 
 // services data :
@@ -86,39 +80,39 @@ export const services:{
 // kenya places images data :
 export  const kenyaImages: KenyaImageDetails[] = [
   {
-    placeName:"National parc in nairobi",
+    placeName:"Nairobi National Park",
     path:"/kenya_places/nairobi_national_parc.jpg",
     location:"Nairobi, Kenya",
   },
   {
-    placeName:"Giraffe centre",
+    placeName:"Giraffe Centre",
     path:"/kenya_places/giraffe_centre.jpg",
     location:"Duma Rd, Nairobi, Kenya",
   },
   {
-    placeName:"Karen blixen museum",
+    placeName:"Karen Blixen Museum",
     path:"/kenya_places/karen_blixen_museum.jpg",
     location:"Karen Rd, Nairobi, Kenya"
   },
   {
     placeName:"The Nairobi Arboretum",
     path:"/kenya_places/nairobi_arboretum.jpg",
-    location:"Carte de The Nairobi Arboretum Kilimani Arboretum Rd, off State House Rd, Nairobi, Kenya",
+    location:"Kilimani Arboretum Rd, off State House Rd, Nairobi, Kenya",
   },
   {
     placeName:"The Hub Karen",
     path:"/kenya_places/the_hub_karen.webp",
-    location:"Carte de The Hub Karen, Dagoretti Rd, Nairobi City, Kenya"
+    location:"Dagoretti Rd, Nairobi City, Kenya"
   },
   {
     placeName:"Bomas of Kenya",
     path:"/kenya_places/bomas_of_kenya.jpg",
-    location:"Carte de Bomas of Kenya Nairobi, Kenya",
+    location:"Langata Highway Forest Edge Road, Nairobi, Kenya",
   },
   {
     placeName:"Uhuru Park",
     path:"/kenya_places/uhuru_park.jpg",
-    location:"Carte de Uhuru Park, 23 Uhuru Hwy, Nairobi, Kenya",
+    location:"23 Uhuru Hwy, Nairobi, Kenya",
   }
 ];
 
@@ -127,27 +121,57 @@ export  const kenyaImages: KenyaImageDetails[] = [
 export const events: Event[] = [
   {
     id:1,
-    name:"Tobongu Lore (Lake Turkana Cultural Festival)",
-    description:"A celebration of indigenous culture among communities around Lake Turkana; includes music, dance, craft, cultural exchange.",
-    mainImage:"/events/tobongu/tobongu_festival_main.jpg",
+    name:"Tribal and Ethnic Tours",
+    description:"Experience Kenya’s rich cultural heritage through immersive tribal and ethnic tours that connect you with diverse communities such as the Maasai, Samburu, Swahili, and Kikuyu.",
+    mainImage:"/events/maasai_tours.png",
   },
   {
     id:2,
-    name:"Kenya Schools and Colleges Drama Festival",
-    description:"Annual school‐based drama competitions (plays, dance, film, storytelling",
-    mainImage:"/events/drama_festival/drama_festival_main.jpg",
+    name:"Haller Park Mombasa",
+    description:"Discover Haller Park a peaceful wildlife and nature sanctuary featuring giraffes, hippos, birds, and scenic walking trails on Kenya's coast.",
+    mainImage:"/events/haller_park.png",
   },
   {
     id:3,
-    name:"Maragoli Cultural Festival in kenya",
-    description:"Held in Vihiga County (Mbale town) on 26 December; features traditions, music, dance of the Maragoli and Luhya communities",
-    mainImage:"/events/maragoli/maragoli_festival_main.jpg",
+    name:"Nairobi Railway Museum",
+    description:"Nairobi Railway Museum showcases Kenya’s railway history with vintage locomotives, historic carriages, and exhibits highlighting the country’s colonial and transport heritage.",
+    mainImage:"/events/nairobi_railway.png",
   },
     {
     id:4,
-    name:"International Camel Derby (Maralal)",
-    description:"A cultural & sporting event involving camel races in Maralal, Northern Kenya",
-    mainImage:"/events/camel_derby/camel_derby_main.jpg",
+    name:"TGRV Circuit Naivasha",
+    description:"TGRV Circuit in Naivasha is a popular motorsport and events venue, known for thrilling racing experiences, scenic Rift Valley views, and adrenaline-filled activities in Kenya.",
+    mainImage:"/events/go_karts.jpg",
+  },
+   {
+    id:5,
+    name:"Safari Tours",
+    description:"Experience unforgettable safari tours with expert guides, wildlife encounters, and breathtaking landscapes. Book your adventure today.",
+    mainImage:"/events/safari.png",
+  },
+    {
+    id:6,
+    name:"Coffee Tours",
+    description:"Join guided coffee tours to learn how coffee is grown, harvested, and brewed while tasting fresh, authentic blends.",
+    mainImage:"/events/coffee_tours.png",
+  },
+   {
+    id:7,
+    name:"Maasai Market",
+    description:"Visit the Maasai Market for authentic handmade crafts, colorful jewelry, artwork, and souvenirs from local artisans.",
+    mainImage:"/events/maasai-market.png",
+  },
+   {
+    id:8,
+    name:"Mnarani Marine Turtles Conservation ",
+    description:"Visit Mnarani Marine Turtles Conservation in Zanzibar to learn about sea turtle rescue, rehabilitation, and marine conservation efforts.",
+    mainImage:"/events/zanzibar_turtle_conservation.jpg",
+  },
+    {
+    id:9,
+    name:"Nairobi National Museum",
+    description:"",
+    mainImage:"/events/nairobi_national_museum.png",
   },
 ];
 

@@ -1,6 +1,6 @@
 
 const CarsCTA = () => {
-  const number: string = "fake-phone-number"; // Replace with actual phone number
+  const number: string = "071-500-1992"; 
   
   return (
     <section className='px-4 md:px-8 bg-secondary/25 lg:px-15 py-16 '>
