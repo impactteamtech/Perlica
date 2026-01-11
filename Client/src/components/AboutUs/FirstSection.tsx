@@ -63,14 +63,14 @@ const FirstSection = (): React.JSX.Element => {
 
                             <img
                                 className='relative z-10 w-full h-full  rounded-xl shadow'
-                                src='https://res.cloudinary.com/drztwlqqx/image/upload/v1768070643/image3_gaogpe.jpg'
+                                src='https://res.cloudinary.com/drztwlqqx/image/upload/v1768073854/nairobi_zjsopn.jpg'
                                 alt='Experience highlight 3'
                             />
                         </div>
                         <div className='w-full sm:w-80 h-64 sm:h-78 overflow-hidden rounded-xl'>
                             <img
                                 className='w-full h-full'
-                                src='https://res.cloudinary.com/drztwlqqx/image/upload/v1768070642/image4_bmoibi.jpg'
+                                src='https://res.cloudinary.com/drztwlqqx/image/upload/v1768074054/kampala_ggvxsq.jpg'
                                 alt='Experience highlight 4' />
                         </div>
                     </div>
