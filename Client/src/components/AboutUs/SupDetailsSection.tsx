@@ -6,7 +6,7 @@ const SupDetailsSection = ():JSX.Element => {
   { id: 1, img: "/safari_animals/animal_1.jpg" },
   { id: 2, img: "/safari_animals/animal_2.jpg" },
   { id: 3, img: "/safari_animals/animal_3.jpg" },
-  { id: 4, img: "/safari_animals/animal_4.jpg" }
+  { id: 4, img: "/safari_animals/animal_4.jpeg" }
 ];
   return (
     <section className=" lg:px-15 flex px-4 py-10  md:py-12 lg:py-18">
@@ -33,7 +33,7 @@ const SupDetailsSection = ():JSX.Element => {
             randomRotation={false}
             sensitivity={180}
             sendToBackOnClick={false}
-            cardDimensions={{ width: 550, height: 300 }}
+            cardDimensions={{ width: 400, height: 300 }}
             cardsData={images}
           />
           </div>

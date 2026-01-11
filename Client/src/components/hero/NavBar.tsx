@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import world_translate from "/world_icon.png";
+import { FiGlobe } from "react-icons/fi";
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -317,11 +317,15 @@ const NavBar = () => {
 
                     {/* Translate Btn */}
                     <button
-                        className="translateBtn flex items-center justify-center font-inherit cursor-pointer"
+                        className={`translateBtn ml-4 flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium cursor-pointer transition-colors duration-300 
+                        ${isScrolled
+                                ? "border-gray-300 text-black hover:bg-secondary hover:text-white"
+                                : "border-white/70 text-white hover:bg-white/10"}
+                        `}
                         id="translate-sw-button"
                         onClick={() => translatePage()}
                     >
-                        <img src={world_translate} className="w-5 mr-1" alt="" />
+                        <FiGlobe className="h-4 w-4" />
                         <span>Swahili</span>
                     </button>
 
@@ -344,11 +348,11 @@ const NavBar = () => {
 
                     {/* Translate Btn */}
                     <button
-                        className="translateBtn flex items-center justify-center font-inherit cursor-pointer"
+                        className="translateBtn ml-3 flex items-center gap-2 rounded-full border border-white/70 px-3 py-1 text-sm font-medium text-white cursor-pointer transition-colors duration-300 hover:bg-white/10"
                         id="translate-sw-button"
                         onClick={() => translatePage()}
                     >
-                        <img src={world_translate} className="w-5 mr-1" alt="" />
+                        <FiGlobe className="h-4 w-4" />
                         <span>Swahili</span>
                     </button>
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin,ArrowRight, User, Mail, Phone } from 'lucide-react';
+import { Calendar, Clock, MapPin, ArrowRight, User, Mail, Phone } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import GooglePlacesInput from './GooglePlacesInput';
 
@@ -14,7 +14,7 @@ interface FormData {
 }
 
 const CarsForm = () => {
-    const backendBaseUrl = import.meta.env.VITE_BACKEND_URL ?? 'http://127.0.0.1:8000';
+    const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || 'https://perlica-backend.onrender.com';
 
     const [formData, setFormData] = useState<FormData>(() => ({
         pickupDate: new Date().toISOString().split('T')[0],
@@ -75,7 +75,7 @@ const CarsForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!validateForm()) {
             return;
         }
@@ -124,7 +124,7 @@ const CarsForm = () => {
     };
 
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -132,33 +132,32 @@ const CarsForm = () => {
         >
             {/* Main Card Container */}
             <div className="bg-black/20 rounded-xl shadow-2xl overflow-hidden border border-gray-100">
-                
+
 
                 {/* Form Section */}
                 <div className="p-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        
+
                         {/* Personal Information Section */}
                         <div className="rounded-xl p-6 space-y-5">
                             <h3 className="text-sm font-bold text-gray-50 uppercase tracking-wider">Your Information</h3>
-                            
+
                             {/* Full Name */}
                             <div className="space-y-1">
                                 <label htmlFor="car-fullName" className="text-sm font-semibold text-gray-50 flex items-center gap-2">
                                     <User className="w-4 h-4 text-green-600" />
                                     Full Name
                                 </label>
-                                <input 
+                                <input
                                     id="car-fullName"
-                                    type="text" 
+                                    type="text"
                                     name="fullName"
                                     value={formData.fullName}
                                     onChange={handleChange}
-                                    placeholder="John Doe" 
+                                    placeholder="John Doe"
                                     autoComplete="name"
-                                    className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${
-                                        errors.fullName ? 'border-red-500' : 'border-gray-200'
-                                    }`}
+                                    className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${errors.fullName ? 'border-red-500' : 'border-gray-200'
+                                        }`}
                                 />
                                 {errors.fullName && <p className="text-red-500 text-xs">{errors.fullName}</p>}
                             </div>
@@ -171,17 +170,16 @@ const CarsForm = () => {
                                         <Mail className="w-4 h-4 text-green-600" />
                                         Email
                                     </label>
-                                    <input 
+                                    <input
                                         id="car-email"
-                                        type="email" 
+                                        type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        placeholder="you@example.com" 
+                                        placeholder="you@example.com"
                                         autoComplete="email"
-                                        className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${
-                                            errors.email ? 'border-red-500' : 'border-gray-200'
-                                        }`}
+                                        className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${errors.email ? 'border-red-500' : 'border-gray-200'
+                                            }`}
                                     />
                                     {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
                                 </div>
@@ -192,17 +190,16 @@ const CarsForm = () => {
                                         <Phone className="w-4 h-4 text-green-600" />
                                         Phone Number
                                     </label>
-                                    <input 
+                                    <input
                                         id="car-phone"
-                                        type="tel" 
+                                        type="tel"
                                         name="phoneNumber"
                                         value={formData.phoneNumber}
                                         onChange={handleChange}
-                                        placeholder="+254 712 345 678" 
+                                        placeholder="+254 712 345 678"
                                         autoComplete="tel"
-                                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${
-                                            errors.phoneNumber ? 'border-red-500' : 'border-gray-200'
-                                        }`}
+                                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all placeholder:text-gray-400 text-gray-700 ${errors.phoneNumber ? 'border-red-500' : 'border-gray-200'
+                                            }`}
                                     />
                                     {errors.phoneNumber && <p className="text-red-500 text-xs">{errors.phoneNumber}</p>}
                                 </div>
@@ -212,7 +209,7 @@ const CarsForm = () => {
                         {/* Trip Details Section */}
                         <div className="rounded-2xl p-6 space-y-2">
                             <h3 className="text-sm font-bold text-gray-50 uppercase tracking-wider">Trip Details</h3>
-                            
+
                             {/* Date and Time Row */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Date Input */}
@@ -221,15 +218,14 @@ const CarsForm = () => {
                                         <Calendar className="w-4 h-4 text-green-600" />
                                         Pickup Date
                                     </label>
-                                    <input 
+                                    <input
                                         id="car-pickupDate"
-                                        type="date" 
+                                        type="date"
                                         name="pickupDate"
                                         value={formData.pickupDate}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700 ${
-                                            errors.pickupDate ? 'border-red-500' : 'border-gray-200'
-                                        }`}
+                                        className={`w-full px-4 py-3  border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700 ${errors.pickupDate ? 'border-red-500' : 'border-gray-200'
+                                            }`}
                                     />
                                     {errors.pickupDate && <p className="text-red-500 text-xs">{errors.pickupDate}</p>}
                                 </div>
@@ -240,15 +236,14 @@ const CarsForm = () => {
                                         <Clock className="w-4 h-4 text-green-600" />
                                         Pickup Time
                                     </label>
-                                    <input 
+                                    <input
                                         id="car-pickupTime"
-                                        type="time" 
-                                        name="pickupTime" 
+                                        type="time"
+                                        name="pickupTime"
                                         value={formData.pickupTime}
                                         onChange={handleChange}
-                                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700 ${
-                                            errors.pickupTime ? 'border-red-500' : 'border-gray-200'
-                                        }`}
+                                        className={`w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all text-gray-700 ${errors.pickupTime ? 'border-red-500' : 'border-gray-200'
+                                            }`}
                                     />
                                     {errors.pickupTime && <p className="text-red-500 text-xs">{errors.pickupTime}</p>}
                                 </div>

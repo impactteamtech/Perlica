@@ -1,6 +1,5 @@
 import type { JSX } from "react"
 import type { Guide } from '../../lib/types'
-import { FaWhatsapp, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 
 const TourGuideCard = ({ guide }: { guide: Guide }): JSX.Element => {
   return (
@@ -29,28 +28,13 @@ const TourGuideCard = ({ guide }: { guide: Guide }): JSX.Element => {
             {guide.name}
           </h3>
 
-          {/* Decorative Divider */}
           <div className="my-3 h-px w-12 bg-white/30 transition-all duration-500 group-hover:w-full group-hover:bg-white/50" />
-          <div className="flex items-center gap-4 opacity-0 transition-all duration-500 delay-100 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4">
-            <SocialButton icon={<FaWhatsapp />} label="WhatsApp" />
-            <SocialButton icon={<FaInstagram />} label="Instagram" />
-            <SocialButton icon={<FaPhoneAlt size={14} />} label="Call" />
-          </div>
         </div>
       </div>
     </div>
   )
 }
 
-// Helper component for the social buttons
-const SocialButton = ({ icon, label }: { icon: JSX.Element, label: string }) => (
-  <button 
-    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-secondary hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
-    aria-label={label}
-    title={label}
-  >
-    {icon}
-  </button>
-)
+
 
 export default TourGuideCard

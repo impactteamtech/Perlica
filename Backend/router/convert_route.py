@@ -19,11 +19,6 @@ def converter_route(from_curr: str=Query(description="from Currency must be a 3 
 
 @router.get("/resolve-url")
 def resolve_url(url: str = Query(..., description="URL to resolve (follows redirects)", min_length=1)):
-    """Resolve a URL by following redirects and return the final URL.
-
-    This is used by the frontend to convert Google-derived redirect URLs into a direct destination.
-    Returns a JSON payload: {"url": "https://final.example.com/..."}.
-    """
 
     raw = (url or "").strip()
     if not raw:

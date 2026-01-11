@@ -25,6 +25,9 @@
 .title-font {
    font-family: 'Oswald', sans-serif;
 }
+button{
+   cursor: pointer;
+}
 .text-font {
    @apply font-[Rubik]  font-[300] text-gray-600 text-lg md:text-xl  2xl:text-2xl;
 }

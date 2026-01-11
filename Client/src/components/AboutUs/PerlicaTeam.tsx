@@ -18,12 +18,13 @@ const PerlicaTeam = (): JSX.Element => {
         >
           <img
             className="w-44 sm:w-64 lg:w-75 2xl:w-96 max-w-full h-auto hover:scale-105 transition-transform duration-200 hover:z-10 rounded-lg border-[#efebe5]/90 border-4"
-            src="/tour_guides/perlica_team1.jpg"
+            src="https://res.cloudinary.com/drztwlqqx/image/upload/v1768072084/meg-von-haartman-Q3YmoeoQ9g0-unsplash_x3zlf6.jpg"
             alt="team-member-1"
           />
           <img
             className="w-50 sm:w-72 lg:w-75 2xl:w-96 max-w-full h-auto top-8 sm:top-10 hover:scale-105 transition-transform duration-200 relative -ml-6 sm:-ml-10 lg:ml-0 lg:top-24 lg:right-40 rounded-lg border-[#efebe5]/90 border-4"
-            src="/tour_guides/perlica_team2.jpg"
+            src="/tour_guides/perlica_team1.jpg"
+            
             alt="team-member-2"
           />
         </motion.div>
@@ -62,13 +63,12 @@ const PerlicaTeam = (): JSX.Element => {
         </div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center"
-        
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center max-w-4xl mx-auto"
         >
           {tourGuides.map((guide, index) => (
             <motion.div
               key={index}
-             
+
             >
               <TourGuideCard guide={guide} />
             </motion.div>

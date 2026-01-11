@@ -25,7 +25,7 @@ const ContactUs = (): JSX.Element => {
     "Other",
   ];
 
-  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL ?? "http://127.0.0.1:8000";
+  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || "https://perlica-backend.onrender.com";
 
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
@@ -228,6 +228,7 @@ const ContactUs = (): JSX.Element => {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Full Name"
+                  required
                   aria-label="Full Name"
                   className="w-full bg-transparent outline-none border-none focus:ring-0 text-gray-800 pb-3 pl-7 text-lg placeholder-gray-500 transition-all duration-300"
                 />
@@ -257,6 +258,7 @@ const ContactUs = (): JSX.Element => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email Address"
+                    required
                     aria-label="Email Address"
                     className="w-full bg-transparent ring-0 outline-none border-none focus:ring-0 text-gray-800 pb-3 pl-7 text-lg placeholder-gray-500 transition-all duration-300"
                   />
@@ -285,6 +287,7 @@ const ContactUs = (): JSX.Element => {
                     onChange={handleChange}
                     placeholder="Phone Number"
                     aria-label="Phone Number"
+                    required
                     className="w-full bg-transparent outline-none border-none focus:ring-0 text-gray-800 pb-3 pl-7 text-lg placeholder-gray-500 transition-all duration-300"
                   />
                 </div>
@@ -306,6 +309,7 @@ const ContactUs = (): JSX.Element => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                required
                 placeholder="Your Message"
                 aria-label="Your Message"
                 className="w-full h-32 resize-none bg-transparent outline-none border-none focus:ring-0 text-gray-800 pb-3 text-lg placeholder-gray-500 transition-all duration-300"
@@ -326,6 +330,7 @@ const ContactUs = (): JSX.Element => {
               <select
                 name="subject"
                 value={formData.subject}
+                required
                 onChange={handleChange}
                 aria-label="Subject"
                 className="w-full bg-transparent outline-none border-none focus:ring-0 text-gray-800 pb-3 text-lg appearance-none cursor-pointer"
