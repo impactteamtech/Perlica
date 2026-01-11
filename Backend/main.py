@@ -26,12 +26,17 @@ app.include_router(email_router)
 #our cors middleware url options
 cors_option = [v for v in [backend_url, frontend_url] if v]
 #include our route in our app
-# app.include_router(router, prefix='/converter', tags=['converter'])
+app.include_router(router, prefix='/converter', tags=['converter'])
 
 #FIXED CORS CONFIG (Render-safe)
 app.add_middleware(
         CORSMiddleware,
-        allow_origins=['https://www.perlicatoursandtravel.com', 'https://perlica-backend.onrender.com'],
+    allow_origins=[
+        'https://www.perlicatoursandtravel.com',
+        'https://perlica-backend.onrender.com',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+    ],
         allow_credentials=True, 
         allow_methods=["*"],     
         allow_headers=["*"],     
