@@ -379,6 +379,23 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
     };
   }, [bookingUrl, fetchedWebsiteUrl, websiteUrl]);
 
+  const openUrlHref = useMemo(() => {
+    // Only use a fully resolved, non-Google URL for the backend redirect.
+    const urlToUse = resolvedBookingUrl;
+    if (!urlToUse) return null;
+
+    const encoded = encodeURIComponent(urlToUse);
+    const base = getBackendBaseUrl();
+
+    // Prefer explicit backend base when available (e.g. Render URL).
+    if (base) {
+      return `${base}/converter/open-url?url=${encoded}`;
+    }
+
+    // Fallback to relative path (useful if frontend and backend share origin).
+    return `/converter/open-url?url=${encoded}`;
+  }, [resolvedBookingUrl]);
+
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div
@@ -495,20 +512,25 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose })
                 <span className="text-gray-400 font-medium">/ night</span>
               </div>
             </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                const urlToUse = resolvedBookingUrl || bookingUrl;
-                if (!urlToUse) return;
-                window.open(urlToUse, '_blank', 'noopener,noreferrer');
-                onClose();
-              }}
-              disabled={false}
-              className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-            >
-              Book Now
-            </button>
+            {openUrlHref ? (
+              <a
+                href={openUrlHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+                className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95"
+              >
+                Book Now
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                className="w-full sm:w-auto text-center bg-gray-300 text-gray-600 text-lg font-bold py-3 px-8 rounded-xl cursor-not-allowed opacity-70"
+              >
+                Book Now
+              </button>
+            )}
           </div>
         </div>
 

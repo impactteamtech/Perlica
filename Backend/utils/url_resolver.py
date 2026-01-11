@@ -120,20 +120,42 @@ def resolve_final_url(
     if not raw:
         return None
 
+    # First unwrap simple google.com/url wrappers if present.
     candidate = (extract_google_redirect_target(raw).strip() or raw).strip()
+
+    # Reject obviously unsafe/SSRFi destinations before making any HTTP call
+    # (private IPs, localhost, etc.). Public Google hosts are allowed here as
+    # intermediate resolvers; we'll filter them out as *final* destinations
+    # after following redirects.
     if not is_safe_public_destination(candidate):
         return None
 
     try:
         resolved = follow_redirects(candidate, timeout_s=timeout_s, max_redirects=max_redirects)
-        if not resolved:
-            return candidate
-
-        if not is_safe_public_destination(resolved):
-            return candidate
-
-        return resolved
     except requests.TooManyRedirects:
-        return candidate
+        resolved = candidate
     except requests.RequestException:
-        return candidate
+        resolved = candidate
+
+    final = (resolved or candidate).strip()
+    if not final:
+        return None
+
+    # One more unwrap in case we landed on another google.com/url wrapper.
+    final_unwrapped = (extract_google_redirect_target(final).strip() or final).strip()
+    if not final_unwrapped:
+        return None
+
+    # Final safety check: must be public and must NOT be a Google domain.
+    if not is_safe_public_destination(final_unwrapped):
+        return None
+
+    try:
+        final_host = (urlparse(final_unwrapped).hostname or "").lower()
+    except Exception:
+        return None
+
+    if "google." in final_host:
+        return None
+
+    return final_unwrapped
