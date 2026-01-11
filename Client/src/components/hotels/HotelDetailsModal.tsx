@@ -5,7 +5,6 @@ import { fetchHotelDetailImages, fetchHotelWebsiteUrl } from './api';
 interface HotelDetailsModalProps {
   hotel: Hotel;
   onClose: () => void;
-  onBookNow: (bookingUrl: string) => void;
 }
 
 const DEFAULT_FACILITIES = [
@@ -246,7 +245,7 @@ const withTimeout = <T,>(p: Promise<T>, ms: number, fallback: T): Promise<T> => 
   });
 };
 
-const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, onBookNow }) => {
+const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose }) => {
   const [detailImages, setDetailImages] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [fetchedWebsiteUrl, setFetchedWebsiteUrl] = useState<string | null>(null);
@@ -387,7 +386,7 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-4xl h-[92dvh] sm:h-auto sm:max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div className="relative bg-white rounded-2xl w-full max-w-4xl h-[92dvh] sm:h-auto sm:max-h-[93vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
 
         <div className="relative shrink-0">
           <div className="relative h-56 sm:h-72 group bg-gray-100">
@@ -502,8 +501,8 @@ const HotelDetailsModal: React.FC<HotelDetailsModalProps> = ({ hotel, onClose, o
               onClick={() => {
                 const urlToUse = resolvedBookingUrl || bookingUrl;
                 if (!urlToUse) return;
-
-                onBookNow(urlToUse);
+                window.open(urlToUse, '_blank', 'noopener,noreferrer');
+                onClose();
               }}
               disabled={false}
               className="w-full sm:w-auto text-center bg-[#04c41a] hover:bg-[#03a315] text-white text-lg font-bold py-3 px-8 rounded-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"

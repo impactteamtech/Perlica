@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Search } from 'lucide-react'; 
+import { MapPin, Search } from 'lucide-react';
 import type { Hotel, Country } from './types';
 import { searchHotels } from './api';
 import CountryTabs from './CountryTabs';
 import SearchForm from './SearchForm';
 import HotelCard from './HotelCard';
 import HotelDetailsModal from './HotelDetailsModal';
-import HotelBookingLeadFormModal from './HotelBookingLeadFormModal';
 import HotelFilters, { type HotelSortBy } from './HotelFilters';
 
 const HotelSearchPage: React.FC = () => {
@@ -22,9 +21,6 @@ const HotelSearchPage: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country>('KE');
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
-  const [bookingFormOpen, setBookingFormOpen] = useState(false);
-  const [bookingUrl, setBookingUrl] = useState<string | null>(null);
-  const [bookingHotelName, setBookingHotelName] = useState<string>('');
 
   // Filters + paging
   const [minPrice, setMinPrice] = useState<string>('');
@@ -53,7 +49,7 @@ const HotelSearchPage: React.FC = () => {
     setError('');
     setHasSearched(true);
     // Clear previous results while loading for better UX
-    setHotels([]); 
+    setHotels([]);
     setVisibleCount(12);
 
     try {
@@ -129,11 +125,11 @@ const HotelSearchPage: React.FC = () => {
   console.log("selected hotel", selectedHotel?.facilities);
   return (
     <div className="min-h-screen  flex flex-col font-sans">
-      
+
       <div className="relative min-h-[100svh] w-full flex items-center justify-center flex-col overflow-hidden py-20 lg:py-15 2xl:py-10">
         <div className="absolute inset-0  z-0">
-          <img 
-            src="https://res.cloudinary.com/drztwlqqx/image/upload/v1768073662/hotels-main-image_ae9kgn.jpg" 
+          <img
+            src="https://res.cloudinary.com/drztwlqqx/image/upload/v1768073662/hotels-main-image_ae9kgn.jpg"
             alt="Luxury Hotel"
             className="h-full w-full  object-center"
           />
@@ -141,55 +137,55 @@ const HotelSearchPage: React.FC = () => {
         </div>
 
         <div className="z-10 w-full max-w-5xl px-4 flex flex-col items-center text-center space-y-6 sm:space-y-8">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="space"
           >
             <h1 className="text-4xl sm:text-5xl 2xl:text-6xl text-white font-extrabold tracking-tight drop-shadow-lg">
-              Find the Most Beautiful <br/> 
+              Find the Most Beautiful <br />
               <span className="text-[#04c41a]">Hotels in Africa</span>
             </h1>
-         
+
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             className="w-full backdrop-blur-md border-gray-50/30 border rounded-3xl shadow-2xl"
           >
-              <CountryTabs
-                selectedCountry={selectedCountry}
-                setSelectedCountry={setSelectedCountry}
-                setDestination={setDestination}
-                setHotels={setHotels}
-              />
+            <CountryTabs
+              selectedCountry={selectedCountry}
+              setSelectedCountry={setSelectedCountry}
+              setDestination={setDestination}
+              setHotels={setHotels}
+            />
 
-              <SearchForm
-                destination={destination}
-                setDestination={setDestination}
-                checkIn={checkIn}
-                setCheckIn={setCheckIn}
-                checkOut={checkOut}
-                setCheckOut={setCheckOut}
-                guests={guests}
-                setGuests={setGuests}
-                loading={loading}
-                error={error}
-                selectedCountry={selectedCountry}
-                onSearch={handleSearch}
-              />
-           
+            <SearchForm
+              destination={destination}
+              setDestination={setDestination}
+              checkIn={checkIn}
+              setCheckIn={setCheckIn}
+              checkOut={checkOut}
+              setCheckOut={setCheckOut}
+              guests={guests}
+              setGuests={setGuests}
+              loading={loading}
+              error={error}
+              selectedCountry={selectedCountry}
+              onSearch={handleSearch}
+            />
+
           </motion.div>
         </div>
       </div>
 
       <div className="flex-1 w-full  px-4 sm:px-6 lg:px-8 mt-0 relative z-20 pb-20">
         {hotels.length > 0 && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 mt-10 sm:mt-14 lg:mt-20"
@@ -240,7 +236,7 @@ const HotelSearchPage: React.FC = () => {
         )}
 
         <AnimatePresence>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1  gap-8"
             layout
           >
@@ -270,24 +266,24 @@ const HotelSearchPage: React.FC = () => {
         )}
 
         {!loading && hotels.length === 0 && !error && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex flex-col items-center  justify-center py-20"
           >
             <div className="bg-gray-50 p-6 rounded-full mb-6">
               {hasSearched ? (
-                 <Search className="w-12 h-12 text-red-500" />
+                <Search className="w-12 h-12 text-red-500" />
               ) : (
-                 <MapPin className="w-12 h-12 text-red-500 " />
+                <MapPin className="w-12 h-12 text-red-500 " />
               )}
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-2">
               {hasSearched ? 'No hotels found' : 'Ready to explore?'}
             </h3>
             <p className="text-gray-600 text-lg text-center max-w-md">
-              {hasSearched 
-                ? 'Try adjusting your dates or destination to find available properties.' 
+              {hasSearched
+                ? 'Try adjusting your dates or destination to find available properties.'
                 : 'Select your dream destination in Africa and start your journey.'}
             </p>
           </motion.div>
@@ -315,23 +311,6 @@ const HotelSearchPage: React.FC = () => {
           <HotelDetailsModal
             hotel={selectedHotel}
             onClose={() => setSelectedHotel(null)}
-            onBookNow={(url) => {
-              setSelectedHotel(null);
-              setBookingUrl(url);
-              setBookingHotelName(selectedHotel.name);
-              setBookingFormOpen(true);
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {bookingFormOpen && (
-          <HotelBookingLeadFormModal
-            open={bookingFormOpen}
-            bookingUrl={bookingUrl}
-            hotelName={bookingHotelName}
-            onClose={() => setBookingFormOpen(false)}
           />
         )}
       </AnimatePresence>
