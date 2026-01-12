@@ -123,10 +123,6 @@ def resolve_final_url(
     # First unwrap simple google.com/url wrappers if present.
     candidate = (extract_google_redirect_target(raw).strip() or raw).strip()
 
-    # Reject obviously unsafe/SSRFi destinations before making any HTTP call
-    # (private IPs, localhost, etc.). Public Google hosts are allowed here as
-    # intermediate resolvers; we'll filter them out as *final* destinations
-    # after following redirects.
     if not is_safe_public_destination(candidate):
         return None
 
