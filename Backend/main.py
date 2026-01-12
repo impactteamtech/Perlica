@@ -56,9 +56,7 @@ app.include_router(email_router, prefix='/email', tags=['email'])
 async def read_root():
     return {"message": "SERVER is up and running"}  #our root route
 
-#our main function to run our fastApi app
 if __name__ == "__main__":
     # print(f"Starting server on http://{host}:{port}")
-    # print(f"Currency converter available at: http://{host}:{port}/currency/convert")
     uvicorn.run("main:app", host=host, port=int(port), reload=True)
 

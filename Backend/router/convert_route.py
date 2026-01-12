@@ -5,7 +5,6 @@ from fastapi import HTTPException
 from fastapi.params import Query
 from fastapi.responses import RedirectResponse
 from utils.url_resolver import resolve_final_url
-#importing our currency function we created in utils
 from utils.currency import currency_converter
 #initializing our router 
 router = APIRouter()
