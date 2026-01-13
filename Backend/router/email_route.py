@@ -23,7 +23,7 @@ SENDER_NAME = os.getenv("BREVO_SENDER_NAME")
 NOTIFICATION_EMAIL = os.getenv("BREVO_NOTIFICATION_EMAIL")
 NOTIFICATION_NAME = os.getenv("BREVO_NOTIFICATION_NAME")
 GOOGLE_SHEET_WEBAPP_URL = os.getenv("GOOGLE_SHEET_WEBAPP_URL")
-
+# pushing
 
 class ContactRequest(BaseModel):
     fullName: str
