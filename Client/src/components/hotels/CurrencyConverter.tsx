@@ -74,7 +74,7 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
       const response = await fetch('https://perlica-backend.onrender.com/currency/currencies', {
         signal: AbortSignal.timeout(5000), // 5 second timeout
       });
-      
+      // edits 
       if (response.ok) {
         const data = await response.json();
         console.log('Currencies API response:', data);
@@ -129,7 +129,7 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        signal: AbortSignal.timeout(8000), // 8 second timeout
+        signal: AbortSignal.timeout(8000), // 8 second timeout time
       });
       
       console.log('Response status:', response.status);
