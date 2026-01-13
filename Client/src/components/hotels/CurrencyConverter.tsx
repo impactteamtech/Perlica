@@ -129,7 +129,7 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        signal: AbortSignal.timeout(8000), // 8 second timeout
+        signal: AbortSignal.timeout(8000), // 8 second timeout time
       });
       
       console.log('Response status:', response.status);
