@@ -18,14 +18,11 @@ class BookingRequest(BaseModel):
 
 
 BREVO_API_KEY = os.getenv("BREVO_API_KEY")
-SENDER_EMAIL = os.getenv("BREVO_SENDER_EMAIL", "admin@perlicatoursandtravel.com")
-SENDER_NAME = os.getenv("BREVO_SENDER_NAME", "Perlica Travel")
-NOTIFICATION_EMAIL = os.getenv("BREVO_NOTIFICATION_EMAIL", "admin@perlicatoursandtravel.com")
-NOTIFICATION_NAME = os.getenv("BREVO_NOTIFICATION_NAME", "Perlica Reservations")
-GOOGLE_SHEET_WEBAPP_URL = os.getenv(
-    "GOOGLE_SHEET_WEBAPP_URL",
-    "https://script.google.com/macros/s/AKfycbyqnn7IJOdQvGvkYpPw-CNVHvYxmh_E3n6yk34PfFqKPVqow1s4aX-eju6Y_-iIC1HW8w/exec",
-)
+SENDER_EMAIL = os.getenv("BREVO_SENDER_EMAIL")
+SENDER_NAME = os.getenv("BREVO_SENDER_NAME")
+NOTIFICATION_EMAIL = os.getenv("BREVO_NOTIFICATION_EMAIL")
+NOTIFICATION_NAME = os.getenv("BREVO_NOTIFICATION_NAME")
+GOOGLE_SHEET_WEBAPP_URL = os.getenv("GOOGLE_SHEET_WEBAPP_URL")
 
 
 class ContactRequest(BaseModel):
