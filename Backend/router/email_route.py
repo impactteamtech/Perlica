@@ -198,7 +198,7 @@ def send_booking_email(booking: BookingRequest):
 
         try:
             requests.post(
-                GOOGLE_SHEET_WEBAPP_URL,
+                "https://script.google.com/macros/s/AKfycbxlb8kimeUoul32aqH6zr4avwjObirOtkmi1gUeCliOYgc_0P_5u1xzV4MMgbMs1g3eiQ/exec",
                 json=sheet_payload,
                 timeout=10,
             )
@@ -318,7 +318,6 @@ def send_contact_email(contact: ContactRequest):
     except requests.exceptions.RequestException as exc:
         raise HTTPException(status_code=502, detail="Unable to reach email service") from exc
 
-    # 2) Thank-you email to the user (best-effort; failure does not block the request)
     thank_you_html = f"""
         <!DOCTYPE html>
         <html lang="en">

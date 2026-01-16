@@ -16,14 +16,16 @@ interface FormData {
 const CarsForm = () => {
     const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || 'https://perlica-backend.onrender.com';
 
-    const [formData, setFormData] = useState<FormData>(() => ({
+    const getInitialFormData = (): FormData => ({
         pickupDate: new Date().toISOString().split('T')[0],
         pickupTime: '',
         toDestination: '',
         email: '',
         phoneNumber: '',
         fullName: ''
-    }));
+    });
+
+    const [formData, setFormData] = useState<FormData>(() => getInitialFormData());
 
     const [errors, setErrors] = useState<Partial<FormData>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -112,6 +114,11 @@ const CarsForm = () => {
                 }
                 throw new Error(message);
             }
+
+            // Reset form on successful submit
+            setFormData(getInitialFormData());
+            setErrors({});
+
             toast.success('Thanks for your request! Our team will get back to you shortly.');
 
         } catch (error) {
