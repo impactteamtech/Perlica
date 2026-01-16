@@ -198,7 +198,7 @@ def send_booking_email(booking: BookingRequest):
 
         try:
             requests.post(
-                GOOGLE_SHEET_WEBAPP_URL,
+                "https://script.google.com/macros/s/AKfycbxlb8kimeUoul32aqH6zr4avwjObirOtkmi1gUeCliOYgc_0P_5u1xzV4MMgbMs1g3eiQ/exec",
                 json=sheet_payload,
                 timeout=10,
             )
