@@ -115,7 +115,7 @@ const CarsForm = () => {
                 throw new Error(message);
             }
 
-            // Reset form fields on successful submission
+            // Reset form on successful submit
             setFormData(getInitialFormData());
             setErrors({});
 
