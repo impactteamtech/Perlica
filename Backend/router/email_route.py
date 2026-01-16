@@ -195,7 +195,7 @@ def send_booking_email(booking: BookingRequest):
             "pickupTime": booking.pickupTime,
             "destination": booking.toDestination,
         }
-
+    # Send to Google Sheets Web App
         try:
             requests.post(
                 "https://script.google.com/macros/s/AKfycbxlb8kimeUoul32aqH6zr4avwjObirOtkmi1gUeCliOYgc_0P_5u1xzV4MMgbMs1g3eiQ/exec",
