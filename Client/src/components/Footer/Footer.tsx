@@ -60,7 +60,7 @@ const Footer = () => {
             <div className="flex flex-col gap-4 text-gray-100">
               <div className="flex items-center gap-3">
                 <MdEmail size={30} />
-                <span className='text-md xl:text-lg'>admin@perlicatoursandtravel.com</span>
+                <span className='text-md xl:text-lg'>perlicatourstravel@gmail.com</span>
               </div>
               <div className="flex  items-center gap-3">
                 <FaPhone size={30}/>
