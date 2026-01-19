@@ -3,13 +3,13 @@ import type { Guide, KenyaImageDetails, Event, FamousDest, City } from './types'
 export const tourGuides: Guide[] = [
   {
     id: 1,
-    name: 'Rispa',
+    name: 'Risper',
     role: 'Tour guide',
     image: '/tour_guides/tour_guide1.jpeg'
   },
   {
     id: 2,
-    name: "Tour Guide",
+    name: "Lucy",
     role: "Safari guide",
     image: "/tour_guides/tour_guide3.png"
   },
