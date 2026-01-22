@@ -64,7 +64,12 @@ const Footer = () => {
               </div>
               <div className="flex  items-center gap-3">
                 <FaPhone size={30}/>
-                <span className='text-xl'>0715001992</span>
+                <span className='text-xl'>
+                Canadian :  0715001992
+                <br />
+                Kenyan :  254721452639
+
+                </span>
               </div>
             </div>
           </motion.div>
