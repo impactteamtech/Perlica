@@ -1,6 +1,5 @@
 import type { JSX } from 'react'
 import HistoryAndMission from './HistoryAndMission'
-import PerlicaTeam from './PerlicaTeam'
 import SupDetailsSection from './SupDetailsSection'
 import FirstSection from './FirstSection'
 import AboutTicker from './AboutTicker'
@@ -21,7 +20,6 @@ const AboutUs = (): JSX.Element => {
       <FirstSection />
       <HistoryAndMission />
       <SupDetailsSection />
-      <PerlicaTeam />
     </>
   )
 }
