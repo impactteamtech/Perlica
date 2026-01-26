@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 const CarsCTA = () => {
-  const canadianNumber: string = "071-500-1992";
+  const canadianNumber: string = "2508790178";
   const kenyanNumber: string = "254721452639";
   const navigate = useNavigate();
 
